@@ -4,9 +4,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/styles/global.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="/styles/font.css" />
         <title>Hovertask - Dashboard</title>
         <style>
@@ -24,13 +21,13 @@
                 <img src="/images/logo.png" alt="Logo" class="h-8" />
                 <div class="text-sm flex gap-4">
                     <button title="Notifications">
-                        <i class="fa fa-bell"></i>
+                        <span class="mso">notification_important</span>
                     </button>
                     <button>
-                        <i class="fa fa-regular fa-moon"></i>
+                        <span class="mso">dark_mode</span>
                     </button>
                     <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
-                        <i class="fa fa-shopping-cart"></i> Cart
+                        <span class="mso">shopping_cart</span> Cart
                     </button>
                     <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
                         <img src="/images/nigerian-flag.png" alt="Nigerian flag icon" class="h-4" /> NGN
@@ -43,43 +40,43 @@
                     <div>
                         <div>Alayande Nurudeen</div>
                         <button class="text-sm flex items-center gap-2">
-                            @Datalite <i class="fa fa-caret-down"></i>
+                            @Datalite <span class="mso">arrow_drop_down</span>
                         </button>
                     </div>
                 </div>
                 <div class="flex-1 space-y-4">
                     <div class="flex py-2 px-4 border-b-1 border-zinc-400 rounded-full justify-between text-sm">
                         <a class="flex items-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg" href="/"
-                            ><i class="fa fa-dashboard"></i> Dashboard</a
+                            ><span class="mso">dashboard</span> Dashboard</a
                         >
                         <a class="flex items-center gap-2 px-2 py-1" href="/earn"
-                            ><i class="fa fa-money-bill-1"></i> Earn</a
+                            ><span class="mso">payments</span> Earn</a
                         >
                         <a class="flex items-center gap-2 px-2 py-1" href="/advertise"
-                            ><i class="fa fa-bullhorn"></i> Advertise</a
+                            ><span class="mso">campaign</span> Advertise</a
                         >
                         <a class="flex items-center gap-2 px-2 py-1" href="/marketplace">
-                            <i class="fa fa-shopping-basket"></i>
+                            <span class="mso">storefront</span>
                             Marketplace
-                            <i class="fa fa-caret-down"></i>
+                            <span class="mso"></span>
                         </a>
                         <a class="flex items-center gap-2 px-2 py-1" href="/buy-followers">
-                            <i class="fa fa-user-plus"></i>
+                            <span class="mso">group_add</span>
                             Buy Followers
-                            <i class="fa fa-caret-down"></i>
+                            <span class="mso">arrow_drop_down</span>
                         </a>
                         <button class="flex items-center gap-2 px-2 py-1" title="Menu">
-                            <i class="fa fa-bars"></i>
+                            <span class="mso">menu</span>
                         </button>
                     </div>
-                    <form class="bg-white px-8 py-2 rounded-full shadow-sm flex w-fit gap-6">
+                    <form class="bg-white px-8 py-2 rounded-full shadow-sm flex items-center w-fit gap-6">
                         <input
                             type="text"
                             placeholder="Search any products or services..."
                             class="min-w-0 placeholder:text-xs"
                         />
-                        <button title="Filters" type="button"><i class="fa fa-sliders"></i></button>
-                        <button title="Filters" type="button"><i class="fa fa-search"></i></button>
+                        <button title="Filters" type="button"><span class="mso">tune</span></button>
+                        <button title="Filters" type="button"><span class="mso">search</span></button>
                     </form>
                 </div>
             </div>
@@ -91,15 +88,35 @@
                 <!-- SIDE NAV -->
                 <nav class="bg-blue-500 py-20 pl-6 pr-1 rounded-2xl" role="navigation">
                     <div class="rounded-2xl border-1 border-blue-300 py-8 px-4 flex flex-col gap-2 text-white text-sm">
-                        <a class="py-2 px-4 rounded-full w-fit bg-white text-blue-600" href="">Dashboard</a>
-                        <a class="py-2 px-4 rounded-full w-fit" href="">Earn</a>
-                        <a class="py-2 px-4 rounded-full w-fit" href="">Advertise</a>
-                        <a class="py-2 px-4 rounded-full w-fit" href="">Market place</a>
-                        <a class="py-2 px-4 rounded-full w-fit" href="">Buy Followers</a>
-                        <a class="py-2 px-4 rounded-full w-fit" href="">Add me up</a>
-                        <a class="py-2 px-4 rounded-full w-fit" href="">Refer & Earn</a>
-                        <a class="py-2 px-4 rounded-full w-fit" href="">Support/FAQ Page</a>
-                        <a class="py-2 px-4 rounded-full w-fit" href="">Logout</a>
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600"
+                            href=""
+                            ><span class="mso">dashboard</span> Dashboard</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">payments</span> Earn</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">campaign</span> Advertise</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">storefront</span> Market place</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">group_add</span> Buy Followers</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">person_add</span> Add me up</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">groups</span> Refer & Earn</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">support_agent</span> Support/FAQ Page</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">logout</span> Logout</a
+                        >
                     </div>
                 </nav>
                 <!-- SIDE NAV -->
@@ -116,8 +133,10 @@
                             <div class="font-light text-lg">Welcome back,</div>
                             <div class="text-xl">Alayande</div>
                         </div>
-                        <button class="text-xs bg-green-700 text-white px-4 py-2 h-fit rounded-lg">
-                            Earner <i class="fa fa-caret-down"></i>
+                        <button
+                            class="text-xs bg-green-700 text-white px-4 py-2 h-fit rounded-lg flex gap-1 items-center"
+                        >
+                            Earner <span class="mso">arrow_drop_down</span>
                         </button>
                     </div>
                     <!-- Greeting -->
@@ -127,9 +146,9 @@
                         <div class="flex gap-6">
                             <div class="font-medium">Total Balance</div>
                             <button
-                                class="text-xs font-light border-b-1 border-zinc-500 rounded-full h-fit px-1 py-0.5"
+                                class="text-sm font-light border-b-1 border-zinc-500 rounded-full h-fit px-1 py-0.5 flex gap-1 items-center"
                             >
-                                Last week <i class="fa fa-angle-down"></i>
+                                Last week <span class="mso">arrow_drop_down</span>
                             </button>
                         </div>
                         <div class="flex flex-wrap gap-x-16 gap-y-4">
@@ -152,9 +171,9 @@
                             <div class="flex gap-3">
                                 <div class="text-sm">Earned</div>
                                 <button
-                                    class="text-xs font-light border-b-1 border-zinc-500 rounded-full h-fit px-1 py-0.5"
+                                    class="text-xs font-light border-b-1 border-zinc-500 rounded-full h-fit px-1 py-0.5 flex gap-1 items-center"
                                 >
-                                    Last week <i class="fa fa-angle-down"></i>
+                                    Last week <span class="mso">arrow_drop_down</span>
                                 </button>
                             </div>
                             <div class="text-lg font-medium">50,000</div>
@@ -243,7 +262,7 @@
                                         <div class="text-xs font-light">30 of 50 remaining</div>
                                     </div>
                                     <div class="h-12 w-12 rounded-full border-1 flex items-center justify-center">
-                                        <i class="fa fa-arrow-right rotate-45"></i>
+                                        <span class="mso -rotate-45">east</span>
                                     </div>
                                 </div>
                             </div>
@@ -295,7 +314,7 @@
                                         <div class="text-xs font-light">30 of 50 remaining</div>
                                     </div>
                                     <div class="h-12 w-12 rounded-full border-1 flex items-center justify-center">
-                                        <i class="fa fa-arrow-right rotate-45"></i>
+                                        <span class="mso -rotate-45">east</span>
                                     </div>
                                 </div>
                             </div>
@@ -347,7 +366,7 @@
                                         <div class="text-xs font-light">30 of 50 remaining</div>
                                     </div>
                                     <div class="h-12 w-12 rounded-full border-1 flex items-center justify-center">
-                                        <i class="fa fa-arrow-right rotate-45"></i>
+                                        <span class="mso -rotate-45">east</span>
                                     </div>
                                 </div>
                             </div>
@@ -389,7 +408,7 @@
                                     <div class="flex justify-between gap-4 items-start">
                                         <h3 class="flex-1 text-lg font-medium">Ton Solid Laptop Bag</h3>
                                         <button>
-                                            <i class="fa fa-heart text-red-600"></i>
+                                            <span class="fa fa-heart text-red-600"></span>
                                         </button>
                                     </div>
                                     <div class="flex gap-8 items-center">
@@ -397,13 +416,13 @@
                                         <div>#12,000</div>
                                     </div>
                                     <div class="flex gap-8 items-center text-sm">
-                                        <div class="text-sm"><i class="fa fa-star text-zinc-400"></i> 4.8</div>
+                                        <div class="text-sm"><span class="fa fa-star text-zinc-400"></span> 4.8</div>
                                         <div class="text-blue-600">(120 reviews)</div>
                                     </div>
                                     <a
                                         href="#"
                                         class="text-blue-600 border-1 border-blue-600 px-4 py-2 rounded-3xl text-sm w-full flex gap-3 items-center justify-center whitespace-nowrap"
-                                        ><i class="fa fa-shopping-basket"></i> Check Product</a
+                                        ><span class="fa fa-shopping-basket"></span> Check Product</a
                                     >
                                 </div>
                             </div>
@@ -415,7 +434,7 @@
                                     <div class="flex justify-between gap-4 items-start">
                                         <h3 class="flex-1 text-lg font-medium">Ton Solid Laptop Bag</h3>
                                         <button>
-                                            <i class="fa fa-heart text-red-600"></i>
+                                            <span class="fa fa-heart text-red-600"></span>
                                         </button>
                                     </div>
                                     <div class="flex gap-8 items-center">
@@ -423,13 +442,13 @@
                                         <div>#12,000</div>
                                     </div>
                                     <div class="flex gap-8 items-center text-sm">
-                                        <div class="text-sm"><i class="fa fa-star text-zinc-400"></i> 4.8</div>
+                                        <div class="text-sm"><span class="fa fa-star text-zinc-400"></span> 4.8</div>
                                         <div class="text-blue-600">(120 reviews)</div>
                                     </div>
                                     <a
                                         href="#"
                                         class="text-blue-600 border-1 border-blue-600 px-4 py-2 rounded-3xl text-sm w-full flex gap-3 items-center justify-center whitespace-nowrap"
-                                        ><i class="fa fa-shopping-basket"></i> Check Product</a
+                                        ><span class="fa fa-shopping-basket"></span> Check Product</a
                                     >
                                 </div>
                             </div>
@@ -441,7 +460,7 @@
                                     <div class="flex justify-between gap-4 items-start">
                                         <h3 class="flex-1 text-lg font-medium">Ton Solid Laptop Bag</h3>
                                         <button>
-                                            <i class="fa fa-heart text-red-600"></i>
+                                            <span class="fa fa-heart text-red-600"></span>
                                         </button>
                                     </div>
                                     <div class="flex gap-8 items-center">
@@ -449,13 +468,13 @@
                                         <div>#12,000</div>
                                     </div>
                                     <div class="flex gap-8 items-center text-sm">
-                                        <div class="text-sm"><i class="fa fa-star text-zinc-400"></i> 4.8</div>
+                                        <div class="text-sm"><span class="fa fa-star text-zinc-400"></span> 4.8</div>
                                         <div class="text-blue-600">(120 reviews)</div>
                                     </div>
                                     <a
                                         href="#"
                                         class="text-blue-600 border-1 border-blue-600 px-4 py-2 rounded-3xl text-sm w-full flex gap-3 items-center justify-center whitespace-nowrap"
-                                        ><i class="fa fa-shopping-basket"></i> Check Product</a
+                                        ><span class="fa fa-shopping-basket"></span> Check Product</a
                                     >
                                 </div>
                             </div>
@@ -478,6 +497,5 @@
             });
             adCarousel.start();
         </script>
-        <script src="/scripts/fontawesome.min.js"></script>
     </body>
 </html>
