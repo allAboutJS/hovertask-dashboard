@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/styles/global.css" />
+        <link rel="stylesheet" href="/styles/font.css" />
+        <title>Hovertask - Dashboard</title>
+        <style>
+            #buy-and-sell-with-ease {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/images/berries.jpg);
+                background-size: cover;
+                background-position: center center;
+            }
+        </style>
+    </head>
+    <body class="bg-blue-50">
+        <!-- HEADER -->
+        <header class="p-6 bg-gradient-to-b from-[#4B70F559] via-[#4B70F53A] space-y-3">
+            <div class="flex justify-between max-w-6xl mx-auto">
+                <img src="/images/logo.png" alt="Logo" class="h-8" />
+                <div class="text-sm flex gap-4">
+                    <button title="Notifications">
+                        <span class="mso">notification_important</span>
+                    </button>
+                    <button>
+                        <span class="mso">dark_mode</span>
+                    </button>
+                    <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
+                        <span class="mso">shopping_cart</span> Cart
+                    </button>
+                    <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
+                        <img src="/images/nigerian-flag.png" alt="Nigerian flag icon" class="h-4" /> NGN
+                    </button>
+                </div>
+            </div>
+            <div class="flex justify-between max-w-6xl mx-auto gap-6">
+                <div class="flex items-center gap-3">
+                    <img class="w-12" src="/images/avatar.png" alt="User avatar" />
+                    <div>
+                        <div>Alayande Nurudeen</div>
+                        <button class="text-sm flex items-center gap-2">
+                            @Datalite <span class="mso">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-1 space-y-4">
+                    <div class="flex py-2 px-4 border-b-1 border-zinc-400 rounded-full justify-between text-sm">
+                        <a class="flex items-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg" href="/"
+                            ><span class="mso">dashboard</span> Dashboard</a
+                        >
+                        <a class="flex items-center gap-2 px-2 py-1" href="/earn"
+                            ><span class="mso">payments</span> Earn</a
+                        >
+                        <a class="flex items-center gap-2 px-2 py-1" href="/advertise"
+                            ><span class="mso">campaign</span> Advertise</a
+                        >
+                        <a class="flex items-center gap-2 px-2 py-1" href="/marketplace">
+                            <span class="mso">storefront</span>
+                            Marketplace
+                            <span class="mso"></span>
+                        </a>
+                        <a class="flex items-center gap-2 px-2 py-1" href="/buy-followers">
+                            <span class="mso">group_add</span>
+                            Buy Followers
+                            <span class="mso">arrow_drop_down</span>
+                        </a>
+                        <button class="flex items-center gap-2 px-2 py-1" title="Menu">
+                            <span class="mso">menu</span>
+                        </button>
+                    </div>
+                    <form class="bg-white px-8 py-2 rounded-full shadow-sm flex items-center w-fit gap-6">
+                        <input
+                            type="text"
+                            placeholder="Search any products or services..."
+                            class="min-w-0 placeholder:text-xs"
+                        />
+                        <button title="Filters" type="button"><span class="mso">tune</span></button>
+                        <button title="Filters" type="button"><span class="mso">search</span></button>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <!-- HEADER -->
+
+        <div class="grid grid-cols-12 p-6 gap-4 max-w-6xl mx-auto">
+            <div class="space-y-4 col-span-3">
+                <!-- SIDE NAV -->
+                <nav class="bg-blue-500 py-20 pl-6 pr-1 rounded-2xl" role="navigation">
+                    <div class="rounded-2xl border-1 border-blue-300 py-8 px-4 flex flex-col gap-2 text-white text-sm">
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600"
+                            href=""
+                            ><span class="mso">dashboard</span> Dashboard</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">payments</span> Earn</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">campaign</span> Advertise</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">storefront</span> Market place</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">group_add</span> Buy Followers</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">person_add</span> Add me up</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">groups</span> Refer & Earn</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">support_agent</span> Support/FAQ Page</a
+                        >
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href=""
+                            ><span class="mso">logout</span> Logout</a
+                        >
+                    </div>
+                </nav>
+                <!-- SIDE NAV -->
+
+                <img src="/images/side-banner.png" alt="" />
+            </div>
+
+            <!-- MAIN -->
+            <div class="grid grid-cols-12 col-span-9">
+                <main class="col-span-10 bg-white shadow-sm p-6 py-8 space-y-12">
+                    <!-- Greeting -->
+                    <div class="flex justify-between">
+                        <div>
+                            <div class="font-light text-lg">Welcome back,</div>
+                            <div class="text-xl">Alayande</div>
+                        </div>
+                        <button
+                            class="text-xs bg-green-700 text-white px-4 py-2 h-fit rounded-lg flex gap-1 items-center"
+                        >
+                            Earner <span class="mso">arrow_drop_down</span>
+                        </button>
+                    </div>
+                    <!-- Greeting -->
+
+                    <!-- Account balance -->
+                    <div class="space-y-6">
+                        <div class="flex gap-6">
+                            <div class="font-medium">Total Balance</div>
+                            <button
+                                class="text-sm font-light border-b-1 border-zinc-500 rounded-full h-fit px-1 py-0.5 flex gap-1 items-center"
+                            >
+                                Last week <span class="mso">arrow_drop_down</span>
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-x-16 gap-y-4">
+                            <h3 class="text-3xl font-semibold">20,000</h3>
+                            <div class="space-x-3">
+                                <a href="/fund" class="p-3 rounded-full bg-blue-600 text-white">Fund</a>
+                                <a href="/withdraw" class="p-3 rounded-full border-1 border-blue-600 text-blue-600"
+                                    >Withdraw</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Account balance -->
+
+                    <!-- Statistics -->
+                    <div
+                        class="flex items-stretch justify-around bg-gradient-to-t from-[#DAE2FF] to-white py-8 px-4 rounded-b-2xl"
+                    >
+                        <div class="space-y-4">
+                            <div class="flex gap-3">
+                                <div class="text-sm">Earned</div>
+                                <button
+                                    class="text-xs font-light border-b-1 border-zinc-500 rounded-full h-fit px-1 py-0.5 flex gap-1 items-center"
+                                >
+                                    Last week <span class="mso">arrow_drop_down</span>
+                                </button>
+                            </div>
+                            <div class="text-lg font-medium">50,000</div>
+                        </div>
+                        <div class="border-r-1 border-zinc-300"></div>
+                        <div class="space-y-4">
+                            <div class="text-sm">Pending</div>
+                            <div class="text-lg font-medium">50,000</div>
+                        </div>
+                        <div class="border-r-1 border-zinc-300"></div>
+                        <div class="space-y-4">
+                            <div class="text-sm">Spent</div>
+                            <div class="text-lg font-medium">50,000</div>
+                        </div>
+                    </div>
+                    <!-- Statistics -->
+
+                    <!-- Welcome message -->
+                    <div class="text-center space-y-2">
+                        <h2 class="text-xl font-medium">Welcome to the website</h2>
+                        <p class="text-sm">
+                            Earn by completing simple social media tasks or advertise your products to the right
+                            audience.
+                        </p>
+                        <p class="text-sm">
+                            <a class="text-red-600 underline" href="/become-a-member">Kindly verify your account</a>
+                        </p>
+                        <br />
+                        <p class="text-sm text-center">
+                            Get access to all the services with just #1,000 ONLY verify your account now!
+                        </p>
+                    </div>
+                    <!-- Welcome message -->
+
+                    <!-- Available tasks -->
+                    <div class="space-y-6">
+                        <h2 class="text-xl font-medium">Available Tasks</h2>
+
+                        <!-- Tasks container -->
+                        <div class="space-y-4">
+                            <div class="py-6 px-8 rounded-4xl border-1 border-zinc-300 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <h3>
+                                        <span class="font-medium">Twitter Micro Influence: Follow -</span> 50 Followers
+                                        Required
+                                        <span class="text-sm text-orange-600">(New Task)</span>
+                                    </h3>
+                                    <div class="font-medium">#100.00</div>
+                                </div>
+                                <p>Platforms: Twitter, Instagram, Tiktok</p>
+                                <div class="flex justify-between gap-4 items-end">
+                                    <div class="px-3 py-1 rounded-full bg-green-200 text-green-600 text-xs w-fit h-fit">
+                                        Available
+                                    </div>
+                                    <div class="flex flex-col items-center w-fit">
+                                        <div class="progress relative w-fit">
+                                            <svg width="50" height="50" viewBox="0 0 100 100" class="-rotate-90">
+                                                <circle
+                                                    class="bg-circle"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="#ddd"
+                                                    stroke-width="10"
+                                                ></circle>
+                                                <circle
+                                                    class="progress-circle transition"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="blue"
+                                                    stroke-width="10"
+                                                    stroke-dasharray="251"
+                                                    stroke-dashoffset="251"
+                                                    stroke-linecap="round"
+                                                ></circle>
+                                            </svg>
+                                            <div
+                                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-medium progress-text"
+                                            >
+                                                70%
+                                            </div>
+                                        </div>
+                                        <div class="text-xs font-light">30 of 50 remaining</div>
+                                    </div>
+                                    <a
+                                        href="task"
+                                        class="h-12 w-12 rounded-full border-1 flex items-center justify-center"
+                                    >
+                                        <span class="mso -rotate-45">east</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="py-6 px-8 rounded-4xl border-1 border-zinc-300 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <h3>
+                                        <span class="font-medium">Twitter Micro Influence: Follow -</span> 50 Followers
+                                        Required
+                                        <span class="text-sm text-orange-600">(New Task)</span>
+                                    </h3>
+                                    <div class="font-medium">#100.00</div>
+                                </div>
+                                <p>Platforms: Twitter, Instagram, Tiktok</p>
+                                <div class="flex justify-between gap-4 items-end">
+                                    <div class="px-3 py-1 rounded-full bg-green-200 text-green-600 text-xs w-fit h-fit">
+                                        Available
+                                    </div>
+                                    <div class="flex flex-col items-center w-fit">
+                                        <div class="progress relative w-fit">
+                                            <svg width="50" height="50" viewBox="0 0 100 100" class="-rotate-90">
+                                                <circle
+                                                    class="bg-circle"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="#ddd"
+                                                    stroke-width="10"
+                                                ></circle>
+                                                <circle
+                                                    class="progress-circle transition"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="blue"
+                                                    stroke-width="10"
+                                                    stroke-dasharray="251"
+                                                    stroke-dashoffset="251"
+                                                    stroke-linecap="round"
+                                                ></circle>
+                                            </svg>
+                                            <div
+                                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-medium progress-text"
+                                            >
+                                                70%
+                                            </div>
+                                        </div>
+                                        <div class="text-xs font-light">30 of 50 remaining</div>
+                                    </div>
+                                    <a
+                                        href="task"
+                                        class="h-12 w-12 rounded-full border-1 flex items-center justify-center"
+                                    >
+                                        <span class="mso -rotate-45">east</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="py-6 px-8 rounded-4xl border-1 border-zinc-300 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <h3>
+                                        <span class="font-medium">Twitter Micro Influence: Follow -</span> 50 Followers
+                                        Required
+                                        <span class="text-sm text-orange-600">(New Task)</span>
+                                    </h3>
+                                    <div class="font-medium">#100.00</div>
+                                </div>
+                                <p>Platforms: Twitter, Instagram, Tiktok</p>
+                                <div class="flex justify-between gap-4 items-end">
+                                    <div class="px-3 py-1 rounded-full bg-green-200 text-green-600 text-xs w-fit h-fit">
+                                        Available
+                                    </div>
+                                    <div class="flex flex-col items-center w-fit">
+                                        <div class="progress relative w-fit">
+                                            <svg width="50" height="50" viewBox="0 0 100 100" class="-rotate-90">
+                                                <circle
+                                                    class="bg-circle"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="#ddd"
+                                                    stroke-width="10"
+                                                ></circle>
+                                                <circle
+                                                    class="progress-circle transition"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="blue"
+                                                    stroke-width="10"
+                                                    stroke-dasharray="251"
+                                                    stroke-dashoffset="251"
+                                                    stroke-linecap="round"
+                                                ></circle>
+                                            </svg>
+                                            <div
+                                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-medium progress-text"
+                                            >
+                                                70%
+                                            </div>
+                                        </div>
+                                        <div class="text-xs font-light">30 of 50 remaining</div>
+                                    </div>
+                                    <a
+                                        href="task"
+                                        class="h-12 w-12 rounded-full border-1 flex items-center justify-center"
+                                    >
+                                        <span class="mso -rotate-45">east</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <button
+                                class="px-4 py-2 rounded-full border border-blue-600 text-blue-600 block mx-auto mt-12 w-fit"
+                            >
+                                See all tasks
+                            </button>
+                        </div>
+                        <!-- Tasks container -->
+                    </div>
+                    <!-- Available tasks -->
+
+                    <!-- Carousel banner -->
+                    <div id="ad-carousel">
+                        <img src="/images/banner-img-1.png" alt="Ad banner" />
+                        <img src="/images/banner-img-2.png" alt="Ad banner" />
+                        <img src="/images/banner-img-3.png" alt="Ad banner" />
+                    </div>
+                    <!-- Carousel banner -->
+
+                    <!-- Buy with ease banner -->
+                    <div id="buy-and-sell-with-ease" class="py-16 px-4 rounded-3xl">
+                        <h3 class="text-2xl font-medium text-center text-white">Buy & Sell With Ease</h3>
+                    </div>
+                    <!-- Buy with ease banner -->
+
+                    <!-- Popular products -->
+                    <div class="space-y-6">
+                        <h2 class="text-xl font-medium">Available Products</h2>
+
+                        <!-- Products container -->
+                        <div class="bg-[#4B70F559] p-6 flex overflow-x-auto rounded-3xl gap-4">
+                            <div class="bg-white min-w-[220px] w-[220px] shadow-sm rounded-2xl p-4 space-y-2">
+                                <div class="bg-zinc-300 rounded-xl overflow-hidden">
+                                    <img src="/images/backpack.png" alt="Back pack" class="w-full h-auto" />
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between gap-4 items-start">
+                                        <h3 class="flex-1 text-lg font-medium">Ton Solid Laptop Bag</h3>
+                                        <button>
+                                            <span class="fa fa-heart text-red-600"></span>
+                                        </button>
+                                    </div>
+                                    <div class="flex gap-8 items-center">
+                                        <div class="text-sm text-zinc-400 line-through">#12,000</div>
+                                        <div>#12,000</div>
+                                    </div>
+                                    <div class="flex gap-8 items-center text-sm">
+                                        <div class="text-sm"><span class="fa fa-star text-zinc-400"></span> 4.8</div>
+                                        <div class="text-blue-600">(120 reviews)</div>
+                                    </div>
+                                    <a
+                                        href="#"
+                                        class="text-blue-600 border-1 border-blue-600 px-4 py-2 rounded-3xl text-sm w-full flex gap-3 items-center justify-center whitespace-nowrap"
+                                        ><span class="fa fa-shopping-basket"></span> Check Product</a
+                                    >
+                                </div>
+                            </div>
+                            <div class="bg-white min-w-[220px] w-[220px] shadow-sm rounded-2xl p-4 space-y-2">
+                                <div class="bg-zinc-300 rounded-xl overflow-hidden">
+                                    <img src="/images/backpack.png" alt="Back pack" class="w-full h-auto" />
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between gap-4 items-start">
+                                        <h3 class="flex-1 text-lg font-medium">Ton Solid Laptop Bag</h3>
+                                        <button>
+                                            <span class="fa fa-heart text-red-600"></span>
+                                        </button>
+                                    </div>
+                                    <div class="flex gap-8 items-center">
+                                        <div class="text-sm text-zinc-400 line-through">#12,000</div>
+                                        <div>#12,000</div>
+                                    </div>
+                                    <div class="flex gap-8 items-center text-sm">
+                                        <div class="text-sm"><span class="fa fa-star text-zinc-400"></span> 4.8</div>
+                                        <div class="text-blue-600">(120 reviews)</div>
+                                    </div>
+                                    <a
+                                        href="#"
+                                        class="text-blue-600 border-1 border-blue-600 px-4 py-2 rounded-3xl text-sm w-full flex gap-3 items-center justify-center whitespace-nowrap"
+                                        ><span class="fa fa-shopping-basket"></span> Check Product</a
+                                    >
+                                </div>
+                            </div>
+                            <div class="bg-white min-w-[220px] w-[220px] shadow-sm rounded-2xl p-4 space-y-2">
+                                <div class="bg-zinc-300 rounded-xl overflow-hidden">
+                                    <img src="/images/backpack.png" alt="Back pack" class="w-full h-auto" />
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between gap-4 items-start">
+                                        <h3 class="flex-1 text-lg font-medium">Ton Solid Laptop Bag</h3>
+                                        <button>
+                                            <span class="fa fa-heart text-red-600"></span>
+                                        </button>
+                                    </div>
+                                    <div class="flex gap-8 items-center">
+                                        <div class="text-sm text-zinc-400 line-through">#12,000</div>
+                                        <div>#12,000</div>
+                                    </div>
+                                    <div class="flex gap-8 items-center text-sm">
+                                        <div class="text-sm"><span class="fa fa-star text-zinc-400"></span> 4.8</div>
+                                        <div class="text-blue-600">(120 reviews)</div>
+                                    </div>
+                                    <a
+                                        href="#"
+                                        class="text-blue-600 border-1 border-blue-600 px-4 py-2 rounded-3xl text-sm w-full flex gap-3 items-center justify-center whitespace-nowrap"
+                                        ><span class="fa fa-shopping-basket"></span> Check Product</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Products container -->
+                    </div>
+                    <!-- Popular products -->
+                </main>
+                <!-- MAIN -->
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="/scripts/carousel.js"></script>
+        <script>
+            const adCarousel = new Carousel("ad-carousel", {
+                pauseOnHover: true,
+                autoScrollInterval: 3000,
+                allowUserScroll: false
+            });
+            adCarousel.start();
+        </script>
+    </body>
+</html>

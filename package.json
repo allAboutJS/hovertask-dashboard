@@ -5,7 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "tailwindcss": "npx @tailwindcss/cli -i ./src/input.css -o ./src/styles/global.css --watch",
+        "tailwindcss": "npx @tailwindcss/cli -i ./input.css -o ./src/styles/global.css --watch",
         "start": "node server.js"
     },
     "keywords": [],
