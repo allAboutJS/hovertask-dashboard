@@ -31,9 +31,9 @@
                 <div class="flex items-center gap-3">
                     <img class="w-12" src="/images/avatar.png" alt="User avatar" />
                     <div>
-                        <div>Alayande Nurudeen</div>
-                        <button class="text-sm flex items-center gap-2">
-                            @Datalite <span class="mso">arrow_drop_down</span>
+                        <div id="full-name">_</div>
+                        <button id="username" class="text-sm flex items-center gap-2">
+                            _ <span class="mso">arrow_drop_down</span>
                         </button>
                     </div>
                 </div>
@@ -133,7 +133,238 @@
 
             <!-- MAIN -->
             <div class="grid grid-cols-12 col-span-9">
-                <main class="col-span-11 bg-white shadow-sm p-6 pb-8 pt-16 space-y-12"></main>
+                <main class="col-span-11 bg-white shadow-sm p-6 py-4 space-y-12">
+                    <!-- Banner -->
+                    <section class="md:grid grid-cols-12 rounded-2xl p-6">
+                        <div class="col-span-8">
+                            <div class="flex gap-2 items-center">
+                                <a href="/earn"><span class="mso">west</span></a>
+                                <h1 class="font-medium text-lg">Perform Tasks or Post Adverts to Earn Money</h1>
+                            </div>
+                            <p class="font-light text-zinc-600 text-sm">
+                                Pick from a variety of tasks or start posting adverts for rewards.
+                            </p>
+                        </div>
+                        <div class="col-span-4 -translate-y-12">
+                            <img
+                                src="/images/Media_Sosial_Pictures___Freepik-removebg-preview 1.png"
+                                alt="Banner image"
+                            />
+                        </div>
+                    </section>
+                    <!-- Banner -->
+
+                    <!-- Perform Tasks, Post Adverts -->
+                    <section class="space-y-6">
+                        <div class="max-w-lg flex gap-2 p-4 bg-blue-500 border-b-1 rounded-3xl mx-auto text-sm">
+                            <button
+                                class="flex-1 w-full flex justify-center items-center gap-1 bg-white text-blue-600 p-2 rounded-lg"
+                            >
+                                <span class="mso">deployed_code</span> Perform Tasks
+                            </button>
+                            <button class="flex-1 w-full flex justify-center items-center gap-1 text-white">
+                                <span class="mso">campaign</span> Post Adverts To Earn Money
+                            </button>
+                        </div>
+                        <p class="font-light text-zinc-600 text-sm">
+                            Earn a steady income by promoting businesses and top brands on your social media platforms.
+                            To qualify for posting adverts on Facebook, Instagram, Twitter, or TikTok, your account must
+                            have a minimum of 1,000 followers.
+                        </p>
+
+                        <!-- Tabs -->
+                        <div class="flex items-center justify-center gap-1 border-1 border-blue-600 p-4 rounded-2xl">
+                            <button class="py-1 px-2 rounded-lg text-sm bg-blue-600 text-white">Social Media Tasks</button>
+                            <button class="py-1 px-2 rounded-lg text-sm border-1 bg-zinc-100 border-zinc-200">Video Marketting</button>
+                            <button class="py-1 px-2 rounded-lg text-sm border-1 bg-zinc-100 border-zinc-200">Micro-Influece Tasks</button>
+                            <button class="py-1 px-2 rounded-lg text-sm border-1 bg-zinc-100 border-zinc-200">Promotion Tasks</button>
+                            <button class="py-1 px-2 rounded-lg text-sm border-1 bg-zinc-100 border-zinc-200">Telegram Tasks</button>
+                        </div>
+                        <p class="text-right text-blue-600">Check tasks history</p>
+                        <!-- Tabs -->
+
+                        <!-- Banner img -->
+                        <img src="/images/banner-img-4.png">
+                        <!-- Banner img -->
+
+                        <!-- Available Tasks -->
+                    <div class="space-y-6">
+                        <h2 class="text-xl font-medium">New Available Tasks</h2>
+
+                        <!-- Tasks container -->
+                        <div class="space-y-4">
+                            <div class="py-6 px-8 rounded-4xl border-1 border-zinc-300 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <h3>
+                                        <span class="font-medium">Twitter Micro Influence: Follow -</span> 50 Followers
+                                        Required
+                                        <span class="text-sm text-orange-600">(New Task)</span>
+                                    </h3>
+                                    <div class="font-medium">#100.00</div>
+                                </div>
+                                <p>Platforms: Twitter, Instagram, Tiktok</p>
+                                <div class="flex justify-between gap-4 items-end">
+                                    <div class="px-3 py-1 rounded-full bg-green-200 text-green-600 text-xs w-fit h-fit">
+                                        Available
+                                    </div>
+                                    <div class="flex flex-col items-center w-fit">
+                                        <div class="progress relative w-fit">
+                                            <svg width="50" height="50" viewBox="0 0 100 100" class="-rotate-90">
+                                                <circle
+                                                    class="bg-circle"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="#ddd"
+                                                    stroke-width="10"
+                                                ></circle>
+                                                <circle
+                                                    class="progress-circle transition"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="blue"
+                                                    stroke-width="10"
+                                                    stroke-dasharray="251"
+                                                    stroke-dashoffset="251"
+                                                    stroke-linecap="round"
+                                                ></circle>
+                                            </svg>
+                                            <div
+                                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-medium progress-text"
+                                            >
+                                                70%
+                                            </div>
+                                        </div>
+                                        <div class="text-xs font-light">30 of 50 remaining</div>
+                                    </div>
+                                    <a
+                                        href="/task.html"
+                                        class="h-12 w-12 rounded-full border-1 flex items-center justify-center"
+                                    >
+                                        <span class="mso -rotate-45">east</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="py-6 px-8 rounded-4xl border-1 border-zinc-300 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <h3>
+                                        <span class="font-medium">Twitter Micro Influence: Follow -</span> 50 Followers
+                                        Required
+                                        <span class="text-sm text-orange-600">(New Task)</span>
+                                    </h3>
+                                    <div class="font-medium">#100.00</div>
+                                </div>
+                                <p>Platforms: Twitter, Instagram, Tiktok</p>
+                                <div class="flex justify-between gap-4 items-end">
+                                    <div class="px-3 py-1 rounded-full bg-green-200 text-green-600 text-xs w-fit h-fit">
+                                        Available
+                                    </div>
+                                    <div class="flex flex-col items-center w-fit">
+                                        <div class="progress relative w-fit">
+                                            <svg width="50" height="50" viewBox="0 0 100 100" class="-rotate-90">
+                                                <circle
+                                                    class="bg-circle"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="#ddd"
+                                                    stroke-width="10"
+                                                ></circle>
+                                                <circle
+                                                    class="progress-circle transition"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="blue"
+                                                    stroke-width="10"
+                                                    stroke-dasharray="251"
+                                                    stroke-dashoffset="251"
+                                                    stroke-linecap="round"
+                                                ></circle>
+                                            </svg>
+                                            <div
+                                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-medium progress-text"
+                                            >
+                                                70%
+                                            </div>
+                                        </div>
+                                        <div class="text-xs font-light">30 of 50 remaining</div>
+                                    </div>
+                                    <a
+                                        href="/task.html"
+                                        class="h-12 w-12 rounded-full border-1 flex items-center justify-center"
+                                    >
+                                        <span class="mso -rotate-45">east</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="py-6 px-8 rounded-4xl border-1 border-zinc-300 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <h3>
+                                        <span class="font-medium">Twitter Micro Influence: Follow -</span> 50 Followers
+                                        Required
+                                        <span class="text-sm text-orange-600">(New Task)</span>
+                                    </h3>
+                                    <div class="font-medium">#100.00</div>
+                                </div>
+                                <p>Platforms: Twitter, Instagram, Tiktok</p>
+                                <div class="flex justify-between gap-4 items-end">
+                                    <div class="px-3 py-1 rounded-full bg-green-200 text-green-600 text-xs w-fit h-fit">
+                                        Available
+                                    </div>
+                                    <div class="flex flex-col items-center w-fit">
+                                        <div class="progress relative w-fit">
+                                            <svg width="50" height="50" viewBox="0 0 100 100" class="-rotate-90">
+                                                <circle
+                                                    class="bg-circle"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="#ddd"
+                                                    stroke-width="10"
+                                                ></circle>
+                                                <circle
+                                                    class="progress-circle transition"
+                                                    cx="50"
+                                                    cy="50"
+                                                    r="40"
+                                                    fill="none"
+                                                    stroke="blue"
+                                                    stroke-width="10"
+                                                    stroke-dasharray="251"
+                                                    stroke-dashoffset="251"
+                                                    stroke-linecap="round"
+                                                ></circle>
+                                            </svg>
+                                            <div
+                                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-medium progress-text"
+                                            >
+                                                70%
+                                            </div>
+                                        </div>
+                                        <div class="text-xs font-light">30 of 50 remaining</div>
+                                    </div>
+                                    <a
+                                        href="/task.html"
+                                        class="h-12 w-12 rounded-full border-1 flex items-center justify-center"
+                                    >
+                                        <span class="mso -rotate-45">east</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tasks container -->
+                    </div>
+                    <!-- Available tasks -->
+                    </section>
+                    <!-- Perform Tasks, Post Adverts -->
+                </main>
                 <!-- MAIN -->
             </div>
         </div>
@@ -148,5 +379,6 @@
             });
             adCarousel.start();
         </script>
+        <script src="/scripts/display-user-data.js"></script>
     </body>
 </html>

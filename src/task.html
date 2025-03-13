@@ -46,10 +46,10 @@
                 </div>
                 <div class="flex-1 space-y-4">
                     <div class="flex py-2 px-4 border-b-1 border-zinc-400 rounded-full justify-between text-sm">
-                        <a class="flex items-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg" href="/"
+                        <a class="flex items-center gap-2 px-2 py-1" href="/"
                             ><span class="mso">dashboard</span> Dashboard</a
                         >
-                        <a class="flex items-center gap-2 px-2 py-1" href="/earn"
+                        <a class="flex items-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg" href="/earn"
                             ><span class="mso">payments</span> Earn</a
                         >
                         <a class="flex items-center gap-2 px-2 py-1" href="/advertise.html"
@@ -89,11 +89,11 @@
                 <nav class="bg-blue-500 py-20 pl-6 pr-1 rounded-2xl" role="navigation">
                     <div class="rounded-2xl border-1 border-blue-300 py-8 px-4 flex flex-col gap-2 text-white text-sm">
                         <a
-                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600"
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
                             href="/"
                             ><span class="mso">dashboard</span> Dashboard</a
                         >
-                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/earn"
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600" href="/earn"
                             ><span class="mso">payments</span> Earn</a
                         >
                         <a
@@ -141,13 +141,108 @@
             <!-- MAIN -->
             <div class="grid grid-cols-12 col-span-9">
                 <main class="col-span-10 bg-white shadow-sm p-6 py-8 space-y-12">
-                    <!-- Carousel banner -->
-                    <div id="ad-carousel">
-                        <img src="/images/banner-img-1.png" alt="Ad banner" />
-                        <img src="/images/banner-img-2.png" alt="Ad banner" />
-                        <img src="/images/banner-img-3.png" alt="Ad banner" />
-                    </div>
-                    <!-- Carousel banner -->
+                   <section>
+                       <h1 class="text-2xl font-sembold">Like and Comment on a Post- 50 Followers Required <span class="text-sm text-orange-600">(New Task)</span></h1>
+                       <div class="text-lg">Platforms: Instgram</div>
+
+                       <!-- Tasks Stats -->
+                       <div class="mt-8 flex justify-between items-center text-sm">
+                           <div class="text-green-600 bg-green-100 p-2 rounded-full">Available</div>
+                           <div class="flex items-center gap-2">
+                               <div class="progress relative w-fit">
+                                    <svg width="40" height="40" viewBox="0 0 100 100" class="-rotate-90">
+                                        <circle
+                                            class="bg-circle"
+                                            cx="50"
+                                            cy="50"
+                                            r="40"
+                                            fill="none"
+                                            stroke="#ddd"
+                                            stroke-width="6"
+                                        ></circle>
+                                        <circle
+                                            class="progress-circle transition"
+                                            cx="50"
+                                            cy="50"
+                                            r="40"
+                                            fill="none"
+                                            stroke="green"
+                                            stroke-width="7"
+                                            stroke-dasharray="251"
+                                            stroke-dashoffset="100"
+                                            stroke-linecap="round"
+                                        ></circle>
+                                    </svg>
+                                    <div
+                                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-medium progress-text"
+                                    >
+                                        70%
+                                    </div>
+                                </div> 20 of 50 Remaining
+                           </div>
+                            <div class="flex items-center gap-1">
+                                <span class="mso">schedule</span> 24 Hours
+                            </div>
+                            <div class="text-lg font-bold text-blue-800">#1,000</div>
+                       </div>
+
+                       <!-- Dashed line -->
+                       <div class="border-1 border-dashed border-zinc-300 my-8"></div>
+                       <!-- Dashed line -->
+
+                       <!-- Task details -->
+                       <div class="space-y-8">
+                           <div class="flex justify-between items-center">
+                               <h2 class="text-2xl font-medium text-blue-800">Task Details</h2>
+                               <button class="p-2 rounded-xl bg-blue-700 text-white">Cancel Task</button>
+                           </div>
+
+                           <div>
+                               <div>
+                                   <div>
+                                        <span class="font-semibold">Platform:</span> <span class="font-light">Instagram</span>
+                                    </div> 
+                               </div>
+                               <div>
+                                   <div>
+                                        <span class="font-semibold">Post:</span> <span class="font-light">A clothing brand shares a photo of their collection</span>
+                                    </div> 
+                               </div>
+                           </div>
+
+                           <!-- Task instruction -->
+                           <div class="space-y-3">
+                               <h3 class="font-semibold">Task Instruction</h3>
+
+                               <div class="font-light">
+                                   <ol class="list-decimal list-inside text-zinc-700 space-y-2">
+                                       <li>Like the post</li>
+                                       <li>
+                                           Comment With a relevant and engaging post. For example:
+                                           <ul class="list-disc list-inside ml-6">
+                                               <li>"These outfits are amazing! Love the vibrant colors!"</li>
+                                               <li>"Wow, this collection is perfect for summer. Can't wait to shop!"</li>
+                                           </ul>
+                                       </li>
+                                       <li>
+                                            Include specific hashtags provided by the brand, such as #NewCollection2025 or #StyleWithUs.
+                                        </li>
+                                   </ol>
+                               </div>
+                           </div>
+                           <!-- Task instruction -->
+
+                           <!-- Task reward -->
+                           <div class="space-y-3">
+                               <h3 class="font-semibold">Reward</h3>
+                               <div class="font-light text-zinc-700">
+                                   Earn #1,000 for each post engagement.
+                               </div>
+                           </div>
+                           <!-- Task around -->
+                       </div>
+                       <!-- Task details -->
+                   </section>
                 </main>
                 <!-- MAIN -->
             </div>
@@ -163,5 +258,6 @@
             });
             adCarousel.start();
         </script>
+        <script src="/scripts/display-user-data.js"></script>
     </body>
 </html>

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/styles/global.css" />
         <link rel="stylesheet" href="/styles/font.css" />
+        <script src="/scripts/parse-user-data.js"></script>
         <title>Hovertask - Dashboard</title>
         <style>
             #buy-and-sell-with-ease {
@@ -38,9 +39,9 @@
                 <div class="flex items-center gap-3">
                     <img class="w-12" src="/images/avatar.png" alt="User avatar" />
                     <div>
-                        <div>Alayande Nurudeen</div>
-                        <button class="text-sm flex items-center gap-2">
-                            @Datalite <span class="mso">arrow_drop_down</span>
+                        <div id="full-name">_</div>
+                        <button id="username" class="text-sm flex items-center gap-2">
+                            @ <span class="mso">arrow_drop_down</span>
                         </button>
                     </div>
                 </div>
@@ -145,7 +146,7 @@
                     <div class="flex justify-between">
                         <div>
                             <div class="font-light text-lg">Welcome back,</div>
-                            <div class="text-xl">Alayande</div>
+                            <div class="text-xl" id="name">-</div>
                         </div>
                         <button
                             class="text-xs bg-green-700 text-white px-4 py-2 h-fit rounded-lg flex gap-1 items-center"
@@ -522,5 +523,6 @@
             });
             adCarousel.start();
         </script>
+        <script src="/scripts/display-user-data.js"></script>
     </body>
 </html>
