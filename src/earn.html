@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/styles/global.css" />
+        <link rel="stylesheet" href="/styles/font.css" />
+        <title>Hovertask - Earn</title>
+        <style>
+            #buy-and-sell-with-ease {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/images/berries.jpg);
+                background-size: cover;
+                background-position: center center;
+            }
+        </style>
+    </head>
+    <body class="bg-blue-50">
+        <!-- HEADER -->
+        <header class="p-6 bg-gradient-to-b from-[#4B70F559] via-[#4B70F53A] space-y-3">
+            <div class="flex justify-between max-w-6xl mx-auto">
+                <img src="/images/logo.png" alt="Logo" class="h-8" />
+                <div class="text-sm flex gap-4">
+                    <button title="Notifications">
+                        <span class="mso">notification_important</span>
+                    </button>
+                    <button>
+                        <span class="mso">dark_mode</span>
+                    </button>
+                    <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
+                        <span class="mso">shopping_cart</span> Cart
+                    </button>
+                    <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
+                        <img src="/images/nigerian-flag.png" alt="Nigerian flag icon" class="h-4" /> NGN
+                    </button>
+                </div>
+            </div>
+            <div class="flex justify-between max-w-6xl mx-auto gap-6">
+                <div class="flex items-center gap-3">
+                    <img class="w-12" src="/images/avatar.png" alt="User avatar" />
+                    <div>
+                        <div>Alayande Nurudeen</div>
+                        <button class="text-sm flex items-center gap-2">
+                            @Datalite <span class="mso">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-1 space-y-4">
+                    <div class="flex py-2 px-4 border-b-1 border-zinc-400 rounded-full justify-between text-sm">
+                        <a class="flex items-center gap-2 px-2 py-1" href="/"
+                            ><span class="mso">dashboard</span> Dashboard</a
+                        >
+                        <a class="flex items-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg" href="/earn.html"
+                            ><span class="mso">payments</span> Earn</a
+                        >
+                        <a class="flex items-center gap-2 px-2 py-1" href="/advertise.html"
+                            ><span class="mso">campaign</span> Advertise</a
+                        >
+                        <a class="flex items-center gap-2 px-2 py-1" href="/marketplace.html">
+                            <span class="mso">storefront</span>
+                            Marketplace
+                            <span class="mso"></span>
+                        </a>
+                        <a class="flex items-center gap-2 px-2 py-1" href="/buy-followers.html">
+                            <span class="mso">group_add</span>
+                            Buy Followers
+                            <span class="mso">arrow_drop_down</span>
+                        </a>
+                        <button class="flex items-center gap-2 px-2 py-1" title="Menu">
+                            <span class="mso">menu</span>
+                        </button>
+                    </div>
+                    <form class="bg-white px-8 py-2 rounded-full shadow-sm flex items-center w-fit gap-6">
+                        <input
+                            type="text"
+                            placeholder="Search any products or services..."
+                            class="min-w-0 placeholder:text-xs"
+                        />
+                        <button title="Filters" type="button"><span class="mso">tune</span></button>
+                        <button title="Filters" type="button"><span class="mso">search</span></button>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <!-- HEADER -->
+
+        <div class="grid grid-cols-12 p-6 gap-4 max-w-6xl mx-auto">
+            <div class="space-y-4 col-span-3">
+                <!-- SIDE NAV -->
+                <nav class="bg-blue-500 py-20 pl-6 pr-1 rounded-2xl" role="navigation">
+                    <div class="rounded-2xl border-1 border-blue-300 py-8 px-4 flex flex-col gap-2 text-white text-sm">
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/"
+                            ><span class="mso">dashboard</span> Dashboard</a
+                        >
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600"
+                            href="/earn.html"
+                            ><span class="mso">payments</span> Earn</a
+                        >
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
+                            href="/advertise.html"
+                            ><span class="mso">campaign</span> Advertise</a
+                        >
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
+                            href="/store.html"
+                            ><span class="mso">storefront</span> Market place</a
+                        >
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
+                            href="/buy-followers.html"
+                            ><span class="mso">group_add</span> Buy Followers</a
+                        >
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
+                            href="/add-up.html"
+                            ><span class="mso">person_add</span> Add me up</a
+                        >
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
+                            href="/refer.html"
+                            ><span class="mso">groups</span> Refer & Earn</a
+                        >
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
+                            href="/support.html"
+                            ><span class="mso">support_agent</span> Support/FAQ Page</a
+                        >
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
+                            href="/logout.html"
+                            ><span class="mso">logout</span> Logout</a
+                        >
+                    </div>
+                </nav>
+                <!-- SIDE NAV -->
+
+                <img src="/images/side-banner.png" alt="" />
+            </div>
+
+            <!-- MAIN -->
+            <div class="grid grid-cols-12 col-span-9">
+                <main class="col-span-10 bg-white shadow-sm p-6 pb-8 pt-16 space-y-12">
+                    <!-- Choose your earning path -->
+                    <section class="md:grid grid-cols-12 bg-blue-100 rounded-2xl p-6">
+                        <div class="col-span-7">
+                            <div class="flex gap-2 items-center">
+                                <a href="/"><span class="mso">west</span></a>
+                                <h1 class="font-medium text-2xl">Choose Your Earning Path</h1>
+                            </div>
+                            <p class="font-light text-zinc-600">
+                                Select how you want to earn and start making money today!
+                            </p>
+                        </div>
+                        <div class="col-span-5 relative">
+                            <img
+                                src="/images/Social_Media_-_Sandrin_Design_-_11_-_sandrin__-removebg-preview 1.png"
+                                alt="Banner image"
+                                class="absolute -top-20"
+                            />
+                        </div>
+                        <div class="col-span-12">
+                            <img
+                                width="100"
+                                src="/images/3D_rendering_of_new_1000_Nigerian_naira_notes_flying_in_different_angles_and_orientations_isolated_on_transparent_background-removebg-preview 1.png"
+                                alt="Naira note"
+                                class="ml-[30%] block"
+                            />
+                        </div>
+                    </section>
+                    <!-- Choose your earning path -->
+
+                    <!-- Tasks and commissions -->
+                    <section class="space-y-6 mt-4">
+                        <div
+                            class="grid grid-cols-[auto_1fr_116px_auto] gap-2 items-center p-4 rounded-2xl border-1 border-zinc-400 shadow-inner"
+                        >
+                            <div>
+                                <div class="px-8 py-1 rounded-[100%] bg-blue-600 text-white">1</div>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="font-medium text-lg">Perform Tasks or Post Adverts</h3>
+                                <p class="font-light text-zinc-600">
+                                    Earn by completing simple tasks like social media engagements, video marketing, and
+                                    more.
+                                </p>
+                            </div>
+                            <div>
+                                <img
+                                    src="images/Premium_Vector___Digital_marketing_3d_render_illustration_Social_Media_Marketing_Promotion_and_Internet_advertising_concept_3d_vector_illustration-removebg-preview 1.png"
+                                    alt="Banner image"
+                                />
+                            </div>
+                            <div class="-rotate-3">
+                                <a href="" class="border-1 border-blue-600 text-blue-600 px-4 py-2 text-sm rounded-xl"
+                                    >Explore Tasks and Adverts</a
+                                >
+                            </div>
+                        </div>
+
+                        <div
+                            class="grid grid-cols-[auto_1fr_116px_auto] gap-2 items-center p-4 rounded-2xl border-1 border-zinc-400 shadow-inner"
+                        >
+                            <div>
+                                <div class="px-8 py-1 rounded-[100%] bg-blue-600 text-white">1</div>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="font-medium text-lg">Resell Products for Commissions</h3>
+                                <p class="font-light text-zinc-600">
+                                    Sell products to your network and earn big commissions on every sale.
+                                </p>
+                            </div>
+                            <div>
+                                <img
+                                    src="images/Premium_Vector___Digital_marketing_3d_render_illustration_Social_Media_Marketing_Promotion_and_Internet_advertising_concept_3d_vector_illustration-removebg-preview 2.png"
+                                    alt="Banner image"
+                                />
+                            </div>
+                            <div class="-rotate-3">
+                                <a href="" class="border-1 border-blue-600 text-blue-600 px-4 py-2 text-sm rounded-xl"
+                                    >Start Earning by Reselling</a
+                                >
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Tasks and commissions -->
+
+                    <!-- Benefits and Overview -->
+                    <section
+                        style="box-shadow: 0 0 36px #f1f1f1"
+                        class="p-8 rounded-4xl space-y-4 grid grid-cols-2 gap-6"
+                    >
+                        <!-- Benefits -->
+                        <div>
+                            <h3>Benefits of Performing Tasks</h3>
+                            <div>
+                                <p>Quick and easy earnings:</p>
+                                <ul>
+                                    <li>Tasks are simple to complete aand require minimal effort.</li>
+                                    <li>Suitable for all skill levels from beginners to experienced users</li>
+                                </ul>
+                                <p>Flexible shedule:</p>
+                                <ul>
+                                    <li>Complete tasks at your own pace, on your on time</li>
+                                    <li>No fixed working hours, providing total freedom</li>
+                                </ul>
+                                <p>Instant Reqards:</p>
+                                <ul>
+                                    <li>Get paid as soon as tasks are verified</li>
+                                    <li>Enjoy immediate feedbacks on your effort</li>
+                                </ul>
+                                <p>Accessible Opportunities</p>
+                                <ul>
+                                    <li>Available to anyone with a smartphone or computer and internet connection</li>
+                                    <li>No special equipment or training required</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Benefits -->
+
+                        <!-- Overview -->
+                        <div>
+                            <h3>Overview of commissins From Reselling</h3>
+                            <div>
+                                <p></p>
+                                <ul>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                                <p></p>
+                                <ul>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                                <p></p>
+                                <ul>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Overview -->
+                    </section>
+                    <!-- benefits and Overview -->
+                </main>
+                <!-- MAIN -->
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="/scripts/carousel.js"></script>
+        <script>
+            const adCarousel = new Carousel("ad-carousel", {
+                pauseOnHover: true,
+                autoScrollInterval: 3000,
+                allowUserScroll: false
+            });
+            adCarousel.start();
+        </script>
+    </body>
+</html>
