@@ -6,13 +6,6 @@
         <link rel="stylesheet" href="/styles/global.css" />
         <link rel="stylesheet" href="/styles/font.css" />
         <title>Hovertask - Earn</title>
-        <style>
-            #buy-and-sell-with-ease {
-                background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/images/berries.jpg);
-                background-size: cover;
-                background-position: center center;
-            }
-        </style>
     </head>
     <body class="bg-blue-50">
         <!-- HEADER -->
@@ -49,7 +42,7 @@
                         <a class="flex items-center gap-2 px-2 py-1" href="/"
                             ><span class="mso">dashboard</span> Dashboard</a
                         >
-                        <a class="flex items-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg" href="/earn.html"
+                        <a class="flex items-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg" href="/earn"
                             ><span class="mso">payments</span> Earn</a
                         >
                         <a class="flex items-center gap-2 px-2 py-1" href="/advertise.html"
@@ -93,7 +86,7 @@
                         >
                         <a
                             class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600"
-                            href="/earn.html"
+                            href="/earn"
                             ><span class="mso">payments</span> Earn</a
                         >
                         <a
@@ -140,7 +133,7 @@
 
             <!-- MAIN -->
             <div class="grid grid-cols-12 col-span-9">
-                <main class="col-span-10 bg-white shadow-sm p-6 pb-8 pt-16 space-y-12">
+                <main class="col-span-11 bg-white shadow-sm p-6 pb-8 pt-16 space-y-12">
                     <!-- Choose your earning path -->
                     <section class="md:grid grid-cols-12 bg-blue-100 rounded-2xl p-6">
                         <div class="col-span-7">
@@ -187,12 +180,14 @@
                             </div>
                             <div>
                                 <img
-                                    src="images/Premium_Vector___Digital_marketing_3d_render_illustration_Social_Media_Marketing_Promotion_and_Internet_advertising_concept_3d_vector_illustration-removebg-preview 1.png"
+                                    src="/images/Premium_Vector___Digital_marketing_3d_render_illustration_Social_Media_Marketing_Promotion_and_Internet_advertising_concept_3d_vector_illustration-removebg-preview 1.png"
                                     alt="Banner image"
                                 />
                             </div>
                             <div class="-rotate-3">
-                                <a href="" class="border-1 border-blue-600 text-blue-600 px-4 py-2 text-sm rounded-xl"
+                                <a
+                                    href="/earn/tasks-and-adverts.html"
+                                    class="hover:bg-blue-600 hover:text-white border-1 border-blue-600 text-blue-600 px-4 py-2 text-sm rounded-xl"
                                     >Explore Tasks and Adverts</a
                                 >
                             </div>
@@ -202,7 +197,7 @@
                             class="grid grid-cols-[auto_1fr_116px_auto] gap-2 items-center p-4 rounded-2xl border-1 border-zinc-400 shadow-inner"
                         >
                             <div>
-                                <div class="px-8 py-1 rounded-[100%] bg-blue-600 text-white">1</div>
+                                <div class="px-8 py-1 rounded-[100%] bg-blue-600 text-white">2</div>
                             </div>
                             <div class="text-center">
                                 <h3 class="font-medium text-lg">Resell Products for Commissions</h3>
@@ -212,12 +207,14 @@
                             </div>
                             <div>
                                 <img
-                                    src="images/Premium_Vector___Digital_marketing_3d_render_illustration_Social_Media_Marketing_Promotion_and_Internet_advertising_concept_3d_vector_illustration-removebg-preview 2.png"
+                                    src="/images/Premium_Vector___Digital_marketing_3d_render_illustration_Social_Media_Marketing_Promotion_and_Internet_advertising_concept_3d_vector_illustration-removebg-preview 2.png"
                                     alt="Banner image"
                                 />
                             </div>
                             <div class="-rotate-3">
-                                <a href="" class="border-1 border-blue-600 text-blue-600 px-4 py-2 text-sm rounded-xl"
+                                <a
+                                    href="/earn/explore-tasks.html"
+                                    class="hover:bg-blue-600 hover:text-white border-1 border-blue-600 text-blue-600 px-4 py-2 text-sm rounded-xl"
                                     >Start Earning by Reselling</a
                                 >
                             </div>
@@ -231,26 +228,30 @@
                         class="p-8 rounded-4xl space-y-4 grid grid-cols-2 gap-6"
                     >
                         <!-- Benefits -->
-                        <div>
-                            <h3>Benefits of Performing Tasks</h3>
-                            <div>
+                        <div class="space-y-2">
+                            <h3
+                                class="text-blue-600 px-12 py-2 rounded-[60%] border-1 border-blue-600 text-center text-sm"
+                            >
+                                Benefits of Performing Tasks
+                            </h3>
+                            <div class="text-xs font-light text-zinc-600">
                                 <p>Quick and easy earnings:</p>
-                                <ul>
+                                <ul class="list-disc list-inside">
                                     <li>Tasks are simple to complete aand require minimal effort.</li>
                                     <li>Suitable for all skill levels from beginners to experienced users</li>
                                 </ul>
                                 <p>Flexible shedule:</p>
-                                <ul>
+                                <ul class="list-disc list-inside">
                                     <li>Complete tasks at your own pace, on your on time</li>
                                     <li>No fixed working hours, providing total freedom</li>
                                 </ul>
                                 <p>Instant Reqards:</p>
-                                <ul>
+                                <ul class="list-disc list-inside">
                                     <li>Get paid as soon as tasks are verified</li>
                                     <li>Enjoy immediate feedbacks on your effort</li>
                                 </ul>
                                 <p>Accessible Opportunities</p>
-                                <ul>
+                                <ul class="list-disc list-inside">
                                     <li>Available to anyone with a smartphone or computer and internet connection</li>
                                     <li>No special equipment or training required</li>
                                 </ul>
@@ -259,23 +260,36 @@
                         <!-- Benefits -->
 
                         <!-- Overview -->
-                        <div>
-                            <h3>Overview of commissins From Reselling</h3>
-                            <div>
-                                <p></p>
-                                <ul>
-                                    <li></li>
-                                    <li></li>
+                        <div class="space-y-2">
+                            <h3
+                                class="text-blue-600 px-12 py-2 rounded-[60%] border-1 border-blue-600 text-center text-sm"
+                            >
+                                Overview of commissins From Reselling
+                            </h3>
+                            <div class="text-xs font-light text-zinc-600">
+                                <p>High Commission Rates:</p>
+                                <ul class="list-disc list-inside">
+                                    <li>
+                                        Earn competitive commission on each product sold, with rates ranging from 10% to
+                                        50% depending on the product.
+                                    </li>
                                 </ul>
-                                <p></p>
-                                <ul>
-                                    <li></li>
-                                    <li></li>
+                                <p>Wide Product Selection:</p>
+                                <ul class="list-disc list-inside">
+                                    <li>
+                                        Access a diversecatalog of high-demand products across categories such as
+                                        fashion, electronics, and home essentials.
+                                    </li>
                                 </ul>
-                                <p></p>
-                                <ul>
-                                    <li></li>
-                                    <li></li>
+                                <p>Flexible Earning Potential:</p>
+                                <ul class="list-disc list-inside">
+                                    <li>The more you sell, the more you earn - no earning caps!</li>
+                                    <li>Leverage your network to maximize income.</li>
+                                </ul>
+                                <p>Simple Reselling Process:</p>
+                                <ul class="list-disc list-inside">
+                                    <li>Share a unique affiliate link to promote products.</li>
+                                    <li>No need to manage inventory or handle logistics.</li>
                                 </ul>
                             </div>
                         </div>

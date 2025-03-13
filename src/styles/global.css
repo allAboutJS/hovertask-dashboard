@@ -292,6 +292,9 @@
   .col-span-10 {
     grid-column: span 10 / span 10;
   }
+  .col-span-11 {
+    grid-column: span 11 / span 11;
+  }
   .col-span-12 {
     grid-column: span 12 / span 12;
   }
@@ -467,6 +470,12 @@
   .snap-always {
     scroll-snap-stop: always;
   }
+  .list-inside {
+    list-style-position: inside;
+  }
+  .list-disc {
+    list-style-type: disc;
+  }
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -604,6 +613,9 @@
   }
   .rounded-\[50\%\] {
     border-radius: 50%;
+  }
+  .rounded-\[60\%\] {
+    border-radius: 60%;
   }
   .rounded-\[100\%\] {
     border-radius: 100%;
@@ -746,6 +758,9 @@
   }
   .px-8 {
     padding-inline: calc(var(--spacing) * 8);
+  }
+  .px-12 {
+    padding-inline: calc(var(--spacing) * 12);
   }
   .py-0 {
     padding-block: calc(var(--spacing) * 0);
@@ -914,6 +929,20 @@
     &::placeholder {
       font-size: var(--text-xs);
       line-height: var(--tw-leading, var(--text-xs--line-height));
+    }
+  }
+  .hover\:bg-blue-600 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-blue-600);
+      }
+    }
+  }
+  .hover\:text-white {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-white);
+      }
     }
   }
   .md\:grid {
