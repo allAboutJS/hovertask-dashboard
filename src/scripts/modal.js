@@ -9,10 +9,10 @@ class Modal {
         this.#modalContentElem = document.getElementById(contentElemId);
         this.#triggerElems = triggerElemsIds.map((id) => document.getElementById(id)).filter((res) => Boolean(res));
 
-        if (this.#modalContentElem && this.#triggerElems.length) {
+        if (this.#modalContentElem) {
             // Add attributes
             this.#modalElem.classList.add(
-                "w-full",
+                "w-fit",
                 "max-w-screen-md",
                 "bg-white",
                 "rounded-4xl",
@@ -48,7 +48,7 @@ class Modal {
                 '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
 
             // Add event listeners
-            this.#triggerElems.forEach((el) => el.addEventListener("click", () => this.#openModal()));
+            this.#triggerElems.forEach((el) => el.addEventListener("click", () => this.openModal()));
             this.#closeBtn.addEventListener("click", () => this.#closeModal());
             this.#closeBtn.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") {
@@ -68,7 +68,7 @@ class Modal {
         document.body.classList.remove("overflow-hidden");
     }
 
-    #openModal() {
+    openModal() {
         this.#modalOverlay.classList.remove("hidden");
         this.#closeBtn.focus();
         document.body.classList.add("overflow-hidden");

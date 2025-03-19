@@ -5,14 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/styles/global.css" />
         <link rel="stylesheet" href="/styles/font.css" />
-        <title>Hovertask - Dashboard</title>
-        <style>
-            #buy-and-sell-with-ease {
-                background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/images/berries.jpg);
-                background-size: cover;
-                background-position: center center;
-            }
-        </style>
+        <title>Hovertask - Tasks</title>
     </head>
     <body class="bg-blue-50">
         <!-- HEADER -->
@@ -88,12 +81,12 @@
                 <!-- SIDE NAV -->
                 <nav class="bg-blue-500 py-20 pl-6 pr-1 rounded-2xl" role="navigation">
                     <div class="rounded-2xl border-1 border-blue-300 py-8 px-4 flex flex-col gap-2 text-white text-sm">
-                        <a
-                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
-                            href="/"
+                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/"
                             ><span class="mso">dashboard</span> Dashboard</a
                         >
-                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600" href="/earn"
+                        <a
+                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600"
+                            href="/earn"
                             ><span class="mso">payments</span> Earn</a
                         >
                         <a
@@ -141,15 +134,18 @@
             <!-- MAIN -->
             <div class="grid grid-cols-12 col-span-9">
                 <main class="col-span-10 bg-white shadow-sm p-6 py-8 space-y-12">
-                   <section>
-                       <h1 class="text-2xl font-sembold">Like and Comment on a Post- 50 Followers Required <span class="text-sm text-orange-600">(New Task)</span></h1>
-                       <div class="text-lg">Platforms: Instgram</div>
+                    <section>
+                        <h1 class="text-2xl font-sembold">
+                            Like and Comment on a Post- 50 Followers Required
+                            <span class="text-sm text-orange-600">(New Task)</span>
+                        </h1>
+                        <div class="text-lg">Platforms: Instgram</div>
 
-                       <!-- Tasks Stats -->
-                       <div class="mt-8 flex justify-between items-center text-sm">
-                           <div class="text-green-600 bg-green-100 p-2 rounded-full">Available</div>
-                           <div class="flex items-center gap-2">
-                               <div class="progress relative w-fit">
+                        <!-- Tasks Stats -->
+                        <div class="mt-8 flex justify-between items-center text-sm">
+                            <div class="text-green-600 bg-green-100 p-2 rounded-full">Available</div>
+                            <div class="flex items-center gap-2">
+                                <div class="progress relative w-fit">
                                     <svg width="40" height="40" viewBox="0 0 100 100" class="-rotate-90">
                                         <circle
                                             class="bg-circle"
@@ -178,86 +174,128 @@
                                     >
                                         70%
                                     </div>
-                                </div> 20 of 50 Remaining
-                           </div>
-                            <div class="flex items-center gap-1">
-                                <span class="mso">schedule</span> 24 Hours
+                                </div>
+                                20 of 50 Remaining
                             </div>
+                            <div class="flex items-center gap-1"><span class="mso">schedule</span> 24 Hours</div>
                             <div class="text-lg font-bold text-blue-800">#1,000</div>
-                       </div>
+                        </div>
 
-                       <!-- Dashed line -->
-                       <div class="border-1 border-dashed border-zinc-300 my-8"></div>
-                       <!-- Dashed line -->
+                        <!-- Dashed line -->
+                        <div class="border-1 border-dashed border-zinc-300 my-8"></div>
+                        <!-- Dashed line -->
 
-                       <!-- Task details -->
-                       <div class="space-y-8">
-                           <div class="flex justify-between items-center">
-                               <h2 class="text-2xl font-medium text-blue-800">Task Details</h2>
-                               <button class="p-2 rounded-xl bg-blue-700 text-white">Cancel Task</button>
-                           </div>
+                        <!-- Task details -->
+                        <div class="space-y-8 p-6 rounded-2xl bg-white shadow-[0_0_30px_#f1f1f1]">
+                            <div class="flex justify-between items-center">
+                                <h2 class="text-2xl font-medium text-blue-800">Task Details</h2>
+                                <button class="p-2 rounded-xl bg-blue-700 text-white">Cancel Task</button>
+                            </div>
 
-                           <div>
-                               <div>
-                                   <div>
-                                        <span class="font-semibold">Platform:</span> <span class="font-light">Instagram</span>
-                                    </div> 
-                               </div>
-                               <div>
-                                   <div>
-                                        <span class="font-semibold">Post:</span> <span class="font-light">A clothing brand shares a photo of their collection</span>
-                                    </div> 
-                               </div>
-                           </div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <span class="font-semibold">Platform:</span>
+                                        <span class="font-light">Instagram</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <span class="font-semibold">Post:</span>
+                                        <span class="font-light"
+                                            >A clothing brand shares a photo of their collection</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
 
-                           <!-- Task instruction -->
-                           <div class="space-y-3">
-                               <h3 class="font-semibold">Task Instruction</h3>
+                            <!-- Task instruction -->
+                            <div class="space-y-3">
+                                <h3 class="font-semibold">Task Instructions:</h3>
 
-                               <div class="font-light">
-                                   <ol class="list-decimal list-inside text-zinc-700 space-y-2">
-                                       <li>Like the post</li>
-                                       <li>
-                                           Comment With a relevant and engaging post. For example:
-                                           <ul class="list-disc list-inside ml-6">
-                                               <li>"These outfits are amazing! Love the vibrant colors!"</li>
-                                               <li>"Wow, this collection is perfect for summer. Can't wait to shop!"</li>
-                                           </ul>
-                                       </li>
-                                       <li>
-                                            Include specific hashtags provided by the brand, such as #NewCollection2025 or #StyleWithUs.
+                                <div class="font-light">
+                                    <ol class="list-decimal list-inside text-zinc-700 space-y-2">
+                                        <li>Like the post</li>
+                                        <li>
+                                            Comment With a relevant and engaging post. For example:
+                                            <ul class="list-disc list-inside ml-6">
+                                                <li>"These outfits are amazing! Love the vibrant colors!"</li>
+                                                <li>
+                                                    "Wow, this collection is perfect for summer. Can't wait to shop!"
+                                                </li>
+                                            </ul>
                                         </li>
-                                   </ol>
-                               </div>
-                           </div>
-                           <!-- Task instruction -->
+                                        <li>
+                                            Include specific hashtags provided by the brand, such as #NewCollection2025
+                                            or #StyleWithUs.
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!-- Task instruction -->
 
-                           <!-- Task reward -->
-                           <div class="space-y-3">
-                               <h3 class="font-semibold">Reward</h3>
-                               <div class="font-light text-zinc-700">
-                                   Earn #1,000 for each post engagement.
-                               </div>
-                           </div>
-                           <!-- Task around -->
-                       </div>
-                       <!-- Task details -->
-                   </section>
+                            <!-- Task reward -->
+                            <div class="space-y-3">
+                                <h3 class="font-semibold">Reward:</h3>
+                                <div class="font-light text-zinc-700">Earn #1,000 for each post engagement.</div>
+                            </div>
+                            <!-- Task reward -->
+
+                            <!-- Tas link -->
+                            <div class="flex items-center gap-2">
+                                <h3 class="font-semibold">Task Link:</h3>
+                                <p class="font-light text-blue-700 bg-blue-100 p-2 rounded-full">
+                                    https://instagram.com/alayandenurudeen
+                                </p>
+                                <button title="Copy" class="test-lg">
+                                    <span class="mso">content_copy</span>
+                                </button>
+                            </div>
+                            <!-- Tas link -->
+                        </div>
+                        <!-- Task details -->
+                    </section>
+
+                    <!-- Proof of task completion -->
+                    <section class="space-y-4">
+                        <h2 class="text-lg font-semibold">Proof of Task Completion</h2>
+                        <form class="flex gap-4">
+                            <div
+                                class="min-h-32 min-w-32 rounded-sm bg-zinc-200 border-1 border-zinc-400/70 relative flex flex-col items-center justify-center text-center p-2 text-sm"
+                            >
+                                <span class="mso">photo_camera</span>
+                                <p>Upload Screenshot</p>
+                                <input class="appearance-none opacity-0 absolute inset-0" type="file" name="files" />
+                            </div>
+                            <div class="flex flex-col justify-between">
+                                <p class="font-light text-zinc-800">
+                                    Please enter the username of the social media account you used to perform the task
+                                    e.g Instagram username
+                                </p>
+                                <div class="flex gap-2 items-center">
+                                    <input
+                                        type="text"
+                                        class="border-1 border-zinc-400 p-4 min-w-0 w-full rounded-lg outline-blue-600"
+                                        placeholder="Please enter your Instagram username"
+                                    />
+                                    <button class="p-4 rounded-full text-white bg-blue-600/80 whitespace-nowrap">
+                                        Submit Proof
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    <!-- Proof of task completion -->
+
+                    <!-- Image banner -->
+                    <section><img src="/images/banner-img-5.png" alt="Banner image" /></section>
+                    <!-- Image banner -->
                 </main>
                 <!-- MAIN -->
             </div>
         </div>
 
         <!-- Scripts -->
-        <script src="/scripts/carousel.js"></script>
-        <script>
-            const adCarousel = new Carousel("ad-carousel", {
-                pauseOnHover: true,
-                autoScrollInterval: 3000,
-                allowUserScroll: false
-            });
-            adCarousel.start();
-        </script>
         <script src="/scripts/display-user-data.js"></script>
     </body>
 </html>
