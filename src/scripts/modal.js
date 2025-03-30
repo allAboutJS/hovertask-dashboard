@@ -1,13 +1,16 @@
+let openModalsCount = 0;
+
 class Modal {
     #modalContentElem;
-    #triggerElems = [];
+    #triggerElems;
     #closeBtn = document.createElement("button");
     #modalElem = document.createElement("div");
     #modalOverlay = document.createElement("div");
 
-    constructor(contentElemId, ...triggerElemsIds) {
+    constructor(contentElemId, triggerClass) {
         this.#modalContentElem = document.getElementById(contentElemId);
-        this.#triggerElems = triggerElemsIds.map((id) => document.getElementById(id)).filter((res) => Boolean(res));
+
+        if (triggerClass) this.#triggerElems = document.querySelectorAll("." + triggerClass);
 
         if (this.#modalContentElem) {
             // Add attributes
@@ -19,19 +22,22 @@ class Modal {
                 "shadow-lg",
                 "p-6",
                 "relative",
-                "pointer-events-auto"
+                "pointer-events-auto",
+                "max-h-[90%]",
+                "overflow-y-auto"
             );
             this.#modalOverlay.classList.add(
                 "hidden",
                 "bg-black/30",
                 "fixed",
                 "inset-0",
-                "pointer-events-none",
                 "transition-opacity",
                 "z-[9999]",
                 "flex",
                 "justify-center",
-                "items-center"
+                "items-center",
+                "m-0",
+                "backdrop-blur-md"
             );
             this.#closeBtn.classList.add("modal-close-btn");
             this.#closeBtn.setAttribute("title", "Close");
@@ -48,7 +54,7 @@ class Modal {
                 '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
 
             // Add event listeners
-            this.#triggerElems.forEach((el) => el.addEventListener("click", () => this.openModal()));
+            this.#triggerElems?.forEach((el) => el.addEventListener("click", () => this.openModal()));
             this.#closeBtn.addEventListener("click", () => this.#closeModal());
             this.#closeBtn.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") {
@@ -64,13 +70,15 @@ class Modal {
     }
 
     #closeModal() {
+        openModalsCount--;
         this.#modalOverlay.classList.add("hidden");
-        document.body.classList.remove("overflow-hidden");
+        if (!openModalsCount) document.body.classList.remove("overflow-hidden");
     }
 
     openModal() {
         this.#modalOverlay.classList.remove("hidden");
         this.#closeBtn.focus();
         document.body.classList.add("overflow-hidden");
+        openModalsCount++;
     }
 }

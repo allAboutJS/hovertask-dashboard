@@ -6,6 +6,13 @@
         <link rel="stylesheet" href="/styles/global.css" />
         <link rel="stylesheet" href="/styles/font.css" />
         <title>Hovertask - Earn</title>
+        <style>
+            .reseller-hero {
+                background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),
+                    url("/images/women-trading.jpeg");
+                background-size: cover;
+            }
+        </style>
     </head>
     <body class="bg-blue-50">
         <!-- HEADER -->
@@ -133,175 +140,414 @@
 
             <!-- MAIN -->
             <div class="grid grid-cols-12 col-span-9">
-                <main class="col-span-11 bg-white shadow-sm p-6 pb-8 pt-16 space-y-12">
-                    <!-- Choose your earning path -->
-                    <section class="md:grid grid-cols-12 bg-blue-100 rounded-2xl p-6">
-                        <div class="col-span-7">
-                            <div class="flex gap-2 items-center">
-                                <a href="/"><span class="mso">west</span></a>
-                                <h1 class="font-medium text-lg">Choose Your Earning Path</h1>
+                <main class="col-span-9 bg-white shadow-sm p-6 pb-8 pt-16 space-y-12">
+                    <!-- Banner -->
+                    <section
+                        class="min-h-72 rounded-3xl relative overflow-hidden flex flex-col justify-between gap-8 z-0 p-4 reseller-hero"
+                    >
+                        <div class="relative text-white">
+                            <div class="flex max-w-md text-lg gap-3 items-center">
+                                <a title="Back" href="/earn"><span class="mso">west</span></a>
+                                <h2>Hot-Selling Products to Maximize Your Earnings</h2>
                             </div>
-                            <p class="font-light text-zinc-600">
-                                Select how you want to earn and start making money today!
+
+                            <p class="max-w-lg text-sm">
+                                Get access to high-demand products and services at discounted rates, resell, and earn
+                                profits instantly!
                             </p>
                         </div>
-                        <div class="col-span-5 relative">
-                            <img
-                                src="/images/Social_Media_-_Sandrin_Design_-_11_-_sandrin__-removebg-preview 1.png"
-                                alt="Banner image"
-                                class="absolute -top-20"
-                            />
-                        </div>
-                        <div class="col-span-12">
-                            <img
-                                width="100"
-                                src="/images/3D_rendering_of_new_1000_Nigerian_naira_notes_flying_in_different_angles_and_orientations_isolated_on_transparent_background-removebg-preview 1.png"
-                                alt="Naira note"
-                                class="ml-[30%] block"
-                            />
+
+                        <div class="w-full z-10 flex justify-center">
+                            <div
+                                class="px-6 gap-8 bg-white shadow-lg flex items-center w-full max-w-[488px] h-[58px] rounded-2xl"
+                            >
+                                <form
+                                    class="p-4 h-[30px] rounded-full border border-[#00000066] flex items-center gap-2 flex-1 min-w-0"
+                                >
+                                    <input class="bg-transparent min-w-0 flex-1 outline-none" type="text" />
+                                    <button title="Search"></button
+                                    ><button class="text-blue-600" title="Search"></button>
+                                </form>
+                                <div class="flex items-center text-[9.4px] font-light gap-4">
+                                    <div>Location:</div>
+                                    <button class="flex gap-1 items-center whitespace-nowrap">All Nigeria</button>
+                                </div>
+                            </div>
                         </div>
                     </section>
-                    <!-- Choose your earning path -->
+                    <!-- Banner -->
 
-                    <!-- Tasks and commissions -->
-                    <section class="space-y-6 mt-4">
-                        <div
-                            class="grid grid-cols-[auto_1fr_116px_auto] gap-2 items-center p-4 rounded-2xl border-1 border-zinc-400 shadow-inner"
+                    <!-- Categories -->
+                    <section class="space-y-1 space-x-1">
+                        <button
+                            class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs inline-block"
                         >
-                            <div>
-                                <div class="px-8 py-1 rounded-[100%] bg-blue-600 text-white">1</div>
+                            All
+                        </button>
+                        <button
+                            class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs inline-block"
+                        >
+                            Phones and Tablets
+                        </button>
+                        <button
+                            class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs inline-block"
+                        >
+                            Health and Beauty
+                        </button>
+                        <button
+                            class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs inline-block"
+                        >
+                            Computing
+                        </button>
+                        <button
+                            class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs inline-block"
+                        >
+                            Home and Office
+                        </button>
+                        <button
+                            class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs inline-block"
+                        >
+                            Fashion
+                        </button>
+                        <button
+                            class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs inline-block"
+                        >
+                            Electronics
+                        </button>
+                        <button
+                            class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs inline-block"
+                        >
+                            Baby Products
+                        </button>
+                    </section>
+                    <!-- Categories -->
+
+                    <section class="space-y-4">
+                        <h2>Top Products to Buy or Resell</h2>
+
+                        <div class="p-4 flex gap-4 bg-[#EBEFFF] rounded-2xl overflow-y-hidden max-w-full no-scrollbar">
+                            <div
+                                class="undefined flex flex-1 gap-4 overflow-x-auto no-scrollbar min-w-full max-w-full h-full"
+                            >
+                                <div class="w-[180px] bg-white rounded-2xl p-4 space-y-2">
+                                    <div class="bg-zinc-200 rounded-2xl overflow-hidden">
+                                        <img
+                                            class="h-[97.7px] aspect-square block"
+                                            alt="Product 1"
+                                            src="https://via.placeholder.com/150"
+                                        />
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div>
+                                            <div class="flex justify-between">
+                                                <h3 class="text-[11.28px] capitalize">Product 1</h3>
+                                                <button class="text-[#FF00FB]">
+                                                    <span class="mso">favorite</span>
+                                                </button>
+                                            </div>
+                                            <div class="flex gap-6">
+                                                <p class="text-[9.4px] text-[#77777A] line-through">₦100</p>
+                                                <p class="text-[11.28px]">₦10</p>
+                                            </div>
+                                            <div class="flex gap-4 items-center">
+                                                <p class="text-[9.4px] flex items-center">4.5</p>
+                                                <p class="text-[9.4px] text-blue-600">(150 Reviews)</p>
+                                                <p class="text-[#77777A] text-[9.11px]">20 Units</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between gap-2">
+                                            <button
+                                                class="flex gap-1 justify-center items-center bg-blue-600 text-white rounded-full h-[27.75px] text-[9.64px] flex-1 modal-trigger"
+                                            >
+                                                <span class="mso">shopping_bag</span> Resell Product</button
+                                            ><a
+                                                class="flex items-center justify-center rounded-full min-h-[28.92px] min-w-[28.92px] border border-blue-600"
+                                                href="/marketplace/product/0.6229525695627165"
+                                                data-discover="true"
+                                                ><span class="mso text-blue-600">north_east</span></a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-[180px] bg-white rounded-2xl p-4 space-y-2">
+                                    <div class="bg-zinc-200 rounded-2xl overflow-hidden">
+                                        <img
+                                            class="h-[97.7px] aspect-square block"
+                                            alt="Product 2"
+                                            src="https://via.placeholder.com/150"
+                                        />
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div>
+                                            <div class="flex justify-between">
+                                                <h3 class="text-[11.28px] capitalize">Product 2</h3>
+                                                <button class="text-[#FF00FB]">
+                                                    <span class="mso">favorite</span>
+                                                </button>
+                                            </div>
+                                            <div class="flex gap-6">
+                                                <p class="text-[9.4px] text-[#77777A] line-through">₦200</p>
+                                                <p class="text-[11.28px]">₦30</p>
+                                            </div>
+                                            <div class="flex gap-4 items-center">
+                                                <p class="text-[9.4px] flex items-center">4</p>
+                                                <p class="text-[9.4px] text-blue-600">(85 Reviews)</p>
+                                                <p class="text-[#77777A] text-[9.11px]">50 Units</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between gap-2">
+                                            <button
+                                                class="flex gap-1 justify-center items-center bg-blue-600 text-white rounded-full h-[27.75px] text-[9.64px] flex-1 modal-trigger"
+                                            >
+                                                <span class="mso">shopping_bag</span> Resell Product</button
+                                            ><a
+                                                class="flex items-center justify-center rounded-full min-h-[28.92px] min-w-[28.92px] border border-blue-600"
+                                                href="/marketplace/product/0.8392769895197554"
+                                                data-discover="true"
+                                                ><span class="mso text-blue-600">north_east</span></a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-[180px] bg-white rounded-2xl p-4 space-y-2">
+                                    <div class="bg-zinc-200 rounded-2xl overflow-hidden">
+                                        <img
+                                            class="h-[97.7px] aspect-square block"
+                                            alt="Product 3"
+                                            src="https://via.placeholder.com/150"
+                                        />
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div>
+                                            <div class="flex justify-between">
+                                                <h3 class="text-[11.28px] capitalize">Product 3</h3>
+                                                <button class="text-[#FF00FB]">
+                                                    <span class="mso">favorite</span>
+                                                </button>
+                                            </div>
+                                            <div class="flex gap-6">
+                                                <p class="text-[9.4px] text-[#77777A] line-through">₦300</p>
+                                                <p class="text-[11.28px]">₦60</p>
+                                            </div>
+                                            <div class="flex gap-4 items-center">
+                                                <p class="text-[9.4px] flex items-center">4.8</p>
+                                                <p class="text-[9.4px] text-blue-600">(200 Reviews)</p>
+                                                <p class="text-[#77777A] text-[9.11px]">10 Units</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between gap-2">
+                                            <button
+                                                class="flex gap-1 justify-center items-center bg-blue-600 text-white rounded-full h-[27.75px] text-[9.64px] flex-1 modal-trigger"
+                                            >
+                                                <span class="mso">shopping_bag</span> Resell Product</button
+                                            ><a
+                                                class="flex items-center justify-center rounded-full min-h-[28.92px] min-w-[28.92px] border border-blue-600"
+                                                href="/marketplace/product/0.18818431792890467"
+                                                data-discover="true"
+                                                ><span class="mso text-blue-600">north_east</span></a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="text-center">
-                                <h3 class="font-medium text-lg">Perform Tasks or Post Adverts</h3>
-                                <p class="font-light text-zinc-600">
-                                    Earn by completing simple tasks like social media engagements, video marketing, and
-                                    more.
+                        </div>
+                    </section>
+
+                    <img src="/images/banner-img-5.png" alt="Ad banner" />
+
+                    <!-- Product modal -->
+                    <div id="product-modal" class="max-w-xl space-y-6">
+                        <div class="space-y-2.5 flex gap-4 mr-8">
+                            <div>
+                                <h2 class="font-semibold text-xl">Bluetooth Earbuds - High Quality Sound</h2>
+                                <p class="text-zinc-900 font-light text-sm">
+                                    Experience premium sound quality with these wireless Bluetooth earbuds. Perfect for
+                                    music lovers!
+                                </p>
+                            </div>
+                            <div
+                                class="text-xs bg-gradient-to-r from-transparent to-blue-50 rounded-xl text-center h-fit -rotate-3"
+                            >
+                                <span class="whitespace-nowrap">Reseller Commission</span> <br />
+                                <spa class="font-bold text-blue-700 text-base">₦10,000</spa>
+                            </div>
+                        </div>
+
+                        <hr class="border-zinc-400" />
+
+                        <div class="grid grid-cols-12 gap-4 text-sm">
+                            <div class="col-span-8 space-y-3">
+                                <p>
+                                    To start reselling this product, simply click the button below to generate your
+                                    unique reseller link. This personalized link will track all your sales for this
+                                    specific product
+                                </p>
+
+                                <p>
+                                    <span class="font-semibold text-base">💰 Commission Details:</span> <br />You will
+                                    earn a reseller commission of ₦10,000 every time someone purchases this product
+                                    using your unique link.
+                                </p>
+
+                                <p>
+                                    <span class="font-semibold text-base">Take Action Now!</span> <br />
+                                    Click the button below and start earning today!
+                                </p>
+
+                                <div class="flex gap-6">
+                                    <button
+                                        class="reseller-link-modal-trigger text-sm text-white bg-blue-700/80 rounded-xl p-2.5"
+                                    >
+                                        Generate Reseller Link
+                                    </button>
+                                    <a
+                                        href="buy-product.html"
+                                        class="text-sm text-white bg-blue-700/80 rounded-xl p-2.5"
+                                    >
+                                        Buy Product
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-span-4">
+                                <img src="/images/airpods.png" alt="Airpods" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product modal -->
+
+                    <!-- Product resell link modal -->
+                    <div id="reseller-link-modal" class="max-w-xl space-y-6">
+                        <div class="space-y-2.5 flex gap-4 mr-8">
+                            <div class="space-y-3">
+                                <h2 class="font-semibold text-xl">Your Reseller Link Is Ready</h2>
+                                <p class="text-zinc-900 font-light text-sm">
+                                    Share your unique reseller link along with product images and descriptions across
+                                    your social networks, including WhatsApp, Facebook, Instagram, and more. Start
+                                    earning by promoting products today!
+                                </p>
+                                <p class="font-semibold text-sm">
+                                    Earn ₦10,000 every time someone purchases this product using your link!
                                 </p>
                             </div>
                             <div>
-                                <img
-                                    src="/images/Premium_Vector___Digital_marketing_3d_render_illustration_Social_Media_Marketing_Promotion_and_Internet_advertising_concept_3d_vector_illustration-removebg-preview 1.png"
-                                    alt="Banner image"
-                                />
-                            </div>
-                            <div class="-rotate-3">
-                                <a
-                                    href="/earn/tasks"
-                                    class="hover:bg-blue-600 hover:text-white border-1 border-blue-600 text-blue-600 px-4 py-2 text-sm rounded-xl"
-                                    >Explore Tasks and Adverts</a
-                                >
+                                <img src="/images/airpods.png" alt="Airpods" />
                             </div>
                         </div>
 
-                        <div
-                            class="grid grid-cols-[auto_1fr_116px_auto] gap-2 items-center p-4 rounded-2xl border-1 border-zinc-400 shadow-inner"
-                        >
-                            <div>
-                                <div class="px-8 py-1 rounded-[100%] bg-blue-600 text-white">2</div>
+                        <div class="text-sm flex justify-center gap-3 items-center">
+                            <p>
+                                <span class="font-semibold">Your Reseller Link:</span>
+                                https://example.com/product123?ref=User12345
+                            </p>
+                            <button class="text-sm text-white bg-blue-700/80 rounded-2xl p-2.5">Copy Link</button>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-3 text-sm">
+                                <img src="" alt="" />
+                                <p>Resell on Facebook</p>
+                                <button class="text-blue-700/80 text-xs">Share</button>
                             </div>
-                            <div class="text-center">
-                                <h3 class="font-medium text-lg">Resell Products for Commissions</h3>
-                                <p class="font-light text-zinc-600">
-                                    Sell products to your network and earn big commissions on every sale.
+                            <div class="flex items-center gap-3 text-sm">
+                                <img src="" alt="" />
+                                <p>Resell on Instagram</p>
+                                <button class="text-blue-700/80 text-xs">Share</button>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <img src="" alt="" />
+                                <p>Resell on Twitter</p>
+                                <button class="text-blue-700/80 text-xs">Share</button>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <img src="" alt="" />
+                                <p>Resell on TikTok</p>
+                                <button class="text-blue-700/80 text-xs">Share</button>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <img src="" alt="" />
+                                <p>Resell on WhatsApp</p>
+                                <button class="text-blue-700/80 text-xs">Share</button>
+                            </div>
+                        </div>
+
+                        <hr class="border-zinc-400" />
+
+                        <div class="max-w-md">
+                            <h4 class="text-lg font-semibold">Download Product Images</h4>
+                            <p class="text-sm">
+                                Click the buttons below to download product images directly to your device. Share them
+                                on your social media platforms along with the product descriptions and your unique
+                                reseller link to start earning
+                            </p>
+                        </div>
+
+                        <div class="flex gap-4 max-w-md items-center">
+                            <div class="space-y-3">
+                                <button
+                                    class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs block"
+                                >
+                                    Image 1
+                                </button>
+                                <button
+                                    class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs block"
+                                >
+                                    Image 2
+                                </button>
+                                <button
+                                    class="p-1 px-2 bg-zinc-300/50 border-1 border-zinc-400 text-zinc-800 rounded-lg text-xs block"
+                                >
+                                    Image 3
+                                </button>
+                            </div>
+
+                            <div class="flex-1 p-4 rounded-2xl bg-white shadow-md">
+                                <h4 class="text-lg font-semibold">Custom Message to Promote your Link</h4>
+                                <p class="text-sm">
+                                    Upgrade your tech game with this cutting-edge [Product Name]! Durable, affordable,
+                                    and reliable. Get yours here: [Reseller Link]
                                 </p>
-                            </div>
-                            <div>
-                                <img
-                                    src="/images/Premium_Vector___Digital_marketing_3d_render_illustration_Social_Media_Marketing_Promotion_and_Internet_advertising_concept_3d_vector_illustration-removebg-preview 2.png"
-                                    alt="Banner image"
-                                />
-                            </div>
-                            <div class="-rotate-3">
-                                <a
-                                    href="/earn/explore-tasks.html"
-                                    class="hover:bg-blue-600 hover:text-white border-1 border-blue-600 text-blue-600 px-4 py-2 text-sm rounded-xl"
-                                    >Start Earning by Reselling</a
-                                >
+                                <button class="text-blue-700/80 text-sm mt-8">Copy Link</button>
                             </div>
                         </div>
-                    </section>
-                    <!-- Tasks and commissions -->
 
-                    <!-- Benefits and Overview -->
-                    <section
-                        style="box-shadow: 0 0 36px #f1f1f1"
-                        class="p-8 rounded-4xl space-y-4 grid grid-cols-2 gap-6"
-                    >
-                        <!-- Benefits -->
-                        <div class="space-y-2">
-                            <h3
-                                class="text-blue-600 px-12 py-2 rounded-[60%] border-1 border-blue-600 text-center text-sm"
+                        <div class="flex gap-6">
+                            <button
+                                class="reseller-link-modal-trigger text-sm text-white bg-blue-700/80 rounded-xl p-2.5"
                             >
-                                Benefits of Performing Tasks
-                            </h3>
-                            <div class="text-xs font-light text-zinc-600">
-                                <p>Quick and easy earnings:</p>
-                                <ul class="list-disc list-inside">
-                                    <li>Tasks are simple to complete aand require minimal effort.</li>
-                                    <li>Suitable for all skill levels from beginners to experienced users</li>
-                                </ul>
-                                <p>Flexible shedule:</p>
-                                <ul class="list-disc list-inside">
-                                    <li>Complete tasks at your own pace, on your on time</li>
-                                    <li>No fixed working hours, providing total freedom</li>
-                                </ul>
-                                <p>Instant Reqards:</p>
-                                <ul class="list-disc list-inside">
-                                    <li>Get paid as soon as tasks are verified</li>
-                                    <li>Enjoy immediate feedbacks on your effort</li>
-                                </ul>
-                                <p>Accessible Opportunities</p>
-                                <ul class="list-disc list-inside">
-                                    <li>Available to anyone with a smartphone or computer and internet connection</li>
-                                    <li>No special equipment or training required</li>
-                                </ul>
-                            </div>
+                                Check Out More Products
+                            </button>
+                            <button class="text-sm text-white bg-blue-700/80 rounded-xl p-2.5">Cancel</button>
                         </div>
-                        <!-- Benefits -->
+                    </div>
 
-                        <!-- Overview -->
-                        <div class="space-y-2">
-                            <h3
-                                class="text-blue-600 px-12 py-2 rounded-[60%] border-1 border-blue-600 text-center text-sm"
-                            >
-                                Overview of commissins From Reselling
-                            </h3>
-                            <div class="text-xs font-light text-zinc-600">
-                                <p>High Commission Rates:</p>
-                                <ul class="list-disc list-inside">
-                                    <li>
-                                        Earn competitive commission on each product sold, with rates ranging from 10% to
-                                        50% depending on the product.
-                                    </li>
-                                </ul>
-                                <p>Wide Product Selection:</p>
-                                <ul class="list-disc list-inside">
-                                    <li>
-                                        Access a diversecatalog of high-demand products across categories such as
-                                        fashion, electronics, and home essentials.
-                                    </li>
-                                </ul>
-                                <p>Flexible Earning Potential:</p>
-                                <ul class="list-disc list-inside">
-                                    <li>The more you sell, the more you earn - no earning caps!</li>
-                                    <li>Leverage your network to maximize income.</li>
-                                </ul>
-                                <p>Simple Reselling Process:</p>
-                                <ul class="list-disc list-inside">
-                                    <li>Share a unique affiliate link to promote products.</li>
-                                    <li>No need to manage inventory or handle logistics.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Overview -->
-                    </section>
-                    <!-- benefits and Overview -->
+                    <!-- Product resell link modal -->
                 </main>
                 <!-- MAIN -->
+
+                <!-- Aside -->
+                <aside class="col-span-3 p-4">
+                    <div class="mt-[520px] bg-blue-100 rounded-2xl p-4 space-y-2">
+                        <div class="aspect-square"></div>
+                        <p class="text-sm">
+                            Add a new product or service to the marketplace. Include details, set your price, and upload
+                            images to attract buyers.
+                        </p>
+                        <button
+                            class="flex gap-1 justify-center items-center bg-blue-700/70 text-white rounded-lg p-2 w-full text-xs"
+                        >
+                            <span class="mso">shopping_bag</span> List a New Product
+                        </button>
+                    </div>
+                </aside>
             </div>
         </div>
 
         <!-- Scripts -->
         <script src="/scripts/display-user-data.js"></script>
+        <script src="/scripts/modal.js"></script>
+        <script>
+            new Modal("product-modal", "modal-trigger");
+            new Modal("reseller-link-modal", "reseller-link-modal-trigger");
+        </script>
     </body>
 </html>
