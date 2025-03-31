@@ -1,400 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/styles/global.css" />
-        <link rel="stylesheet" href="/styles/font.css" />
-        <title>Hovertask - Product Checkout</title>
-    </head>
-    <body class="bg-blue-50">
-        <!-- HEADER -->
-        <header class="p-6 bg-gradient-to-b from-[#4B70F559] via-[#4B70F53A] space-y-3">
-            <div class="flex justify-between max-w-6xl mx-auto">
-                <img src="/images/logo.png" alt="Logo" class="h-8" />
-                <div class="text-sm flex gap-4">
-                    <button title="Notifications">
-                        <span class="mso">notification_important</span>
-                    </button>
-                    <button>
-                        <span class="mso">dark_mode</span>
-                    </button>
-                    <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
-                        <span class="mso">shopping_cart</span> Cart
-                    </button>
-                    <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
-                        <img src="/images/nigerian-flag.png" alt="Nigerian flag icon" class="h-4" /> NGN
-                    </button>
-                </div>
-            </div>
-            <div class="flex justify-between max-w-6xl mx-auto gap-6">
-                <div class="flex items-center gap-3">
-                    <img class="w-12" src="/images/avatar.png" alt="User avatar" />
-                    <div>
-                        <div id="full-name">_</div>
-                        <button id="username" class="text-sm flex items-center gap-2">
-                            _ <span class="mso">arrow_drop_down</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="flex-1 space-y-4">
-                    <div class="flex py-2 px-4 border-b-1 border-zinc-400 rounded-full justify-between text-sm">
-                        <a class="flex items-center gap-2 px-2 py-1" href="/"
-                            ><span class="mso">dashboard</span> Dashboard</a
-                        >
-                        <a class="flex items-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg" href="/earn"
-                            ><span class="mso">payments</span> Earn</a
-                        >
-                        <a class="flex items-center gap-2 px-2 py-1" href="/advertise.html"
-                            ><span class="mso">campaign</span> Advertise</a
-                        >
-                        <a class="flex items-center gap-2 px-2 py-1" href="/marketplace.html">
-                            <span class="mso">storefront</span>
-                            Marketplace
-                            <span class="mso"></span>
-                        </a>
-                        <a class="flex items-center gap-2 px-2 py-1" href="/buy-followers.html">
-                            <span class="mso">group_add</span>
-                            Buy Followers
-                            <span class="mso">arrow_drop_down</span>
-                        </a>
-                        <button class="flex items-center gap-2 px-2 py-1" title="Menu">
-                            <span class="mso">menu</span>
-                        </button>
-                    </div>
-                    <form class="bg-white px-8 py-2 rounded-full shadow-sm flex items-center w-fit gap-6">
-                        <input
-                            type="text"
-                            placeholder="Search any products or services..."
-                            class="min-w-0 placeholder:text-xs"
-                        />
-                        <button title="Filters" type="button"><span class="mso">tune</span></button>
-                        <button title="Filters" type="button"><span class="mso">search</span></button>
-                    </form>
-                </div>
-            </div>
-        </header>
-        <!-- HEADER -->
-
-        <div class="grid grid-cols-12 p-6 gap-4 max-w-7xl mx-auto">
-            <div class="space-y-4 col-span-3">
-                <!-- SIDE NAV -->
-                <nav class="bg-blue-500 py-20 pl-6 pr-1 rounded-2xl" role="navigation">
-                    <div class="rounded-2xl border-1 border-blue-300 py-8 px-4 flex flex-col gap-2 text-white text-sm">
-                        <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/"
-                            ><span class="mso">dashboard</span> Dashboard</a
-                        >
-                        <a
-                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600"
-                            href="/earn"
-                            ><span class="mso">payments</span> Earn</a
-                        >
-                        <a
-                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
-                            href="/advertise.html"
-                            ><span class="mso">campaign</span> Advertise</a
-                        >
-                        <a
-                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
-                            href="/store.html"
-                            ><span class="mso">storefront</span> Market place</a
-                        >
-                        <a
-                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
-                            href="/buy-followers.html"
-                            ><span class="mso">group_add</span> Buy Followers</a
-                        >
-                        <a
-                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
-                            href="/add-up.html"
-                            ><span class="mso">person_add</span> Add me up</a
-                        >
-                        <a
-                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
-                            href="/refer.html"
-                            ><span class="mso">groups</span> Refer & Earn</a
-                        >
-                        <a
-                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
-                            href="/support.html"
-                            ><span class="mso">support_agent</span> Support/FAQ Page</a
-                        >
-                        <a
-                            class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2"
-                            href="/logout.html"
-                            ><span class="mso">logout</span> Logout</a
-                        >
-                    </div>
-                </nav>
-                <!-- SIDE NAV -->
-
-                <img src="/images/side-banner.png" alt="" />
-            </div>
-
-            <!-- MAIN -->
-            <div class="grid grid-cols-12 col-span-9">
-                <main class="col-span-9 bg-white shadow-sm p-6 space-y-12">
-                    <div class="flex items-center gap-4">
-                        <a href="/earn/resell/buy-product.html" title="Back"><span class="mso">west</span></a>
-                        <h2 class="text-lg font-semibold">Product Checkout</h2>
-                    </div>
-
-                    <div class="bg-white shadow-md rounded-lg p-4 items-center space-x-4 grid grid-cols-12">
-                        <div class="col-span-4">
-                            <img src="/images/airpods.png" alt="Bluetooth Earbuds" />
-                        </div>
-
-                        <div class="col-span-8">
-                            <h2 class="text-lg font-semibold">Bluetooth Earbuds – High Quality Sound</h2>
-                            <p class="text-gray-500 text-sm">
-                                Seller: <span class="text-gray-700 font-medium">Alayande Nurudeen</span>
-                            </p>
-
-                            <div class="flex items-center space-x-2 mt-1">
-                                <span class="text-gray-400 line-through text-sm">₦ 45,700</span>
-                                <span class="text-xl font-bold">₦ 38,637.22</span>
-                            </div>
-
-                            <div class="flex items-center space-x-2 mt-2 text-gray-700 text-sm">
-                                <span>Color: <span class="font-medium text-zinc-600">Black</span></span>
-                                <span>|</span>
-                                <span>Quantity</span>
-                            </div>
-
-                            <div
-                                class="mt-3 flex items-center justify-between space-x-2 bg-blue-600 text-white px-4 py-1 rounded-full max-w-sm mr-0"
-                            >
-                                <button class="text-lg">-</button>
-                                <span class="text-sm">2 Added</span>
-                                <button class="text-lg">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="mso">info</span>
-                            <p>You haven't added any address yet</p>
-                        </div>
-                        <p class="text-xl font-semibold">Add New Address</p>
-                    </div>
-
-                    <!-- Form section -->
-                    <form class="space-y-8">
-                        <div class="bg-white shadow-md rounded-lg p-2">
-                            <div class="flex items-center space-x-2 mb-4">
-                                <div class="w-5 h-5 flex items-center justify-center bg-gray-300 rounded-full">
-                                    <span class="mso">check</span>
-                                </div>
-                                <h2>1. Add Customer Address</h2>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">First Name</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter your First Name"
-                                    class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Last Name</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter your Last Name"
-                                    class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="mt-4">
-                            <label class="block text-sm font-medium text-gray-700">Phone Number</label>
-                            <input
-                                type="text"
-                                placeholder="Enter your Phone Number"
-                                class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300"
-                            />
-                        </div>
-
-                        <div class="mt-4">
-                            <label class="block text-sm font-medium text-gray-700">Delivery Address</label>
-                            <input
-                                type="text"
-                                placeholder="Enter your Delivery Address"
-                                class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300"
-                            />
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Region</label>
-                                <select
-                                    class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300"
-                                >
-                                    <option>Select your Region</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">City</label>
-                                <select
-                                    class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300"
-                                >
-                                    <option>Select your City</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 flex items-center space-x-2">
-                            <input type="checkbox" class="w-4 h-4 border-gray-300 rounded" />
-                            <label class="text-sm font-medium text-gray-700">Set as Default Address</label>
-                        </div>
-
-                        <hr class="border-zinc-400" />
-
-                        <div class="flex justify-end space-x-4 p-4">
-                            <button
-                                class="border border-blue-600 text-blue-600 px-4 py-2 rounded-2xl hover:bg-blue-50 transition"
-                            >
-                                Cancel
-                            </button>
-                            <button class="bg-blue-600 text-white px-6 py-2 rounded-2xl hover:bg-blue-700 transition">
-                                Submit
-                            </button>
-                        </div>
-                    </form>
-
-                    <!-- Payment methods -->
-                    <div class="space-y-8">
-                        <!-- Payment Method Header -->
-                        <div class="flex items-center bg-white shadow-sm p-4 rounded-lg">
-                            <span class="mso text-gray-500 text-xl">check_circle</span>
-                            <span class="ml-2 text-gray-500 font-medium">Payment Method</span>
-                        </div>
-
-                        <!-- Payment Options -->
-                        <h2 class="text-lg">Choose Online Payment Method</h2>
-
-                        <div class="space-y-3">
-                            <a
-                                href="membership-success.html"
-                                class="grid grid-cols-[32px_1fr] gap-3 border border-blue-600 rounded-2xl p-6 items-center"
-                            >
-                                <span class="mso text-3xl text-blue-600">lock</span>
-                                <div>
-                                    <h4 class="text-lg font-semibold">100% Secured Online Payment</h4>
-                                    <p class="text-zinc-500 font-light">
-                                        Pay securely using your master card/Visa/Verve card, Bank Transfer via USSD or
-                                        Internet Bank Transfer
-                                    </p>
-                                </div>
-                            </a>
-
-                            <a
-                                href="membership-success.html"
-                                class="grid grid-cols-[32px_1fr] gap-3 border border-blue-600 rounded-2xl p-6 items-center"
-                            >
-                                <span class="mso text-3xl text-blue-600">account_balance_wallet</span>
-                                <div>
-                                    <h4 class="text-lg font-semibold">Pay With Your Wallet</h4>
-                                    <p class="text-zinc-500 font-light">Pay with your wallet balance.</p>
-                                    <p class="text-sm text-right">
-                                        Wallet balance <span class="font-semibold">#20,000</span>
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </main>
-                <!-- MAIN -->
-
-                <!-- Aside -->
-                <aside class="col-span-3 p-4">
-                    <div class="lg:mt-24 space-y-10 max-lg:p-4">
-                        <div>
-                            <p>Sellers Info</p>
-                            <div class="bg-white p-4 rounded-[15.2px] space-y-4">
-                                <div class="flex gap-2">
-                                    <img width="42" height="42" alt="Avatar" src="/assets/images/demo-avatar.png" />
-                                    <div class="text-[#000000BF]">
-                                        <p>Alayande Bamidele</p>
-                                    </div>
-                                </div>
-                                <div class="flex gap-4 items-center">
-                                    <img width="20" alt="Flag" src="/assets/images/twemoji_flag-nigeria.png" /> |
-                                    <span class="relative text-[#77777A] text-[9.82px]"
-                                        >Online
-                                        <span class="absolute -left-1.5 top-1 h-1 w-1 bg-green-400 rounded-full"></span
-                                    ></span>
-                                </div>
-                                <div class="flex justify-between gap-4">
-                                    <div
-                                        class="text-[#00B306] bg-[#00B3061A] text-[9.5px] px-4 py-2 rounded-full text-center whitespace-nowrap"
-                                    >
-                                        Verified ID
-                                    </div>
-                                </div>
-                                <div class="flex flex-col items-center justify-center gap-4 space-x-4 mt-6">
-                                    <button
-                                        class="bg-blue-700/80 text-white p-2 rounded-full text-sm whitespace-nowrap w-full"
-                                    >
-                                        <span class="mso">phone</span> Contact the Seller
-                                    </button>
-                                    <button
-                                        class="border-1 border-blue-700/80 text-blue-700/80 p-2 rounded-full text-sm whitespace-nowrap w-full"
-                                    >
-                                        <span class="mso">message</span> Start Chat
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="h-1 border-t border-dashed border-[#66666666] w-[80%] mx-auto"></div>
-
-                        <div class="text-xs">
-                            <p class="font-semibold mb-3">Safety Tips</p>
-                            <ul class="text-zinc-800 list-disc list-inside">
-                                <li>Avoid paying in advance, even for delivery</li>
-                                <li>Meet with the seller at a safe public place</li>
-                                <li>Inspect the item and ensure it's exactly what you want</li>
-                                <li>Make sure that the packed item is the one you've inspected</li>
-                                <li>Only pay if you're satisfied</li>
-                            </ul>
-                        </div>
-
-                        <div class="bg-white p-4 rounded-lg shadow-md">
-                            <h2 class="font-semibold text-lg">Order Summary</h2>
-
-                            <div class="mt-3 space-y-2">
-                                <div class="flex justify-between text-gray-600">
-                                    <span>Item's Total (2):</span>
-                                    <span class="text-black font-medium">#77,274.44</span>
-                                </div>
-
-                                <div class="flex justify-between text-gray-600">
-                                    <span>Shipping Fee:</span>
-                                    <span class="text-black font-medium">#1,500</span>
-                                </div>
-
-                                <hr class="my-2 border-gray-300" />
-
-                                <div class="flex justify-between text-gray-900 font-semibold">
-                                    <span>Net Total:</span>
-                                    <span>#78,774.44</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/font.css" />
+    <title>Hovertask - Product Checkout</title>
+  </head>
+  <body class="bg-blue-50">
+    <!-- HEADER -->
+    <header class="p-6 bg-gradient-to-b from-[#4B70F559] via-[#4B70F53A] space-y-3">
+      <div class="flex justify-between max-w-6xl mx-auto">
+        <img src="/images/logo.png" alt="Logo" class="h-8" />
+        <div class="text-sm flex gap-4">
+          <button title="Notifications">
+            <span class="mso">notification_important</span>
+          </button>
+          <button>
+            <span class="mso">dark_mode</span>
+          </button>
+          <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
+            <span class="mso">shopping_cart</span> Cart
+          </button>
+          <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
+            <img src="/images/nigerian-flag.png" alt="Nigerian flag icon" class="h-4" /> NGN
+          </button>
         </div>
+      </div>
+      <div class="flex justify-between max-w-6xl mx-auto gap-6">
+        <div class="flex items-center gap-3">
+          <img class="w-12" src="/images/avatar.png" alt="User avatar" />
+          <div>
+            <div id="full-name">_</div>
+            <button id="username" class="text-sm flex items-center gap-2">
+              _ <span class="mso">arrow_drop_down</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex-1 space-y-4">
+          <div class="flex py-2 px-4 border-b-1 border-zinc-400 rounded-full justify-between text-sm">
+            <a class="flex items-center gap-2 px-2 py-1" href="/"><span class="mso">dashboard</span> Dashboard</a>
+            <a class="flex items-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg" href="/earn"
+              ><span class="mso">payments</span> Earn</a
+            >
+            <a class="flex items-center gap-2 px-2 py-1" href="/advertise.html"
+              ><span class="mso">campaign</span> Advertise</a
+            >
+            <a class="flex items-center gap-2 px-2 py-1" href="/marketplace.html">
+              <span class="mso">storefront</span>
+              Marketplace
+              <span class="mso"></span>
+            </a>
+            <a class="flex items-center gap-2 px-2 py-1" href="/buy-followers.html">
+              <span class="mso">group_add</span>
+              Buy Followers
+              <span class="mso">arrow_drop_down</span>
+            </a>
+            <button class="flex items-center gap-2 px-2 py-1" title="Menu">
+              <span class="mso">menu</span>
+            </button>
+          </div>
+          <form class="bg-white px-8 py-2 rounded-full shadow-sm flex items-center w-fit gap-6">
+            <input type="text" placeholder="Search any products or services..." class="min-w-0 placeholder:text-xs" />
+            <button title="Filters" type="button"><span class="mso">tune</span></button>
+            <button title="Filters" type="button"><span class="mso">search</span></button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <!-- HEADER -->
 
-        <!-- Scripts -->
-        <script src="/scripts/display-user-data.js"></script>
-        <script src="/scripts/modal.js"></script>
-        <script>
-            new Modal("reseller-link-modal", "reseller-link-modal-trigger");
-        </script>
-    </body>
+    <div class="grid grid-cols-12 p-6 gap-4 max-w-7xl mx-auto">
+      <div class="space-y-4 col-span-3">
+        <!-- SIDE NAV -->
+        <nav class="bg-blue-500 py-20 pl-6 pr-1 rounded-2xl" role="navigation">
+          <div class="rounded-2xl border-1 border-blue-300 py-8 px-4 flex flex-col gap-2 text-white text-sm">
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/"
+              ><span class="mso">dashboard</span> Dashboard</a
+            >
+            <a
+              class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600"
+              href="/earn"
+              ><span class="mso">payments</span> Earn</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/advertise.html"
+              ><span class="mso">campaign</span> Advertise</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/store.html"
+              ><span class="mso">storefront</span> Market place</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/buy-followers.html"
+              ><span class="mso">group_add</span> Buy Followers</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/add-up.html"
+              ><span class="mso">person_add</span> Add me up</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/refer.html"
+              ><span class="mso">groups</span> Refer & Earn</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/support.html"
+              ><span class="mso">support_agent</span> Support/FAQ Page</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/logout.html"
+              ><span class="mso">logout</span> Logout</a
+            >
+          </div>
+        </nav>
+        <!-- SIDE NAV -->
+
+        <img src="/images/side-banner.png" alt="" />
+      </div>
+
+      <!-- MAIN -->
+      <div class="grid grid-cols-12 col-span-9">
+        <main class="col-span-9 bg-white shadow-sm p-6 space-y-12">
+          <div class="flex items-center gap-4">
+            <a href="/earn/resell/buy-product.html" title="Back"><span class="mso">west</span></a>
+            <h2 class="text-lg font-semibold">Product Checkout</h2>
+          </div>
+
+          <div class="bg-white shadow-md rounded-lg p-4 items-center space-x-4 grid grid-cols-12">
+            <div class="col-span-4">
+              <img src="/images/airpods.png" alt="Bluetooth Earbuds" />
+            </div>
+
+            <div class="col-span-8">
+              <h2 class="text-lg font-semibold">Bluetooth Earbuds – High Quality Sound</h2>
+              <p class="text-gray-500 text-sm">
+                Seller: <span class="text-gray-700 font-medium">Alayande Nurudeen</span>
+              </p>
+
+              <div class="flex items-center space-x-2 mt-1">
+                <span class="text-gray-400 line-through text-sm">₦ 45,700</span>
+                <span class="text-xl font-bold">₦ 38,637.22</span>
+              </div>
+
+              <div class="flex items-center space-x-2 mt-2 text-gray-700 text-sm">
+                <span>Color: <span class="font-medium text-zinc-600">Black</span></span>
+                <span>|</span>
+                <span>Quantity</span>
+              </div>
+
+              <div
+                class="mt-3 flex items-center justify-between space-x-2 bg-blue-600 text-white px-4 py-1 rounded-full max-w-sm mr-0"
+              >
+                <button class="text-lg">-</button>
+                <span class="text-sm">2 Added</span>
+                <button class="text-lg">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2 mb-4">
+              <span class="mso">info</span>
+              <p>You haven't added any address yet</p>
+            </div>
+            <p class="text-xl font-semibold">Add New Address</p>
+          </div>
+
+          <!-- Form section -->
+          <form class="space-y-8">
+            <div class="bg-white shadow-md rounded-lg p-2">
+              <div class="flex items-center space-x-2 mb-4">
+                <div class="w-5 h-5 flex items-center justify-center bg-gray-300 rounded-full">
+                  <span class="mso">check</span>
+                </div>
+                <h2>1. Add Customer Address</h2>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700">First Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter your First Name"
+                  class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Last Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter your Last Name"
+                  class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+              <input
+                type="text"
+                placeholder="Enter your Phone Number"
+                class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300"
+              />
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-sm font-medium text-gray-700">Delivery Address</label>
+              <input
+                type="text"
+                placeholder="Enter your Delivery Address"
+                class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Region</label>
+                <select class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300">
+                  <option>Select your Region</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">City</label>
+                <select class="w-full mt-1 p-2 border rounded-md bg-gray-100 text-gray-600 border-zinc-300">
+                  <option>Select your City</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mt-4 flex items-center space-x-2">
+              <input type="checkbox" class="w-4 h-4 border-gray-300 rounded" />
+              <label class="text-sm font-medium text-gray-700">Set as Default Address</label>
+            </div>
+
+            <hr class="border-zinc-400" />
+
+            <div class="flex justify-end space-x-4 p-4">
+              <button class="border border-blue-600 text-blue-600 px-4 py-2 rounded-2xl hover:bg-blue-50 transition">
+                Cancel
+              </button>
+              <button class="bg-blue-600 text-white px-6 py-2 rounded-2xl hover:bg-blue-700 transition">Submit</button>
+            </div>
+          </form>
+
+          <!-- Payment methods -->
+          <div class="space-y-8">
+            <!-- Payment Method Header -->
+            <div class="flex items-center bg-white shadow-sm p-4 rounded-lg">
+              <span class="mso text-gray-500 text-xl">check_circle</span>
+              <span class="ml-2 text-gray-500 font-medium">Payment Method</span>
+            </div>
+
+            <!-- Payment Options -->
+            <h2 class="text-lg">Choose Online Payment Method</h2>
+
+            <div class="space-y-3">
+              <a
+                href="membership-success.html"
+                class="grid grid-cols-[32px_1fr] gap-3 border border-blue-600 rounded-2xl p-6 items-center"
+              >
+                <span class="mso text-3xl text-blue-600">lock</span>
+                <div>
+                  <h4 class="text-lg font-semibold">100% Secured Online Payment</h4>
+                  <p class="text-zinc-500 font-light">
+                    Pay securely using your master card/Visa/Verve card, Bank Transfer via USSD or Internet Bank
+                    Transfer
+                  </p>
+                </div>
+              </a>
+
+              <a
+                href="membership-success.html"
+                class="grid grid-cols-[32px_1fr] gap-3 border border-blue-600 rounded-2xl p-6 items-center"
+              >
+                <span class="mso text-3xl text-blue-600">account_balance_wallet</span>
+                <div>
+                  <h4 class="text-lg font-semibold">Pay With Your Wallet</h4>
+                  <p class="text-zinc-500 font-light">Pay with your wallet balance.</p>
+                  <p class="text-sm text-right">Wallet balance <span class="font-semibold">#20,000</span></p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </main>
+        <!-- MAIN -->
+
+        <!-- Aside -->
+        <aside class="col-span-3 p-4">
+          <div class="lg:mt-24 space-y-10 max-lg:p-4">
+            <div>
+              <p>Sellers Info</p>
+              <div class="bg-white p-4 rounded-[15.2px] space-y-4">
+                <div class="flex gap-2">
+                  <img width="42" height="42" alt="Avatar" src="/assets/images/demo-avatar.png" />
+                  <div class="text-[#000000BF]">
+                    <p>Alayande Bamidele</p>
+                  </div>
+                </div>
+                <div class="flex gap-4 items-center">
+                  <img width="20" alt="Flag" src="/assets/images/twemoji_flag-nigeria.png" /> |
+                  <span class="relative text-[#77777A] text-[9.82px]"
+                    >Online <span class="absolute -left-1.5 top-1 h-1 w-1 bg-green-400 rounded-full"></span
+                  ></span>
+                </div>
+                <div class="flex justify-between gap-4">
+                  <div
+                    class="text-[#00B306] bg-[#00B3061A] text-[9.5px] px-4 py-2 rounded-full text-center whitespace-nowrap"
+                  >
+                    Verified ID
+                  </div>
+                </div>
+                <div class="flex flex-col items-center justify-center gap-4 space-x-4 mt-6">
+                  <button class="bg-blue-700/80 text-white p-2 rounded-full text-sm whitespace-nowrap w-full">
+                    <span class="mso">phone</span> Contact the Seller
+                  </button>
+                  <button
+                    class="border-1 border-blue-700/80 text-blue-700/80 p-2 rounded-full text-sm whitespace-nowrap w-full"
+                  >
+                    <span class="mso">message</span> Start Chat
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="h-1 border-t border-dashed border-[#66666666] w-[80%] mx-auto"></div>
+
+            <div class="text-xs">
+              <p class="font-semibold mb-3">Safety Tips</p>
+              <ul class="text-zinc-800 list-disc list-inside">
+                <li>Avoid paying in advance, even for delivery</li>
+                <li>Meet with the seller at a safe public place</li>
+                <li>Inspect the item and ensure it's exactly what you want</li>
+                <li>Make sure that the packed item is the one you've inspected</li>
+                <li>Only pay if you're satisfied</li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg shadow-md">
+              <h2 class="font-semibold text-lg">Order Summary</h2>
+
+              <div class="mt-3 space-y-2">
+                <div class="flex justify-between text-gray-600">
+                  <span>Item's Total (2):</span>
+                  <span class="text-black font-medium">#77,274.44</span>
+                </div>
+
+                <div class="flex justify-between text-gray-600">
+                  <span>Shipping Fee:</span>
+                  <span class="text-black font-medium">#1,500</span>
+                </div>
+
+                <hr class="my-2 border-gray-300" />
+
+                <div class="flex justify-between text-gray-900 font-semibold">
+                  <span>Net Total:</span>
+                  <span>#78,774.44</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/scripts/display-user-data.js"></script>
+    <script src="/scripts/modal.js"></script>
+    <script>
+      new Modal("reseller-link-modal", "reseller-link-modal-trigger");
+    </script>
+  </body>
 </html>
