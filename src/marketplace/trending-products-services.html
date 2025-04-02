@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/global.css" />
     <link rel="stylesheet" href="/styles/font.css" />
-    <title>Hovertask - Product Listing</title>
+    <title>Hovertask - Marketplace</title>
   </head>
   <body class="bg-blue-50">
     <!-- Mobile Menu -->
@@ -89,7 +89,7 @@
     </header>
     <!-- HEADER -->
 
-    <div class="md:grid grid-cols-12 p-6 gap-4 max-w-7xl overflow-x-hidden mx-auto">
+    <div class="md:grid grid-cols-12 md:p-6 gap-4 max-w-7xl overflow-x-hidden mx-auto">
       <div class="space-y-4 col-span-3 max-md:hidden">
         <!-- SIDE NAV -->
         <nav class="bg-blue-500 py-20 pl-6 pr-1 rounded-2xl" role="navigation">
@@ -131,30 +131,311 @@
       </div>
 
       <!-- MAIN -->
-      <div class="grid grid-cols-12 col-span-9">
+      <div class="md:grid grid-cols-12 col-span-9">
         <main class="col-span-9 bg-white shadow-sm p-6 space-y-12">
           <div class="flex gap-6 items-center">
-            <a href="/marketplace"><span class="mso">west</span></a>
+            <a href="/"><span class="mso">west</span></a>
             <div>
-              <h1 class="text-xl">List New Product</h1>
-              <p>
-                Add a new product or service to the marketplace. Include details, set your price, and upload images to
-                attract buyers
-              </p>
+              <h1 class="text-xl">Welcome To Hovertask Marketplace</h1>
+              <p>Your one-stop platform to buy, sell, and earn effortlessly.</p>
             </div>
           </div>
 
-          <!-- Profile details -->
+          <!-- Trending products -->
+          <div class="p-6 grid grid-cols-3 overflow-auto bg-blue-100 rounded-3xl gap-4">
+            <!-- Product card -->
+            <div class="space-y-2 p-4 bg-white shadow-sm rounded-2xl text-sm">
+              <div class="aspect-video bg-zinc-100 rounded-2xl">
+                <img src="" alt="" class="aspect-video" />
+              </div>
+              <div class="flex justify-between gap-1">
+                <div class="font-semibold">Smart Fitness Watch</div>
+                <div>
+                  <button><span class="mso">favorite</span></button>
+                </div>
+              </div>
+
+              <div class="flex gap-4 items-center">
+                <div class="text-xs text-zinc-400 line-through">N35,000</div>
+                <div class="text-sm">N30,000</div>
+              </div>
+              <div class="flex text-xs gap-2 justify-between whitespace-nowrap">
+                <div><span class="mso filled text-zinc-400">star</span>4.8</div>
+                <div class="text-blue-500">(120 Reviews)</div>
+                <div>500 units</div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button class="bg-blue-700/80 text-white p-2 rounded-2xl flex-1 whitespace-nowrap">
+                  <span class="mso">shopping_bag</span> Buy Product
+                </button>
+                <button
+                  class="aspect-square rounded-full flex items-center justify-center border-1 text-blue-600 border-blue-600 h-9"
+                >
+                  <span class="mso">north_east</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Product card -->
+            <div class="space-y-2 p-4 bg-white shadow-sm rounded-2xl text-sm">
+              <div class="aspect-video bg-zinc-100 rounded-2xl">
+                <img src="" alt="" class="aspect-video" />
+              </div>
+              <div class="flex justify-between gap-1">
+                <div class="font-semibold">Smart Fitness Watch</div>
+                <div>
+                  <button><span class="mso">favorite</span></button>
+                </div>
+              </div>
+
+              <div class="flex gap-4 items-center">
+                <div class="text-xs text-zinc-400 line-through">N35,000</div>
+                <div class="text-sm">N30,000</div>
+              </div>
+              <div class="flex text-xs gap-2 justify-between whitespace-nowrap">
+                <div><span class="mso filled text-zinc-400">star</span>4.8</div>
+                <div class="text-blue-500">(120 Reviews)</div>
+                <div>500 units</div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button class="bg-blue-700/80 text-white p-2 rounded-2xl flex-1 whitespace-nowrap">
+                  <span class="mso">shopping_bag</span> Buy Product
+                </button>
+                <button
+                  class="aspect-square rounded-full flex items-center justify-center border-1 text-blue-600 border-blue-600 h-9"
+                >
+                  <span class="mso">north_east</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Product card -->
+            <div class="space-y-2 p-4 bg-white shadow-sm rounded-2xl text-sm">
+              <div class="aspect-video bg-zinc-100 rounded-2xl">
+                <img src="" alt="" class="aspect-video" />
+              </div>
+              <div class="flex justify-between gap-1">
+                <div class="font-semibold">Smart Fitness Watch</div>
+                <div>
+                  <button><span class="mso">favorite</span></button>
+                </div>
+              </div>
+
+              <div class="flex gap-4 items-center">
+                <div class="text-xs text-zinc-400 line-through">N35,000</div>
+                <div class="text-sm">N30,000</div>
+              </div>
+              <div class="flex text-xs gap-2 justify-between whitespace-nowrap">
+                <div><span class="mso filled text-zinc-400">star</span>4.8</div>
+                <div class="text-blue-500">(120 Reviews)</div>
+                <div>500 units</div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button class="bg-blue-700/80 text-white p-2 rounded-2xl flex-1 whitespace-nowrap">
+                  <span class="mso">shopping_bag</span> Buy Product
+                </button>
+                <button
+                  class="aspect-square rounded-full flex items-center justify-center border-1 text-blue-600 border-blue-600 h-9"
+                >
+                  <span class="mso">north_east</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Product card -->
+            <div class="space-y-2 p-4 bg-white shadow-sm rounded-2xl text-sm">
+              <div class="aspect-video bg-zinc-100 rounded-2xl">
+                <img src="" alt="" class="aspect-video" />
+              </div>
+              <div class="flex justify-between gap-1">
+                <div class="font-semibold">Smart Fitness Watch</div>
+                <div>
+                  <button><span class="mso">favorite</span></button>
+                </div>
+              </div>
+
+              <div class="flex gap-4 items-center">
+                <div class="text-xs text-zinc-400 line-through">N35,000</div>
+                <div class="text-sm">N30,000</div>
+              </div>
+              <div class="flex text-xs gap-2 justify-between whitespace-nowrap">
+                <div><span class="mso filled text-zinc-400">star</span>4.8</div>
+                <div class="text-blue-500">(120 Reviews)</div>
+                <div>500 units</div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button class="bg-blue-700/80 text-white p-2 rounded-2xl flex-1 whitespace-nowrap">
+                  <span class="mso">shopping_bag</span> Buy Product
+                </button>
+                <button
+                  class="aspect-square rounded-full flex items-center justify-center border-1 text-blue-600 border-blue-600 h-9"
+                >
+                  <span class="mso">north_east</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Banner -->
+          <img src="/images/Banner Rectangle 39251.png" alt="" />
+
+          <!-- Hottest deals -->
           <div>
-            <div>
-              <div></div>
-              <div></div>
-              <div></div>
+            <div class="flex justify-between items-center">
+              <h2 class="text-lg">Best Deal Services</h2>
+              <a href="/marketplace/best-deal-services.html" class="text-blue-400">View All</a>
             </div>
 
-            <div></div>
+            <div class="p-6 flex overflow-auto bg-blue-100 rounded-3xl gap-4">
+              <!-- Product card -->
+              <div class="space-y-2 p-4 bg-white shadow-sm rounded-2xl text-sm">
+                <div class="aspect-video bg-zinc-100 rounded-2xl">
+                  <img src="" alt="" class="aspect-video" />
+                </div>
+                <div class="flex justify-between gap-1">
+                  <div class="font-semibold">Smart Fitness Watch</div>
+                  <div>
+                    <button><span class="mso">favorite</span></button>
+                  </div>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <div class="text-xs text-zinc-400 line-through">N35,000</div>
+                  <div class="text-sm">N30,000</div>
+                </div>
+                <div class="flex text-xs gap-2 justify-between whitespace-nowrap">
+                  <div><span class="mso filled text-zinc-400">star</span>4.8</div>
+                  <div class="text-blue-500">(120 Reviews)</div>
+                  <div>500 units</div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button class="bg-blue-700/80 text-white p-2 rounded-2xl flex-1 whitespace-nowrap">
+                    <span class="mso">shopping_bag</span> Buy Product
+                  </button>
+                  <button
+                    class="aspect-square rounded-full flex items-center justify-center border-1 text-blue-600 border-blue-600 h-9"
+                  >
+                    <span class="mso">north_east</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Product card -->
+              <div class="space-y-2 p-4 bg-white shadow-sm rounded-2xl text-sm">
+                <div class="aspect-video bg-zinc-100 rounded-2xl">
+                  <img src="" alt="" class="aspect-video" />
+                </div>
+                <div class="flex justify-between gap-1">
+                  <div class="font-semibold">Smart Fitness Watch</div>
+                  <div>
+                    <button><span class="mso">favorite</span></button>
+                  </div>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <div class="text-xs text-zinc-400 line-through">N35,000</div>
+                  <div class="text-sm">N30,000</div>
+                </div>
+                <div class="flex text-xs gap-2 justify-between whitespace-nowrap">
+                  <div><span class="mso filled text-zinc-400">star</span>4.8</div>
+                  <div class="text-blue-500">(120 Reviews)</div>
+                  <div>500 units</div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button class="bg-blue-700/80 text-white p-2 rounded-2xl flex-1 whitespace-nowrap">
+                    <span class="mso">shopping_bag</span> Buy Product
+                  </button>
+                  <button
+                    class="aspect-square rounded-full flex items-center justify-center border-1 text-blue-600 border-blue-600 h-9"
+                  >
+                    <span class="mso">north_east</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Product card -->
+              <div class="space-y-2 p-4 bg-white shadow-sm rounded-2xl text-sm">
+                <div class="aspect-video bg-zinc-100 rounded-2xl">
+                  <img src="" alt="" class="aspect-video" />
+                </div>
+                <div class="flex justify-between gap-1">
+                  <div class="font-semibold">Smart Fitness Watch</div>
+                  <div>
+                    <button><span class="mso">favorite</span></button>
+                  </div>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <div class="text-xs text-zinc-400 line-through">N35,000</div>
+                  <div class="text-sm">N30,000</div>
+                </div>
+                <div class="flex text-xs gap-2 justify-between whitespace-nowrap">
+                  <div><span class="mso filled text-zinc-400">star</span>4.8</div>
+                  <div class="text-blue-500">(120 Reviews)</div>
+                  <div>500 units</div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button class="bg-blue-700/80 text-white p-2 rounded-2xl flex-1 whitespace-nowrap">
+                    <span class="mso">shopping_bag</span> Buy Product
+                  </button>
+                  <button
+                    class="aspect-square rounded-full flex items-center justify-center border-1 text-blue-600 border-blue-600 h-9"
+                  >
+                    <span class="mso">north_east</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Product card -->
+              <div class="space-y-2 p-4 bg-white shadow-sm rounded-2xl text-sm">
+                <div class="aspect-video bg-zinc-100 rounded-2xl">
+                  <img src="" alt="" class="aspect-video" />
+                </div>
+                <div class="flex justify-between gap-1">
+                  <div class="font-semibold">Smart Fitness Watch</div>
+                  <div>
+                    <button><span class="mso">favorite</span></button>
+                  </div>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <div class="text-xs text-zinc-400 line-through">N35,000</div>
+                  <div class="text-sm">N30,000</div>
+                </div>
+                <div class="flex text-xs gap-2 justify-between whitespace-nowrap">
+                  <div><span class="mso filled text-zinc-400">star</span>4.8</div>
+                  <div class="text-blue-500">(120 Reviews)</div>
+                  <div>500 units</div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button class="bg-blue-700/80 text-white p-2 rounded-2xl flex-1 whitespace-nowrap">
+                    <span class="mso">shopping_bag</span> Buy Product
+                  </button>
+                  <button
+                    class="aspect-square rounded-full flex items-center justify-center border-1 text-blue-600 border-blue-600 h-9"
+                  >
+                    <span class="mso">north_east</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Carousel banner -->
+            <div id="ad-carousel">
+              <img src="/images/banner-img-1.png" alt="Ad banner" />
+              <img src="/images/banner-img-2.png" alt="Ad banner" />
+              <img src="/images/banner-img-3.png" alt="Ad banner" />
+            </div>
+            <!-- Carousel banner -->
           </div>
-          <!-- Profile details -->
         </main>
         <!-- MAIN -->
 
@@ -257,14 +538,8 @@
         autoScrollInterval: 3000,
         allowUserScroll: false
       });
-      const adCarousel2 = new Carousel("ad-carousel-2", {
-        pauseOnHover: true,
-        autoScrollInterval: 3000,
-        allowUserScroll: false
-      });
 
       adCarousel.start();
-      adCarousel2.start();
     </script>
     <script>
       document.getElementById("menu-toggle").addEventListener("click", function (e) {
