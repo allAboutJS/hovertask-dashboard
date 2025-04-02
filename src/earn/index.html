@@ -360,5 +360,18 @@
     <script>
       new Modal("modal").openModal();
     </script>
+    <script>
+      const API_ENDPOINT = "https://laravel-production-6453.up.railway.app/api/v1/tasks/show-all-task";
+      const AUTH_TOKEN = JSON.parse(localStorage.getItem("user"))?.token;
+
+      fetch(API_ENDPOINT, {
+        headers: {
+          Authorization: `Bearer ${AUTH_TOKEN}`
+        }
+      })
+        .then((res) => res.json())
+        .then((res) => console.log(res))
+        .catch(console.error);
+    </script>
   </body>
 </html>
