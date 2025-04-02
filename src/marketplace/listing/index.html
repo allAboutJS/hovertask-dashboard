@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/font.css" />
+    <title>Hovertask - Product Listing</title>
+  </head>
+  <body class="bg-blue-50">
+    <!-- HEADER -->
+    <header class="p-6 bg-gradient-to-b from-[#4B70F559] via-[#4B70F53A] space-y-3">
+      <div class="flex justify-between max-w-6xl mx-auto">
+        <img src="/images/logo.png" alt="Logo" class="h-8" />
+        <div class="text-sm flex gap-4">
+          <button title="Notifications">
+            <span class="mso">notification_important</span>
+          </button>
+          <button>
+            <span class="mso">dark_mode</span>
+          </button>
+          <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
+            <span class="mso">shopping_cart</span> Cart
+          </button>
+          <button class="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
+            <img src="/images/nigerian-flag.png" alt="Nigerian flag icon" class="h-4" /> NGN
+          </button>
+        </div>
+      </div>
+      <div class="flex justify-between max-w-6xl mx-auto gap-6">
+        <div class="flex items-center gap-3">
+          <img class="w-12" src="/images/avatar.png" alt="User avatar" />
+          <div>
+            <div id="full-name">_</div>
+            <button id="username" class="text-sm flex items-center gap-2">
+              _ <span class="mso">arrow_drop_down</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex-1 space-y-4">
+          <div class="flex py-2 px-4 border-b-1 border-zinc-400 rounded-full justify-between text-sm">
+            <a class="flex items-center gap-2 px-2 py-1" href="/"><span class="mso">dashboard</span> Dashboard</a>
+            <a class="flex items-center gap-2 px-2 py-1" href="/earn"><span class="mso">payments</span> Earn</a>
+            <a class="flex items-center gap-2 px-2 py-1" href="/advertise.html"
+              ><span class="mso">campaign</span> Advertise</a
+            >
+            <a class="flex items-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg" href="/marketplace">
+              <span class="mso">storefront</span>
+              Marketplace
+              <span class="mso"></span>
+            </a>
+            <a class="flex items-center gap-2 px-2 py-1" href="/buy-followers.html">
+              <span class="mso">group_add</span>
+              Buy Followers
+              <span class="mso">arrow_drop_down</span>
+            </a>
+            <button class="flex items-center gap-2 px-2 py-1" title="Menu">
+              <span class="mso">menu</span>
+            </button>
+          </div>
+          <form class="bg-white px-8 py-2 rounded-full shadow-sm flex items-center w-fit gap-6">
+            <input type="text" placeholder="Search any products or services..." class="min-w-0 placeholder:text-xs" />
+            <button title="Filters" type="button"><span class="mso">tune</span></button>
+            <button title="Filters" type="button"><span class="mso">search</span></button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <!-- HEADER -->
+
+    <div class="grid grid-cols-12 p-6 gap-4 max-w-7xl mx-auto">
+      <div class="space-y-4 col-span-3">
+        <!-- SIDE NAV -->
+        <nav class="bg-blue-500 py-20 pl-6 pr-1 rounded-2xl" role="navigation">
+          <div class="rounded-2xl border-1 border-blue-300 py-8 px-4 flex flex-col gap-2 text-white text-sm">
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/"
+              ><span class="mso">dashboard</span> Dashboard</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/earn"
+              ><span class="mso">payments</span> Earn</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/advertise.html"
+              ><span class="mso">campaign</span> Advertise</a
+            >
+            <a
+              class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2 bg-white text-blue-600"
+              href="/marketplace"
+              ><span class="mso">storefront</span> Market place</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/buy-followers.html"
+              ><span class="mso">group_add</span> Buy Followers</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/add-up.html"
+              ><span class="mso">person_add</span> Add me up</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/refer.html"
+              ><span class="mso">groups</span> Refer & Earn</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/support.html"
+              ><span class="mso">support_agent</span> Support/FAQ Page</a
+            >
+            <a class="py-2 px-4 rounded-full w-fit flex justify-center items-center gap-2" href="/logout.html"
+              ><span class="mso">logout</span> Logout</a
+            >
+          </div>
+        </nav>
+        <!-- SIDE NAV -->
+
+        <img src="/images/side-banner.png" alt="" />
+      </div>
+
+      <!-- MAIN -->
+      <div class="grid grid-cols-12 col-span-9">
+        <main class="col-span-9 bg-white shadow-sm p-6 space-y-12">
+          <div class="flex gap-6 items-center">
+            <a href="/marketplace"><span class="mso">west</span></a>
+            <div>
+              <h1 class="text-xl">List New Product</h1>
+              <p>
+                Add a new product or service to the marketplace. Include details, set your price, and upload images to
+                attract buyers
+              </p>
+            </div>
+          </div>
+
+          <!-- Profile details -->
+          <div>
+            <div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+
+            <div></div>
+          </div>
+          <!-- Profile details -->
+        </main>
+        <!-- MAIN -->
+
+        <!-- Aside -->
+        <aside class="col-span-3 p-4">
+          <div class="mt-24 space-y-10 max-lg:hidden">
+            <div class="border-1 border-[#66666666] rounded-3xl p-6 space-y-6">
+              <div>
+                <h3>Explore Our Categories</h3>
+                <p class="text-xs font-light text-[#000000BF]">
+                  Find what you need, from gadgets to services, all in one place.
+                </p>
+              </div>
+              <form>
+                <label for="location" class="text-xs">Select location</label>
+                <div class="flex bg-white py-1 px-4 rounded-full border-1 border-[#00000033]">
+                  <img
+                    alt=""
+                    src="data:image/svg+xml,%3csvg%20width='12'%20height='13'%20viewBox='0%200%2012%2013'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M6.27989%2010.91C6.19829%2010.9686%206.10036%2011.0001%205.99989%2011.0001C5.89942%2011.0001%205.80149%2010.9686%205.71989%2010.91C3.30539%209.189%200.74289%205.649%203.33339%203.091C4.04456%202.39142%205.00231%201.99956%205.99989%202C6.99989%202%207.95939%202.3925%208.66639%203.0905C11.2569%205.6485%208.69439%209.188%206.27989%2010.91Z'%20stroke='black'%20stroke-opacity='0.4'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M6%206.5C6.26522%206.5%206.51957%206.39464%206.70711%206.20711C6.89464%206.01957%207%205.76522%207%205.5C7%205.23478%206.89464%204.98043%206.70711%204.79289C6.51957%204.60536%206.26522%204.5%206%204.5C5.73478%204.5%205.48043%204.60536%205.29289%204.79289C5.10536%204.98043%205%205.23478%205%205.5C5%205.76522%205.10536%206.01957%205.29289%206.20711C5.48043%206.39464%205.73478%206.5%206%206.5Z'%20stroke='black'%20stroke-opacity='0.4'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
+                  /><input type="text" />
+                </div>
+              </form>
+              <div class="space-y-4">
+                <button
+                  class="bg-blue-700/80 text-white border-1 border-[#66666666] py-2 px-6 rounded-2xl whitespace-nowrap text-[13.5px]"
+                >
+                  All</button
+                ><button
+                  class="bg-[#EBEBEB] border-1 border-[#66666666] py-2 px-6 rounded-2xl whitespace-nowrap text-[13.5px]"
+                >
+                  Health and Beauty</button
+                ><button
+                  class="bg-[#EBEBEB] border-1 border-[#66666666] py-2 px-6 rounded-2xl whitespace-nowrap text-[13.5px]"
+                >
+                  Phones and Tablets</button
+                ><button
+                  class="bg-[#EBEBEB] border-1 border-[#66666666] py-2 px-6 rounded-2xl whitespace-nowrap text-[13.5px]"
+                >
+                  Computing</button
+                ><button
+                  class="bg-[#EBEBEB] border-1 border-[#66666666] py-2 px-6 rounded-2xl whitespace-nowrap text-[13.5px]"
+                >
+                  Home and Office</button
+                ><button
+                  class="bg-[#EBEBEB] border-1 border-[#66666666] py-2 px-6 rounded-2xl whitespace-nowrap text-[13.5px]"
+                >
+                  Fashion</button
+                ><button
+                  class="bg-[#EBEBEB] border-1 border-[#66666666] py-2 px-6 rounded-2xl whitespace-nowrap text-[13.5px]"
+                >
+                  Electronics</button
+                ><button
+                  class="bg-[#EBEBEB] border-1 border-[#66666666] py-2 px-6 rounded-2xl whitespace-nowrap text-[13.5px]"
+                >
+                  Baby Product</button
+                ><button
+                  class="bg-[#EBEBEB] border-1 border-[#66666666] py-2 px-6 rounded-2xl whitespace-nowrap text-[13.5px]"
+                >
+                  Grocery
+                </button>
+              </div>
+            </div>
+            <div class="bg-[#D6DFF8] p-6 rounded-3xl space-y-4">
+              <div>
+                <img
+                  alt="Why wait"
+                  src="/images/Why_wait__Shop_the_latest_trends_and_essentials_on_-removebg-preview 2.png"
+                />
+                <p class="text-[11.28px]">
+                  Add a new product or service to the marketplace. Include details, set your price, and upload images to
+                  attract buyers.
+                </p>
+              </div>
+              <a
+                class="bg-blue-700/80 text-white whitespace-nowrap text-sm p-2 w-full flex items-center gap-1 justify-center rounded-2xl"
+                href="/marketplace"
+                data-discover="true"
+                ><img
+                  alt=""
+                  src="data:image/svg+xml,%3csvg%20width='21'%20height='20'%20viewBox='0%200%2021%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M4.67952%206.50732H12.2179H11.5229H11.782H4.67952ZM4.99619%205.67398H16.0129L14.9045%204.34398C14.8506%204.29065%2014.789%204.24787%2014.7195%204.21565C14.6501%204.18343%2014.5779%204.16732%2014.5029%204.16732H6.50619C6.43175%204.16732%206.35952%204.18343%206.28952%204.21565C6.21952%204.24787%206.15841%204.29065%206.10619%204.34398L4.99619%205.67398ZM8.84619%2010.8023L10.5129%209.96898L12.1795%2010.8023V6.50732H8.84619V10.8023ZM12.2045%2016.6673H5.19369C4.82314%2016.6673%204.50619%2016.5354%204.24286%2016.2715C3.97952%2016.0076%203.8473%2015.6912%203.84619%2015.3223V6.23898C3.84619%206.08232%203.87202%205.93093%203.92369%205.78482C3.97536%205.63871%204.05314%205.50537%204.15702%205.38482L5.45536%203.82648C5.57591%203.6676%205.72675%203.54593%205.90786%203.46148C6.08897%203.37704%206.28397%203.33454%206.49286%203.33398H14.5012C14.7101%203.33398%2014.907%203.37648%2015.092%203.46148C15.277%203.54593%2015.4312%203.6676%2015.5545%203.82648L16.8687%205.41732C16.9726%205.54232%2017.0504%205.67898%2017.102%205.82732C17.1537%205.9751%2017.1795%206.12843%2017.1795%206.28732V9.42565C17.0651%209.39232%2016.9437%209.36926%2016.8154%209.35648C16.6876%209.34371%2016.5634%209.33732%2016.4429%209.33732H16.3462V6.50732H13.0129V10.8007C12.8579%2010.9073%2012.704%2011.0507%2012.5512%2011.2307C12.3984%2011.4107%2012.2873%2011.5868%2012.2179%2011.759L10.5129%2010.914L8.01286%2012.164V6.50732H4.67952V15.3215C4.67952%2015.4709%204.72758%2015.5937%204.82369%2015.6898C4.9198%2015.7859%205.04286%2015.834%205.19286%2015.834H11.782C11.832%2015.9895%2011.8942%2016.1351%2011.9687%2016.2707C12.0431%2016.4057%2012.122%2016.5379%2012.2054%2016.6673M16.0095%2017.164V14.664H13.5095V13.8307H16.0095V11.3307H16.8429V13.8307H19.3429V14.664H16.8429V17.164H16.0095Z'%20fill='white'/%3e%3c/svg%3e"
+                />
+                List a New Product</a
+              >
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/scripts/display-user-data.js"></script>
+    <script src="/scripts/modal.js"></script>
+    <script>
+      new Modal("reseller-link-modal", "reseller-link-modal-trigger");
+    </script>
+    <script src="/scripts/carousel.js"></script>
+    <script>
+      const adCarousel = new Carousel("ad-carousel", {
+        pauseOnHover: true,
+        autoScrollInterval: 3000,
+        allowUserScroll: false
+      });
+      const adCarousel2 = new Carousel("ad-carousel-2", {
+        pauseOnHover: true,
+        autoScrollInterval: 3000,
+        allowUserScroll: false
+      });
+
+      adCarousel.start();
+      adCarousel2.start();
+    </script>
+  </body>
+</html>
