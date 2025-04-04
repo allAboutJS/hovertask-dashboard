@@ -17,7 +17,7 @@ export default function Header() {
       <div className="max-w-5xl mx-auto space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex gap-2 items-center">
-            <button onClick={() => setIsMobileNavOpen(true)} title="Menu" className="min-mobile:hidden p-2">
+            <button onClick={() => setIsMobileNavOpen(true)} title="Menu" className="mobile:hidden p-2">
               <Menu size={14} />
             </button>
             <Link to="/">
@@ -38,7 +38,7 @@ export default function Header() {
             <div className="flex gap-1 items-center px-2 py-1 bg-white rounded-2xl">
               <img src="/images/nigerian-flag.png" width={25} alt="Nigerian flag" /> {authUser?.currency.toUpperCase()}
             </div>
-            <div className="max-[500px]:hidden min-mobile:hidden">
+            <div className="max-[500px]:hidden mobile:hidden">
               <div>
                 {authUser?.fname} {authUser?.lname}
               </div>
@@ -129,7 +129,7 @@ function MobileNav({
         role="navigation"
         data-open={isOpen || undefined}
         className={cn(
-          "fixed top-0 left-0 bottom-0 z-[100] min-mobile:hidden bg-white pt-3 pb-6 space-y-2 shadow-lg -translate-x-full transition-transform",
+          "fixed top-0 left-0 bottom-0 z-[100] mobile:hidden bg-white pt-3 pb-6 space-y-2 shadow-lg -translate-x-full transition-transform",
           {
             "translate-x-0": isOpen
           }
