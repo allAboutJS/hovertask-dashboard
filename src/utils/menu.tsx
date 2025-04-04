@@ -1,4 +1,4 @@
-import { CheckCircle, DollarSign, LayoutDashboard, LogOut, Share, Store, UserPlus, Wallet } from "lucide-react";
+import { CheckCircle, LayoutDashboard, LogOut, Store, UserPlus, Wallet } from "lucide-react";
 
 export default [
   {
