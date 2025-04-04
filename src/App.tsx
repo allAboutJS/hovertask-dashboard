@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import { HeroUIProvider } from "@heroui/react";
 import MembershipPage from "./pages/MembershipPage";
 import ChooseOnlinePaymentMethodPage from "./pages/ChooseOnlinePaymentMethodPage";
+import FundWalletPage from "./pages/FundWalletPage";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
               <Route index element={<Dashboard />} />
               <Route path="become-a-member" element={<MembershipPage />} />
               <Route path="choose-online-payment-method" element={<ChooseOnlinePaymentMethodPage />} />
+              <Route path="fund-wallet" element={<FundWalletPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

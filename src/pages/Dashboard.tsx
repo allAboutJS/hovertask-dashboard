@@ -250,12 +250,12 @@ function BalanceBoard({ balance }: { balance?: number }) {
       <div className="flex items-center gap-12 flex-wrap">
         <div className="text-2xl font-bold">₦{balance?.toFixed(2).toLocaleString()}</div>
         <div className="flex gap-2 text-sm flex-wrap">
-          <button className="flex items-center gap-2 px-4 py-2 text-white bg-primary rounded-full hover:bg-primary/80 transition-colors">
+          <Link to="/fund-wallet" className="flex items-center gap-2 px-4 py-2 text-white bg-primary rounded-full hover:bg-primary/80 transition-colors">
             <Wallet size={16} /> Fund
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 text-primary border border-primary rounded-full transition-colors hover:bg-primary/10">
+          </Link>
+          <Link to='/withdraw' className="flex items-center gap-2 px-4 py-2 text-primary border border-primary rounded-full transition-colors hover:bg-primary/10">
             <Wallet size={16} /> Withdraw
-          </button>
+          </Link>
         </div>
       </div>
 

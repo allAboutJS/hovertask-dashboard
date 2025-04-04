@@ -45,7 +45,7 @@ export default function MembershipPage() {
               <ModalHeader className="flex items-center gap-2">
                 <CheckCircle size={16} /> Payment Method
               </ModalHeader>
-              <ModalBody className="space-y-2">
+              <ModalBody className="space-y-2 mb-4">
                 <p>Choose an online payment method</p>
 
                 <div className="space-y-3">
