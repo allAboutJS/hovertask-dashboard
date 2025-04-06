@@ -1,5 +1,8 @@
+import { Modal, ModalBody, ModalContent, useDisclosure } from "@heroui/react";
 import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
 import { Link } from "react-router";
+import useWindowDimensions from "../../hooks/useWindowDimesions";
 
 export default function Earn() {
   const earningOptions = [
@@ -59,6 +62,8 @@ export default function Earn() {
         <BenefitOfPerformingTasks />
         <OverviewOfCommissionsFromReselling />
       </div>
+
+      <EarnByResellingModal />
     </div>
   );
 }
@@ -156,5 +161,91 @@ function OverviewOfCommissionsFromReselling() {
         </ul>
       </div>
     </div>
+  );
+}
+
+function EarnByResellingModal() {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { innerWidth } = useWindowDimensions();
+
+  useEffect(() => {
+    onOpen();
+  }, []);
+
+  return (
+    <Modal
+      size="xl"
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      scrollBehavior={innerWidth < 640 ? "inside" : "outside"}
+    >
+      <ModalContent>
+        {() => (
+          <ModalBody className="space-y-3 pb-4">
+            <div>
+              <img
+                src="/images/7_Places_To_Shop_Online_On_A_Budget-removebg-preview 1.png"
+                alt=""
+                className="block mx-auto"
+                width={200}
+              />
+              <h4 className="font-semibold text-lg text-center">Resell Products for High Commissions</h4>
+              <p className="text-sm text-zinc-700 text-center">
+                Leverage our wide-ranging catalog of high-demand products to earn big commissions. Start reselling today
+                and watch your income grow effortlessly!
+              </p>
+            </div>
+
+            <div className="bg-zinc-50 space-y-2 rounded-3xl p-2">
+              <p className="font-semibold text-center">Getting Started is Easy</p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-zinc-300 to-black rotate-12 text-center">
+                    1.
+                  </div>
+                  <p className="font-medium">Browse the Product Catalog:</p>
+                  <ul className="list-disc ml-4 text-sm">
+                    <li>
+                      Explore our curated collection of trending products and services. Choose items with the highest
+                      earning potential.
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-zinc-300 to-black rotate-12 text-center">
+                    2.
+                  </div>
+                  <p className="font-medium">Share Your Unique Affiliate Link:</p>
+                  <ul className="list-disc ml-4 text-sm">
+                    <li>
+                      Use our easy-to-generate reseller links to share products on your social media platforms,
+                      WhatsApp, or personal networks.
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-zinc-300 to-black rotate-12 text-center">
+                    3.
+                  </div>
+                  <p className="font-medium">Earn Commissions on Sales:</p>
+                  <ul className="list-disc ml-4 text-sm">
+                    <li>Receive instant earnings every time a customer makes a purchase using your link.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <Link
+              to="/earn/resell"
+              className="p-2 rounded-xl text-sm transition-all bg-primary text-white active:scale-95 block w-fit mx-auto"
+            >
+              Start Reselling Now
+            </Link>
+          </ModalBody>
+        )}
+      </ModalContent>
+    </Modal>
   );
 }

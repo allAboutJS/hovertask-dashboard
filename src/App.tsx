@@ -11,9 +11,10 @@ import ChooseOnlinePaymentMethodPage from "./pages/ChooseOnlinePaymentMethodPage
 import FundWalletPage from "./pages/FundWalletPage";
 import Earn from "./pages/earn/Earn";
 import Tasks from "./pages/earn/Tasks";
-import TaskPage from "./pages/earn/TaskPage";
+import TaskInfoPage from "./pages/earn/TaskInfo";
 import { Toaster } from "sonner";
-import Adverts from "./pages/earn/Adverts";
+import AdvertsPage from "./pages/earn/Adverts";
+import ResellPage from "./pages/earn/Resell";
 
 export default function App() {
   return (
@@ -31,8 +32,9 @@ export default function App() {
               {/* Earn by reselling */}
               <Route path="earn" element={<Earn />} />
               <Route path="earn/tasks" element={<Tasks />} />
-              <Route path="earn/tasks/:id" element={<TaskPage />} />
-              <Route path="earn/adverts" element={<Adverts />} />
+              <Route path="earn/tasks/:id" element={<TaskInfoPage />} />
+              <Route path="earn/adverts" element={<AdvertsPage />} />
+              <Route path="earn/resell" element={<ResellPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

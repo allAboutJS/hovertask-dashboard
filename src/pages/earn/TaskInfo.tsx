@@ -8,7 +8,7 @@ import { TaskByline } from "../../../types.d";
 import { FormEvent, useState } from "react";
 import Loading from "../../components/Loading";
 
-export default function TaskPage() {
+export default function TaskInfoPage() {
   const { id } = useParams();
   const task = useTask(id!);
   const navigate = useNavigate();
