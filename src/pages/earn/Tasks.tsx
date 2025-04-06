@@ -8,6 +8,7 @@ import { Task } from "../../../types";
 import getTasks from "../../utils/getTasks";
 import Loading from "../../components/Loading";
 import { setTasks } from "../../redux/slices/tasks";
+import LinkAccountsModal from "../../components/LinkAccountsModal";
 
 export default function Tasks() {
   return (
@@ -35,7 +36,7 @@ export default function Tasks() {
       </div>
 
       <div className="space-y-6">
-        <div className="max-w-sm mx-auto flex items-center gap-4 p-4 bg-primary rounded-3xl border-b border-b-black">
+        <div className="max-w-sm mx-auto flex items-center gap-4 p-4 bg-primary rounded-3xl border-b border-b-black overflow-x-auto">
           <button className="flex items-center gap-2 flex-1 px-4 py-2 rounded-xl whitespace-nowrap text-sm active:scale-95 transition-all bg-white">
             Perform Tasks
           </button>
@@ -48,6 +49,7 @@ export default function Tasks() {
         </div>
 
         <TasksTab />
+        <LinkAccountsModal />
       </div>
     </div>
   );
