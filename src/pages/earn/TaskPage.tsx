@@ -35,7 +35,7 @@ export default function TaskPage() {
             </p>
           </div>
 
-          <div className="flex justify-between items-center text-xs max-w-md">
+          <div className="max-sm:flex-wrap flex justify-between items-center text-xs max-w-md">
             <span
               className={cn("p-1 px-2 rounded-full", {
                 "bg-success/20 text-success": task.completed === "Available",
@@ -129,7 +129,7 @@ function ProofOfTaskCompletion() {
     <form onSubmit={handleSubmit} className="max-w-lg space-y-4">
       <h3 className="font-semibold">Provide Proof of Task Completion</h3>
 
-      <div className="flex text-sm items-center gap-4">
+      <div className="max-sm:flex-wrap flex text-sm items-center gap-4">
         <div className="min-w-28 h-28 bg-black/15 rounded border border-zinc-300 relative [&>*]:cursor-pointer overflow-hidden">
           <span className="absolute flex text-center items-center flex-col justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs">
             <Camera size={12} />

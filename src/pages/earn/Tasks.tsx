@@ -1,10 +1,13 @@
 import { ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import cn from "../../utils/cn";
 import TaskCard from "../../components/TaskCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Task } from "../../../types";
+import getTasks from "../../utils/getTasks";
+import Loading from "../../components/Loading";
+import { setTasks } from "../../redux/slices/tasks";
 
 export default function Tasks() {
   return (
@@ -101,16 +104,37 @@ function TasksTab() {
 
 function AvailableTasks() {
   const tasks = useSelector<any, Task[] | null>((state: any) => state.tasks.value);
+  const [tasksFetchStatus, setTaskFetchStatus] = useState<"pending" | "done" | "failed">("pending");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (tasks === null) dispatch(setTasks(await getTasks()));
+        setTaskFetchStatus("done");
+      } catch {
+        setTaskFetchStatus("failed");
+      }
+    })();
+  }, []);
 
   return (
     <div className="space-y-3">
       <h2 className="text-xl font-semibold">New Available Tasks</h2>
 
-      <div className="space-y-4">
-        {tasks?.map((task) => (
-          <TaskCard {...task} key={task.user_id} />
-        ))}
-      </div>
+      {tasksFetchStatus === "pending" && <Loading />}
+      {tasksFetchStatus === "done" && (
+        <div className="space-y-4">
+          {tasks?.length ? (
+            tasks?.map((task) => <TaskCard {...task} key={task.user_id} />)
+          ) : (
+            <div className="text-center flex flex-col items-center">
+              <img src="/images/iconoir_info-empty.png" width={80} alt="" />
+              <p>There are no tasks available at the moment</p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

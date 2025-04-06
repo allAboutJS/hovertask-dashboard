@@ -2,11 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AuthUserDAO, Product, Task } from "../../types";
 import { DollarSign, Wallet } from "lucide-react";
 import { setAuthUserFields } from "../redux/slices/auth";
-import TaskCard from "../components/TaskCard";
 import { Link } from "react-router";
 import ProductCard from "../components/ProductCard";
 import Carousel from "../components/Carousel";
-import { Modal, ModalBody, ModalContent } from "@heroui/react";
+import { Modal, ModalBody, ModalContent, useDisclosure } from "@heroui/react";
+import { useState, useEffect } from "react";
+import { setTasks } from "../redux/slices/tasks";
+import getTasks from "../utils/getTasks";
+import Loading from "../components/Loading";
+import TaskCard from "../components/TaskCard";
 
 export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO | null>((state) => state.auth.value);
@@ -24,6 +28,7 @@ export default function Dashboard() {
       </Carousel>
       <AdBanner />
       <PopularProducts />
+      <BecomeMemberModal />
     </div>
   );
 }
@@ -76,7 +81,7 @@ export const products: Product[] = [
   }
 ];
 
-function HorizintalLine() {
+function HorizontalLine() {
   return <div className="self-stretch border-r border-1 border-zinc-300"></div>;
 }
 
@@ -142,14 +147,14 @@ function BalanceBoard({ balance }: { balance?: number }) {
           <p className="text-xl font-semibold">₦{balance?.toFixed(2).toLocaleString()}</p>
         </div>
 
-        <HorizintalLine />
+        <HorizontalLine />
 
         <div className="space-y-3">
           <p className="font-medium">Pending</p>
           <p className="text-xl font-semibold">₦{balance?.toFixed(2).toLocaleString()}</p>
         </div>
 
-        <HorizintalLine />
+        <HorizontalLine />
 
         <div className="space-y-3">
           <p className="font-medium">Spent</p>
@@ -194,23 +199,46 @@ function WelcomeMessage({ email_verified_at }: { email_verified_at?: string | nu
 
 function AvailableTasks() {
   const tasks = useSelector<any, Task[] | null>((state: any) => state.tasks.value);
+  const [tasksFetchStatus, setTaskFetchStatus] = useState<"pending" | "done" | "failed">("pending");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (tasks === null) dispatch(setTasks(await getTasks()));
+        setTaskFetchStatus("done");
+      } catch {
+        setTaskFetchStatus("failed");
+      }
+    })();
+  }, []);
 
   return (
     <div className="space-y-3">
       <h2 className="text-xl font-semibold">New Available Tasks</h2>
 
-      <div className="space-y-4">
-        {tasks?.map((task) => (
-          <TaskCard {...task} key={task.user_id} />
-        ))}
-      </div>
+      {tasksFetchStatus === "pending" && <Loading />}
+      {tasksFetchStatus === "done" && (
+        <div className="space-y-4">
+          {tasks?.length ? (
+            tasks?.slice(4).map((task) => <TaskCard {...task} key={task.user_id} />)
+          ) : (
+            <div className="text-center flex flex-col items-center">
+              <img src="/images/iconoir_info-empty.png" width={80} alt="" />
+              <p>There are no tasks available at the moment</p>
+            </div>
+          )}
+        </div>
+      )}
 
-      <Link
-        to="/earn/tasks"
-        className="block w-fit mx-auto px-4 py-2 rounded-full border border-primary text-sm text-primary transition-colors hover:bg-primary/20"
-      >
-        See all tasks
-      </Link>
+      {tasks?.length ? (
+        <Link
+          to="/earn/tasks"
+          className="block w-fit mx-auto px-4 py-2 rounded-full border border-primary text-sm text-primary transition-colors hover:bg-primary/20"
+        >
+          See all tasks
+        </Link>
+      ) : null}
     </div>
   );
 }
@@ -241,17 +269,36 @@ function AdBanner() {
 }
 
 function BecomeMemberModal() {
+  const { isOpen, onOpenChange, onOpen } = useDisclosure();
+
+  useEffect(() => {
+    onOpen();
+  }, []);
+
   return (
-    <Modal>
+    <Modal size="md" isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
         {() => (
-          <ModalBody>
-            <img src="/images/Media_Sosial_Pictures___Freepik-removebg-preview 2.png" alt="" />
-            <h3>Get Paid For Posting Adverts and Engaging on Your Social Media</h3>
-            <p>
+          <ModalBody className="mb-4">
+            <img
+              width={150}
+              src="/images/Media_Sosial_Pictures___Freepik-removebg-preview 2.png"
+              className="block mx-auto"
+              alt=""
+            />
+            <h3 className="font-semibold text-lg text-center">
+              Get Paid For Posting Adverts and Engaging on Your Social Media
+            </h3>
+            <p className="text-sm text-zinc-700 text-center">
               Earn steady income by reselling products and posting adverts, performing social media engaging tasks for
               businesses and top brands on your social media account
             </p>
+            <Link
+              to="/become-a-member"
+              className="p-2 rounded-xl text-sm transition-all bg-primary text-white active:scale-95 block w-fit mx-auto"
+            >
+              Become a Member
+            </Link>
           </ModalBody>
         )}
       </ModalContent>
