@@ -1,5 +1,5 @@
 import { CircularProgress } from "@heroui/react";
-import { Task } from "../../types";
+import { Task, TaskByline } from "../../types.d";
 import { Link } from "react-router";
 
 export default function TaskCard(props: Task) {
@@ -9,8 +9,10 @@ export default function TaskCard(props: Task) {
         <div className="flex justify-between gap-4">
           <div className="text-sm">
             <p>
-              <span className="font-semibold">{props.title}: </span>
-              <span>{props.description}</span>
+              <span className="font-semibold">
+                {TaskByline[props.category]} {props.category !== "telegram" && ":"}
+              </span>
+              <span>{props.category !== "telegram" && "1000 Followers Required"}</span>
             </p>
             <p>
               <span className="font-semibold">Platforms:</span> <span>{props.platforms}</span>

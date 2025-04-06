@@ -20,7 +20,7 @@ export interface AuthUserDAO {
 }
 
 export interface Task {
-  id: number;
+  id: string;
   user_id: number;
   title: string;
   social_media_url: string | null;
@@ -45,6 +45,7 @@ export interface Task {
   updated_at: string;
   completion_percentage: number;
   posted_status: "old" | "new";
+  category: "social_media" | "video_marketing" | "micro_influence" | "promotion" | "telegram";
 }
 
 export interface Product {
@@ -62,4 +63,12 @@ export interface ProductProps extends Product {
   responsive?: boolean;
   version?: "bordered";
   buttonText?: string;
+}
+
+export enum TaskByline {
+  social_media = "Like and Comment on a Post",
+  video_marketing = "Share Video on Social Media",
+  micro_influence = "Micro Influence",
+  telegram = "Complete a Telegram Task",
+  promotion = "Promote a Post or Brand"
 }

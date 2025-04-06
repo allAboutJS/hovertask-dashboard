@@ -9,10 +9,16 @@ import { HeroUIProvider } from "@heroui/react";
 import MembershipPage from "./pages/MembershipPage";
 import ChooseOnlinePaymentMethodPage from "./pages/ChooseOnlinePaymentMethodPage";
 import FundWalletPage from "./pages/FundWalletPage";
+import Earn from "./pages/earn/Earn";
+import Tasks from "./pages/earn/Tasks";
+import TaskPage from "./pages/earn/TaskPage";
+import { Toaster } from "sonner";
+import Adverts from "./pages/earn/Adverts";
 
 export default function App() {
   return (
     <HeroUIProvider>
+      <Toaster richColors position="top-center" />
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
@@ -21,6 +27,12 @@ export default function App() {
               <Route path="become-a-member" element={<MembershipPage />} />
               <Route path="choose-online-payment-method" element={<ChooseOnlinePaymentMethodPage />} />
               <Route path="fund-wallet" element={<FundWalletPage />} />
+
+              {/* Earn by reselling */}
+              <Route path="earn" element={<Earn />} />
+              <Route path="earn/tasks" element={<Tasks />} />
+              <Route path="earn/tasks/:id" element={<TaskPage />} />
+              <Route path="earn/adverts" element={<Adverts />} />
             </Route>
           </Routes>
         </BrowserRouter>

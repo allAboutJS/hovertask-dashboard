@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import getAuthUser from "../utils/getAuthUser";
 import { useDispatch } from "react-redux";
 import { setAuthUser } from "../redux/slices/auth";
+import Loading from "./Loading";
 
 export default function RootLayout() {
   const [loadedAuthUser, setLoadedAuthUser] = useState<boolean | null>(false);
@@ -38,11 +39,7 @@ export default function RootLayout() {
         </div>
       )}
 
-      {loadedAuthUser === false && (
-        <div className="flex items-center justify-center h-screen">
-          <img src="/images/loading.gif" alt="" />
-        </div>
-      )}
+      {loadedAuthUser === false && <Loading />}
 
       {}
     </>

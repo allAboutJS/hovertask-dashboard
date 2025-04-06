@@ -6,6 +6,7 @@ import TaskCard from "../components/TaskCard";
 import { Link } from "react-router";
 import ProductCard from "../components/ProductCard";
 import Carousel from "../components/Carousel";
+import { Modal, ModalBody, ModalContent } from "@heroui/react";
 
 export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO | null>((state) => state.auth.value);
@@ -26,144 +27,6 @@ export default function Dashboard() {
     </div>
   );
 }
-
-export const tasks: Task[] = [
-  {
-    id: 1,
-    user_id: 1,
-    title: "First Update",
-    social_media_url: null,
-    description: "We are testing the full task update process.",
-    platforms: "X",
-    task_amount: 500,
-    task_type: 1,
-    task_count_total: 10,
-    task_count_remaining: 5,
-    priority: "high",
-    start_date: "2025-03-01",
-    due_date: "2025-03-10",
-    type_of_comment: null,
-    religion: null,
-    payment_per_task: null,
-    no_of_participants: null,
-    location: null,
-    gender: null,
-    status: "pending",
-    completed: "Available",
-    created_at: "2025-02-25T18:13:20.000000Z",
-    updated_at: "2025-03-03T19:50:30.000000Z",
-    completion_percentage: 50,
-    posted_status: "old"
-  },
-  {
-    id: 2,
-    user_id: 2,
-    title: "Market Research",
-    social_media_url: "https://socialmedia.com/research",
-    description: "Conducting research on the latest trends in the market.",
-    platforms: "Web, Mobile",
-    task_amount: 1000,
-    task_type: 2,
-    task_count_total: 20,
-    task_count_remaining: 12,
-    priority: "medium",
-    start_date: "2025-03-05",
-    due_date: "2025-03-15",
-    type_of_comment: "Survey feedback",
-    religion: null,
-    payment_per_task: 10,
-    no_of_participants: 50,
-    location: "Online",
-    gender: null,
-    status: "in-progress",
-    completed: "Not Available",
-    created_at: "2025-02-28T12:45:10.000000Z",
-    updated_at: "2025-03-04T14:30:40.000000Z",
-    completion_percentage: 60,
-    posted_status: "new"
-  },
-  {
-    id: 3,
-    user_id: 3,
-    title: "App Update",
-    social_media_url: "https://socialmedia.com/appupdate",
-    description: "Updating the app to fix bugs and add new features.",
-    platforms: "Mobile",
-    task_amount: 300,
-    task_type: 1,
-    task_count_total: 15,
-    task_count_remaining: 10,
-    priority: "high",
-    start_date: "2025-03-02",
-    due_date: "2025-03-08",
-    type_of_comment: null,
-    religion: null,
-    payment_per_task: 5,
-    no_of_participants: 10,
-    location: "Remote",
-    gender: "Any",
-    status: "completed",
-    completed: "Available",
-    created_at: "2025-02-24T10:20:00.000000Z",
-    updated_at: "2025-03-02T18:00:00.000000Z",
-    completion_percentage: 100,
-    posted_status: "old"
-  },
-  {
-    id: 4,
-    user_id: 4,
-    title: "Customer Support",
-    social_media_url: null,
-    description: "Providing customer support for issues with product registration.",
-    platforms: "Web",
-    task_amount: 200,
-    task_type: 3,
-    task_count_total: 50,
-    task_count_remaining: 45,
-    priority: "low",
-    start_date: "2025-03-06",
-    due_date: "2025-03-20",
-    type_of_comment: "Issue resolution",
-    religion: null,
-    payment_per_task: 2,
-    no_of_participants: 20,
-    location: "Office",
-    gender: null,
-    status: "pending",
-    completed: "Not Available",
-    created_at: "2025-03-01T09:15:45.000000Z",
-    updated_at: "2025-03-04T11:00:30.000000Z",
-    completion_percentage: 25,
-    posted_status: "new"
-  },
-  {
-    id: 5,
-    user_id: 5,
-    title: "Product Testing",
-    social_media_url: "https://socialmedia.com/producttesting",
-    description: "Testing new features of the product before launch.",
-    platforms: "Web, Mobile",
-    task_amount: 100,
-    task_type: 2,
-    task_count_total: 30,
-    task_count_remaining: 15,
-    priority: "medium",
-    start_date: "2025-03-07",
-    due_date: "2025-03-14",
-    type_of_comment: null,
-    religion: null,
-    payment_per_task: 20,
-    no_of_participants: 50,
-    location: "Remote",
-    gender: "Any",
-    status: "in-progress",
-    completed: "Not Available",
-    created_at: "2025-02-28T16:30:20.000000Z",
-    updated_at: "2025-03-05T13:45:50.000000Z",
-    completion_percentage: 40,
-    posted_status: "new"
-  }
-];
 
 export const products: Product[] = [
   {
@@ -250,10 +113,16 @@ function BalanceBoard({ balance }: { balance?: number }) {
       <div className="flex items-center gap-12 flex-wrap">
         <div className="text-2xl font-bold">₦{balance?.toFixed(2).toLocaleString()}</div>
         <div className="flex gap-2 text-sm flex-wrap">
-          <Link to="/fund-wallet" className="flex items-center gap-2 px-4 py-2 text-white bg-primary rounded-full hover:bg-primary/80 transition-colors">
+          <Link
+            to="/fund-wallet"
+            className="flex items-center gap-2 px-4 py-2 text-white bg-primary rounded-full hover:bg-primary/80 transition-colors"
+          >
             <Wallet size={16} /> Fund
           </Link>
-          <Link to='/withdraw' className="flex items-center gap-2 px-4 py-2 text-primary border border-primary rounded-full transition-colors hover:bg-primary/10">
+          <Link
+            to="/withdraw"
+            className="flex items-center gap-2 px-4 py-2 text-primary border border-primary rounded-full transition-colors hover:bg-primary/10"
+          >
             <Wallet size={16} /> Withdraw
           </Link>
         </div>
@@ -324,12 +193,14 @@ function WelcomeMessage({ email_verified_at }: { email_verified_at?: string | nu
 }
 
 function AvailableTasks() {
+  const tasks = useSelector<any, Task[] | null>((state: any) => state.tasks.value);
+
   return (
     <div className="space-y-3">
       <h2 className="text-xl font-semibold">New Available Tasks</h2>
 
       <div className="space-y-4">
-        {tasks.map((task) => (
+        {tasks?.map((task) => (
           <TaskCard {...task} key={task.user_id} />
         ))}
       </div>
@@ -366,5 +237,24 @@ function AdBanner() {
         Buy & Sell With Ease
       </p>
     </div>
+  );
+}
+
+function BecomeMemberModal() {
+  return (
+    <Modal>
+      <ModalContent>
+        {() => (
+          <ModalBody>
+            <img src="/images/Media_Sosial_Pictures___Freepik-removebg-preview 2.png" alt="" />
+            <h3>Get Paid For Posting Adverts and Engaging on Your Social Media</h3>
+            <p>
+              Earn steady income by reselling products and posting adverts, performing social media engaging tasks for
+              businesses and top brands on your social media account
+            </p>
+          </ModalBody>
+        )}
+      </ModalContent>
+    </Modal>
   );
 }
