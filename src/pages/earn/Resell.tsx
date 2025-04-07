@@ -1,4 +1,4 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { Link } from "react-router";
 import MarketplaceSearchForm from "../../components/MarketplaceSearchForm";
 import { useState } from "react";
@@ -22,7 +22,7 @@ export default function ResellPage() {
   document.title = "Earn By Reselling Products";
 
   return (
-    <div className="grid min-[1000px]:grid-cols-[1fr_182px] min-h-full">
+    <div className="grid min-[1000px]:grid-cols-[1fr_182px] min-h-full gap-4">
       <div className="shadow min-h-full bg-white p-4 space-y-12">
         <div
           style={{ backgroundImage: "url('/images/Rectangle 39253.png')" }}
@@ -76,6 +76,22 @@ export default function ResellPage() {
 
         <div>
           <img src="/images/Group 1000004391.png" alt="" />
+        </div>
+      </div>
+
+      <div>
+        <div className="p-4 bg-primary bg-opacity-20 max-[1000px]:hidden text-xs rounded-2xl mt-[552px] space-y-3">
+          <img src="/images/Why_wait__Shop_the_latest_trends_and_essentials_on_-removebg-preview 2.png" alt="" />
+          <p>
+            Add a new product or service to the marketplace. Include details, set your price, and upload images to
+            attract buyers.
+          </p>
+          <Link
+            to="/advertise/list-product"
+            className="flex items-center gap-2 px-2 py-1.5 rounded-xl bg-primary text-white w-full justify-center"
+          >
+            <ShoppingBag size={12} /> List a New Product
+          </Link>
         </div>
       </div>
     </div>
