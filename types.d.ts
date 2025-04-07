@@ -65,6 +65,8 @@ export interface ProductProps extends Product {
   responsive?: boolean;
   version?: "bordered";
   buttonText?: string;
+  onButtonClickAction?(): any;
+  linkOverrideURL?: string;
 }
 
 export enum TaskByline {
@@ -94,7 +96,7 @@ export interface Product {
   payment_method: string;
   meet_up_preference: number;
   delivery_fee: number;
-  estimated_delivery_date: Date;
+  estimated_delivery_date: string;
   phone_number: string;
   email: string;
   social_media_link: string;

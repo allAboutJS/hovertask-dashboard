@@ -13,7 +13,7 @@ const ProductCard = (props: ProductProps) => {
     >
       <div className="bg-zinc-200 rounded-2xl overflow-hidden">
         <img
-          className={cn("aspect-square block", {
+          className={cn("aspect-[4/3] block", {
             "w-[131px]": props.horizontal,
             "h-[97.7px]": !props.horizontal && !props.responsive
           })}
@@ -24,7 +24,7 @@ const ProductCard = (props: ProductProps) => {
       <div className="space-y-2 flex flex-col justify-end flex-1">
         <div>
           <div className="flex justify-between items-start">
-            <h3 className="text-[11.28px] capitalize">{props.name}</h3>
+            <h3 className="text-[11.28px] capitalize line-clamp-2">{props.name}</h3>
             <button className="text-[#FF00FB]">
               <Heart size={14} />
             </button>
@@ -45,6 +45,9 @@ const ProductCard = (props: ProductProps) => {
         </div>
         <div className="flex items-center justify-between gap-2">
           <button
+            onClick={() => {
+              if (props.onButtonClickAction) props.onButtonClickAction();
+            }}
             className={cn("flex gap-1 justify-center items-center rounded-full h-[27.75px] text-[9.64px] flex-1", {
               "border-primary border-1 text-primary bg-white": props.version === "bordered",
               "bg-primary text-white": props.version !== "bordered"
@@ -54,7 +57,7 @@ const ProductCard = (props: ProductProps) => {
             {props.buttonText ?? "Buy Product"}
           </button>
           <Link
-            to={`/marketplace/product/${Math.round(Math.random() * 10)}`}
+            to={props.linkOverrideURL ?? `/marketplace/product/${Math.round(Math.random() * 10)}`}
             className={cn("flex items-center justify-center rounded-full min-h-[28.92px] min-w-[28.92px] border", {
               "border-primary text-primary": props.version !== "bordered"
             })}
