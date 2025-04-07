@@ -84,21 +84,21 @@ export interface ActivationState {
   tikTok: boolean | string | undefined;
 }
 
-export interface Product {
-  name: string;
-  user_id: number;
-  category_id: number;
-  description: string;
-  stock: number;
-  price: number;
-  currency: string;
-  discount: number;
-  payment_method: string;
-  meet_up_preference: number;
-  delivery_fee: number;
-  estimated_delivery_date: string;
-  phone_number: string;
-  email: string;
-  social_media_link: string;
-  images: string[];
-}
+// export interface Product {
+//   name: string;
+//   user_id: number;
+//   category_id: number;
+//   description: string;
+//   stock: number;
+//   price: number;
+//   currency: string;
+//   discount: number;
+//   payment_method: string;
+//   meet_up_preference: number;
+//   delivery_fee: number;
+//   estimated_delivery_date: string;
+//   phone_number: string;
+//   email: string;
+//   social_media_link: string;
+//   images: string[];
+// }
