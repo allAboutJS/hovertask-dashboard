@@ -1,5 +1,6 @@
 import { Modal, ModalBody, ModalContent, useDisclosure } from "@heroui/react";
 import { useEffect } from "react";
+import { Link } from "react-router";
 
 export default function LinkAccountsModal() {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -16,12 +17,13 @@ export default function LinkAccountsModal() {
             <img src="/images/iconoir_info-empty.png" alt="" className="block mx-auto" width={80} />
             <h4 className="font-semibold text-lg text-center">Oops</h4>
             <p className="text-sm text-zinc-700 text-center">Link your social media accounts before performing tasks</p>
-            <button
+            <Link
+              to="/earn/connect-accounts"
               onClick={onClose}
               className="p-2 rounded-xl text-sm transition-all bg-primary text-white active:scale-95 block w-fit mx-auto"
             >
               Connect Now
-            </button>
+            </Link>
           </ModalBody>
         )}
       </ModalContent>

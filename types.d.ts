@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export interface AuthUserDAO {
   account_status: string;
   avatar: null | string;
@@ -71,4 +73,30 @@ export enum TaskByline {
   micro_influence = "Micro Influence",
   telegram = "Complete a Telegram Task",
   promotion = "Promote a Post or Brand"
+}
+
+export interface ActivationState {
+  facebook: boolean | string | undefined;
+  twitter: boolean | string | undefined;
+  instagram: boolean | string | undefined;
+  tikTok: boolean | string | undefined;
+}
+
+export interface Product {
+  name: string;
+  user_id: number;
+  category_id: number;
+  description: string;
+  stock: number;
+  price: number;
+  currency: string;
+  discount: number;
+  payment_method: string;
+  meet_up_preference: number;
+  delivery_fee: number;
+  estimated_delivery_date: Date;
+  phone_number: string;
+  email: string;
+  social_media_link: string;
+  images: string[];
 }

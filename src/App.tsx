@@ -15,6 +15,7 @@ import TaskInfoPage from "./pages/earn/TaskInfo";
 import { Toaster } from "sonner";
 import AdvertsPage from "./pages/earn/Adverts";
 import ResellPage from "./pages/earn/Resell";
+import ConnectAccountsPage from "./pages/earn/ConnectAccounts";
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
               <Route path="earn/tasks/:id" element={<TaskInfoPage />} />
               <Route path="earn/adverts" element={<AdvertsPage />} />
               <Route path="earn/resell" element={<ResellPage />} />
+              <Route path="earn/connect-accounts" element={<ConnectAccountsPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
