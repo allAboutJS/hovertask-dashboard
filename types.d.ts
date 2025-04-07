@@ -50,17 +50,29 @@ export interface Task {
   category: "social_media" | "video_marketing" | "micro_influence" | "promotion" | "telegram";
 }
 
-export interface Product {
+interface Product {
+  id: number;
   name: string;
+  user_id: number;
+  category_id: number;
+  description: string;
+  stock: number;
   price: number;
-  discount: number;
-  reviews_count: number;
+  currency: string;
+  images: string[];
   rating: number;
-  available_units: number;
-  featured_image_url: string;
+  reviews_count: number;
+  discount?: number | null;
+  payment_method?: string | null;
+  meet_up_preference?: string | null;
+  delivery_fee?: number | null;
+  estimated_delivery_date?: string | null;
+  phone_number?: string | null;
+  email?: string | null;
+  social_media_link?: string | null;
 }
 
-export interface ProductProps extends Product {
+export interface ProductCardProps extends Product {
   horizontal?: boolean;
   responsive?: boolean;
   version?: "bordered";

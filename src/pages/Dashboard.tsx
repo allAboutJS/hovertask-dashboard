@@ -33,54 +33,6 @@ export default function Dashboard() {
   );
 }
 
-export const products: Product[] = [
-  {
-    name: "Wireless Noise Cancelling Headphones",
-    price: 199.99,
-    discount: 20,
-    reviews_count: 1245,
-    rating: 4.6,
-    available_units: 35,
-    featured_image_url: "https://example.com/images/headphones.jpg"
-  },
-  {
-    name: "Smart LED Desk Lamp",
-    price: 49.99,
-    discount: 10,
-    reviews_count: 328,
-    rating: 4.3,
-    available_units: 87,
-    featured_image_url: "https://example.com/images/desk-lamp.jpg"
-  },
-  {
-    name: "Ergonomic Office Chair",
-    price: 299.99,
-    discount: 25,
-    reviews_count: 892,
-    rating: 4.8,
-    available_units: 12,
-    featured_image_url: "https://example.com/images/office-chair.jpg"
-  },
-  {
-    name: "Gaming Mechanical Keyboard",
-    price: 89.99,
-    discount: 15,
-    reviews_count: 645,
-    rating: 4.5,
-    available_units: 56,
-    featured_image_url: "https://example.com/images/mechanical-keyboard.jpg"
-  },
-  {
-    name: "Ultra HD 4K Monitor - 27 inch",
-    price: 399.99,
-    discount: 30,
-    reviews_count: 1023,
-    rating: 4.7,
-    available_units: 22,
-    featured_image_url: "https://example.com/images/4k-monitor.jpg"
-  }
-];
-
 function HorizontalLine() {
   return <div className="self-stretch border-r border-1 border-zinc-300"></div>;
 }
@@ -244,12 +196,14 @@ function AvailableTasks() {
 }
 
 function PopularProducts() {
+  const products = useSelector<any, Product[] | null>((state: any) => state.products.value);
+
   return (
     <div className="space-y-3">
       <h2 className="text-lg font-semibold">Popular Products</h2>
 
       <div className="flex gap-4 overflow-x-auto bg-primary/30 p-4 rounded-3xl w-full">
-        {products.map((product) => (
+        {products?.map((product) => (
           <ProductCard {...product} key={product.name} version="bordered" buttonText="Check Product" />
         ))}
       </div>

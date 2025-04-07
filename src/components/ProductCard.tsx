@@ -1,9 +1,9 @@
 import { Heart, ShoppingBag, StarIcon } from "lucide-react";
 import { Link } from "react-router";
-import { ProductProps } from "../../types";
+import { ProductCardProps } from "../../types";
 import cn from "../utils/cn";
 
-const ProductCard = (props: ProductProps) => {
+const ProductCard = (props: ProductCardProps) => {
   return (
     <div
       className={cn("flex flex-col bg-white rounded-2xl p-4 space-y-2", {
@@ -17,7 +17,7 @@ const ProductCard = (props: ProductProps) => {
             "w-[131px]": props.horizontal,
             "h-[97.7px]": !props.horizontal && !props.responsive
           })}
-          src={props.featured_image_url}
+          src={props.images[0]}
           alt={props.name}
         />
       </div>
@@ -32,7 +32,10 @@ const ProductCard = (props: ProductProps) => {
           <div className="flex gap-6">
             <p className="text-[9.4px] text-[#77777A] line-through">₦{props.price}</p>
             <p className="text-[11.28px]">
-              ₦{Number((props.price * (props.discount / 100)).toLocaleString()).toFixed(2)}
+              ₦
+              {props.discount
+                ? Number((props.price * (props.discount / 100)).toLocaleString()).toFixed(2)
+                : props.price.toLocaleString()}
             </p>
           </div>
           <div className="flex gap-4 items-center">
@@ -40,7 +43,7 @@ const ProductCard = (props: ProductProps) => {
               <StarIcon size={12} /> {props.rating}
             </p>
             <p className="text-[9.4px] text-primary">({props.reviews_count} Reviews)</p>
-            <p className="text-[#77777A] text-[9.11px]">{props.available_units} Units</p>
+            <p className="text-[#77777A] text-[9.11px]">{props.stock} Units</p>
           </div>
         </div>
         <div className="flex items-center justify-between gap-2">

@@ -1,10 +1,13 @@
-import { ArrowLeft, ShoppingBag } from "lucide-react";
+import { ArrowLeft, Linkedin, ShoppingBag } from "lucide-react";
 import { Link } from "react-router";
 import MarketplaceSearchForm from "../../components/MarketplaceSearchForm";
 import { useState } from "react";
 import cn from "../../utils/cn";
-import { products } from "../Dashboard";
 import ProductCard from "../../components/ProductCard";
+import { useSelector } from "react-redux";
+import { Product } from "../../../types";
+import { Modal, ModalBody, ModalContent, useDisclosure, UseDisclosureProps } from "@heroui/react";
+import useWindowDimensions from "../../hooks/useWindowDimesions";
 
 export default function ResellPage() {
   const categories = [
@@ -18,6 +21,9 @@ export default function ResellPage() {
     { key: "baby_products", label: "baby products" }
   ];
   const [currentCategory, setCurrentCategory] = useState<string>("all");
+  const products = useSelector<any, Product[] | null>((state: any) => state.products.value);
+  const [currentlyViewedProduct, setCurrentlyViewedProduct] = useState<Product>();
+  const modalProps = useDisclosure();
 
   document.title = "Earn By Reselling Products";
 
@@ -68,8 +74,14 @@ export default function ResellPage() {
           <h2 className="font-semibold text-lg">Top Products to Buy or Resell</h2>
 
           <div className="grid max-[380px]:grid-cols-1 max-[640px]:grid-cols-2 sm:grid-cols-3 p-4 rounded-3xl bg-primary/20 gap-x-2 gap-y-4">
-            {products.map((product, i) => (
-              <ProductCard responsive key={i} {...product} linkOverrideURL={`/earn/resell/${i}`} />
+            {products?.map((product, i) => (
+              <ProductCard
+                responsive
+                key={i}
+                {...product}
+                linkOverrideURL={`/earn/resell/${i}`}
+                onButtonClickAction={() => (setCurrentlyViewedProduct(product), modalProps.onOpen())}
+              />
             ))}
           </div>
         </div>
@@ -87,13 +99,77 @@ export default function ResellPage() {
             attract buyers.
           </p>
           <Link
-            to="/advertise/list-product"
+            to="/marketplace/list-product"
             className="flex items-center gap-2 px-2 py-1.5 rounded-xl bg-primary text-white w-full justify-center"
           >
             <ShoppingBag size={12} /> List a New Product
           </Link>
         </div>
       </div>
+
+      <ProductInfoModal {...modalProps} product={currentlyViewedProduct} />
     </div>
+  );
+}
+
+function ProductInfoModal(props: ReturnType<typeof useDisclosure> & { product?: Product }) {
+  const { innerWidth } = useWindowDimensions();
+
+  return (
+    <Modal
+      size="2xl"
+      isOpen={props.isOpen}
+      onOpenChange={props.onOpenChange}
+      onClose={props.onClose}
+      scrollBehavior={innerWidth > 640 ? "outside" : "inside"}
+    >
+      <ModalContent>
+        {() => (
+          <ModalBody className="space-y-4 pb-4">
+            <div>
+              <h3 className="text-xl font-semibold">{props.product?.name}</h3>
+              <p>{props.product?.description}</p>
+            </div>
+
+            <hr />
+
+            <div className="grid grid-cols-3 items-center gap-2">
+              <div className="col-span-2 text-sm space-y-4">
+                <p>
+                  To start reselling this product, simply click the button below to generate your unique reseller link.
+                  This personalized link will track all your sales for this specific product.
+                </p>
+
+                <p>
+                  <span className="font-semibold">Commission Details:</span> <br />
+                  You will earn a reseller commission of ₦10,000 every time someone purchases this product using your
+                  unique link.
+                </p>
+
+                <p>
+                  <span className="font-semibold">Take Action Now!</span> <br />
+                  Click the button bellow and start earning today.
+                </p>
+              </div>
+              <div>
+                <img src={props.product?.images[0]} alt="" />
+              </div>
+            </div>
+
+            <div className="gap-4 text-sm flex items-center">
+              <button className="bg-primary p-2 rounded-xl text-white transition-transform active:scale-95">
+                Generate Reseller Link
+              </button>
+              <Link
+                className="bg-primary p-2 rounded-xl text-white transition-transform active:scale-95"
+                to={`/earn/resell/buy-product/${props.product?.id}`}
+              >
+                Buy Product
+              </Link>
+            </div>
+          </ModalBody>
+        )}
+      </ModalContent>
+    </Modal>
   );
 }

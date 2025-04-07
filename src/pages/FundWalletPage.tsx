@@ -29,6 +29,28 @@ export default function FundWalletPage() {
           <Wallet size={12} /> Withdraw
         </button>
       </div>
+
+      <div className="p-4 rounded-3xl bg-primary/20 max-w-lg text-sm space-y-3">
+        <p>Please input the amount you wish to add to your wallet</p>
+
+        <form className="flex items-center gap-2.5">
+          <div className="flex flex-1 gap-4 items-center bg-white py-2 px-4 rounded-full border border-zinc-300">
+            <span className="text-xl font-semibold text-zinc-500">₦</span>
+            <input
+              type="number"
+              name=""
+              className="flex-1 outline-none"
+              placeholder="Amount"
+              required
+              min={1000}
+              id=""
+            />
+          </div>
+          <button className="bg-primary p-2 rounded-xl text-white transition-transform active:scale-95">
+            Fund Wallet
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
