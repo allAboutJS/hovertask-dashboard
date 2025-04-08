@@ -31,7 +31,7 @@ export default function RootLayout() {
               <aside className="max-mobile:hidden">
                 <SideNav />
               </aside>
-              <main className="overflow-hidden">
+              <main className="overflow-hidden min-h-screen">
                 <Outlet />
               </main>
             </div>

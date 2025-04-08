@@ -16,6 +16,7 @@ import { Toaster } from "sonner";
 import AdvertsPage from "./pages/earn/Adverts";
 import ResellPage from "./pages/earn/Resell";
 import ConnectAccountsPage from "./pages/earn/ConnectAccounts";
+import ListProductPage from "./pages/markeplace/ListProduct";
 
 export default function App() {
   return (
@@ -37,6 +38,9 @@ export default function App() {
               <Route path="earn/adverts" element={<AdvertsPage />} />
               <Route path="earn/resell" element={<ResellPage />} />
               <Route path="earn/connect-accounts" element={<ConnectAccountsPage />} />
+
+              {/* Marketplace */}
+              <Route path="marketplace/list-product" element={<ListProductPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

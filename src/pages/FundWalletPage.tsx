@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import { AuthUserDAO } from "../../types";
 
 export default function FundWalletPage() {
-  const authUser = useSelector<any, AuthUserDAO | null>((state) => state.auth.value);
+  const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
 
   return (
     <div className="px-4 py-6 space-y-6">
@@ -21,7 +21,7 @@ export default function FundWalletPage() {
 
       <div className="bg-white shadow flex items-center justify-between gap-2 p-6 rounded-2xl max-w-sm">
         <span className="text-xs">Membership Fee</span>
-        <span className="font-bold text-xl">₦{authUser?.balance.toLocaleString()}</span>
+        <span className="font-bold text-xl">₦{authUser.balance.toLocaleString()}</span>
         <button
           onClick={() => null}
           className="border border-primary text-primary px-4 py-2.5 rounded-full text-sm flex items-center gap-2 hover:bg-primary/20 transition-colors"

@@ -1,4 +1,4 @@
-import { ArrowLeft, Linkedin, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { Link } from "react-router";
 import MarketplaceSearchForm from "../../components/MarketplaceSearchForm";
 import { useState } from "react";
@@ -6,7 +6,7 @@ import cn from "../../utils/cn";
 import ProductCard from "../../components/ProductCard";
 import { useSelector } from "react-redux";
 import { Product } from "../../../types";
-import { Modal, ModalBody, ModalContent, useDisclosure, UseDisclosureProps } from "@heroui/react";
+import { Modal, ModalBody, ModalContent, useDisclosure } from "@heroui/react";
 import useWindowDimensions from "../../hooks/useWindowDimesions";
 
 export default function ResellPage() {

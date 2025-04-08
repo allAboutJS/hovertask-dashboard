@@ -13,13 +13,13 @@ import Loading from "../components/Loading";
 import TaskCard from "../components/TaskCard";
 
 export default function Dashboard() {
-  const authUser = useSelector<any, AuthUserDAO | null>((state) => state.auth.value);
+  const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
 
   return (
     <div className="px-4 py-6 space-y-10 bg-white shadow min-h-full">
-      <Greeting lname={authUser?.lname} how_you_want_to_use={authUser?.how_you_want_to_use} />
-      <BalanceBoard balance={authUser?.balance} />
-      <WelcomeMessage email_verified_at={authUser?.email_verified_at} />
+      <Greeting lname={authUser.lname} how_you_want_to_use={authUser.how_you_want_to_use} />
+      <BalanceBoard balance={authUser.balance} />
+      <WelcomeMessage email_verified_at={authUser.email_verified_at} />
       <AvailableTasks />
       <Carousel>
         <img src="/images/Group 1000004390.png" alt="" />

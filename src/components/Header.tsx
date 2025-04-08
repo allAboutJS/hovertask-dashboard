@@ -8,7 +8,7 @@ import { SetStateAction, useState } from "react";
 
 export default function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const authUser = useSelector<any, AuthUserDAO | null>((state) => state.auth.value);
+  const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
   const requiredMenuItems = ["Dashboard", "Earn", "Advertise", "Marketplace", "Buy Followers"];
   const { pathname } = useLocation();
 
@@ -36,14 +36,14 @@ export default function Header() {
               <ShoppingCart size={14} /> Cart
             </Link>
             <div className="flex gap-1 items-center px-2 py-1 bg-white rounded-2xl">
-              <img src="/images/nigerian-flag.png" width={25} alt="Nigerian flag" /> {authUser?.currency.toUpperCase()}
+              <img src="/images/nigerian-flag.png" width={25} alt="Nigerian flag" /> {authUser.currency.toUpperCase()}
             </div>
             <div className="max-[500px]:hidden mobile:hidden">
               <div>
-                {authUser?.fname} {authUser?.lname}
+                {authUser.fname} {authUser.lname}
               </div>
               <div className="flex items-center gap-1">
-                @{authUser?.username} <ChevronDown size={12} />
+                @{authUser.username} <ChevronDown size={12} />
               </div>
             </div>
           </div>
@@ -52,14 +52,14 @@ export default function Header() {
         <div className="flex items-center justify-between text-sm gap-4">
           <div className="flex items-center gap-3 max-mobile:hidden">
             <div className="w-12 h-12 rounded-full bg-zinc-200 overflow-hidden">
-              <img src={authUser?.avatar ?? "/images/default-avatar"} alt="Logged in user avatar" />
+              <img src={authUser.avatar ?? "/images/default-avatar"} alt="Logged in user avatar" />
             </div>
             <div>
               <div>
-                {authUser?.fname} {authUser?.lname}
+                {authUser.fname} {authUser.lname}
               </div>
               <div className="flex items-center gap-1">
-                @{authUser?.username} <ChevronDown size={12} />
+                @{authUser.username} <ChevronDown size={12} />
               </div>
             </div>
           </div>
