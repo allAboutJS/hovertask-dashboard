@@ -13,7 +13,7 @@ export default function ListProductPage() {
     <div className="mobile:grid grid-cols-[1fr_214px] min-h-full">
       <div className="bg-white shadow p-4 space-y-8">
         <div className="flex gap-4 flex-1">
-          <Link to="/earn">
+          <Link to="/marketplace">
             <ArrowLeft />
           </Link>
 

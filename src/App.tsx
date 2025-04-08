@@ -17,6 +17,9 @@ import AdvertsPage from "./pages/earn/Adverts";
 import ResellPage from "./pages/earn/Resell";
 import ConnectAccountsPage from "./pages/earn/ConnectAccounts";
 import ListProductPage from "./pages/markeplace/ListProduct";
+import MarketplacePage from "./pages/markeplace/Marketplace";
+import CategoryPage from "./pages/markeplace/Category";
+import SingleProductPage from "./pages/markeplace/SingleProduct";
 
 export default function App() {
   return (
@@ -40,7 +43,10 @@ export default function App() {
               <Route path="earn/connect-accounts" element={<ConnectAccountsPage />} />
 
               {/* Marketplace */}
+              <Route path="marketplace" element={<MarketplacePage />} />
               <Route path="marketplace/list-product" element={<ListProductPage />} />
+              <Route path="marketplace/c/:category" element={<CategoryPage />} />
+              <Route path="marketplace/p/:id" element={<SingleProductPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

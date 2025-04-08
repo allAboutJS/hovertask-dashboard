@@ -1,3 +1,88 @@
+import { Link } from "react-router";
+import MarketplaceSearchForm from "../../components/MarketplaceSearchForm";
+import { ArrowLeft } from "lucide-react";
+import ProductsSection from "../../components/ProductsSection";
+import { useSelector } from "react-redux";
+import { Product } from "../../../types";
+import CarouselAdBanner from "../../components/CarouselAdBanner";
+import MarketplaceAside from "../../components/MarketplaceAside";
+
 export default function MarketplacePage() {
-  return;
+  const products = useSelector<any, Product[]>((state: any) => state.products.value);
+
+  return (
+    <div className="mobile:grid grid-cols-[1fr_180px] gap-4 min-h-full">
+      <div className="min-h-full shadow bg-white p-4 space-y-8 overflow-hidden">
+        <div className="flex gap-4 flex-1">
+          <Link to="/">
+            <ArrowLeft />
+          </Link>
+
+          <div>
+            <h1 className="text-xl font-semibold">Welcome to Hovertask Marketplace</h1>
+            <p className="text-sm text-zinc-500">Your one-stop platform to buy, sell, and earn effortlessly.</p>
+          </div>
+        </div>
+
+        <Hero />
+
+        <p className="text-sm text-zinc-700">
+          Discover trending products and services or showcase yours to thousands of buyers daily.
+        </p>
+
+        <ProductsSection products={products} heading="Trending Products and Services" link="/marketplace/c/trending" />
+
+        <ProductsSection
+          products={products}
+          startComponent={<img src="/images/Group 1000004394.png" width={150} alt="" />}
+        />
+
+        <CarouselAdBanner />
+
+        <ProductsSection
+          heading="Best Deals and Services"
+          products={products}
+          link="/marketplace/c/best-deals-and-services"
+        />
+
+        <ProductsSection
+          heading="Trending Women's Wear"
+          products={products}
+          link="/marketplace/c/trending-womens-wear"
+        />
+
+        <ProductsSection
+          products={products}
+          startComponent={<img src="/images/Group 1000004396.png" width={150} alt="" />}
+        />
+
+        <ProductsSection
+          heading="Hottest Deal Services"
+          products={products}
+          link="/marketplace/c/hottest-deal-services"
+        />
+
+        <CarouselAdBanner />
+      </div>
+
+      <div>
+        <MarketplaceAside />
+      </div>
+    </div>
+  );
+}
+
+function Hero() {
+  return (
+    <div className="min-h-[348px] rounded-3xl relative overflow-hidden flex flex-col justify-end gap-8 z-0 p-8">
+      <img src="/images/image 3.png" alt="Hero image" className="absolute inset-0 z-0 h-full w-full" />
+      <div className="max-w-sm p-4 bg-gradient-to-r from-black to-transparent z-10 text-2xl font-extrabold text-white">
+        Connect, Trade, and Earn on Hovertask Market Place.
+      </div>
+
+      <div className="w-full z-10 flex justify-end">
+        <MarketplaceSearchForm />
+      </div>
+    </div>
+  );
 }
