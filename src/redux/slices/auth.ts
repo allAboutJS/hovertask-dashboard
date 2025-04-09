@@ -2,10 +2,10 @@ import { createSlice, SliceCaseReducers, SliceSelectors } from "@reduxjs/toolkit
 import { AuthUserDAO } from "../../../types";
 
 const authSlice = createSlice<
-  { value: AuthUserDAO },
-  SliceCaseReducers<{ value: AuthUserDAO }>,
+  { value: AuthUserDAO | null },
+  SliceCaseReducers<{ value: AuthUserDAO | null }>,
   string,
-  SliceSelectors<{ value: AuthUserDAO }>,
+  SliceSelectors<{ value: AuthUserDAO | null }>,
   string
 >({
   name: "auth",
