@@ -1,9 +1,12 @@
-import { ArrowLeft, ChevronLeft, ChevronRight, Eye, Star } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
 import useProduct from "../../hooks/useProduct";
 import Loading from "../../components/Loading";
-import cn from "../../utils/cn";
+import shareProduct from "../../utils/shareProduct";
+import addProductToWishlist from "../../utils/addProductToWishlist";
+import Feedback from "../../components/Feedback";
+import SellerInfoAside from "../../components/SellerInfoAside";
 
 export default function SingleProductPage() {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -48,8 +51,8 @@ export default function SingleProductPage() {
               <div className="flex items-center gap-4">
                 <img src="/assets/images/demo-avatar.png" width={52} alt="Seller avatar" />
                 <div>
-                  <h1 className="text-2xl">Datalite Gadgets</h1>
-                  <Link className="text-primary" to="/marketplace/seller/id">
+                  <h1 className="text-xl font-semibold">Datalite Gadgets</h1>
+                  <Link className="text-primary hover:underline" to="/marketplace/s/id">
                     View Profile
                   </Link>
                 </div>
@@ -142,12 +145,20 @@ export default function SingleProductPage() {
                     {/* Price */}
 
                     <div className="flex gap-3 justify-center p-2 rounded-md bg-gradient-to-b from-[#DAE2FF] to-[#DAE2FF00] w-fit">
-                      <button>
+                      <button
+                        className="active:scale-95 transition-transform"
+                        onClick={() => addProductToWishlist(product.id)}
+                      >
                         <span style={{ fontSize: 18 }} className="material-icons-outlined">
                           favorite
                         </span>
                       </button>
-                      <button>
+                      <button
+                        onClick={() =>
+                          shareProduct({ name: product.name, id: product.id, description: product.description })
+                        }
+                        className="active:scale-95 transition-transform"
+                      >
                         <span style={{ fontSize: 18 }} className="material-icons-outlined">
                           share
                         </span>
@@ -259,114 +270,10 @@ export default function SingleProductPage() {
   );
 }
 
-// TODO: Modify the props as necessary.
-function Feedback({ name, rating, comment, date }: { name: string; rating: number; comment: string; date: string }) {
-  return (
-    <div className="max-w-[294px] space-y-1">
-      <div className="flex gap-2 items-center">
-        <img width={28.089} src="/assets/images/demo-avatar.png" alt={name} />
-        <p className="flex items-center gap-2">
-          <span className="text-[14.04px]">{name}</span>
-          <img width={14.04} src="/images/nigerian-flag.png" alt="Flag" /> |{" "}
-          <span className="text-[#77777A] text-[10.53px]">{date}</span>
-        </p>
-      </div>
-      <div className="flex gap-1">
-        {Array(5)
-          .fill(true)
-          .map((_, i) => (
-            <span
-              style={{ fontSize: 14 }}
-              className={cn("material-icons text-zinc-600", {
-                "text-warning": rating > i
-              })}
-              key={i}
-            >
-              star
-            </span>
-          ))}
-      </div>
-      <p className="text-[10.53px] text-[#77777A]">{comment}</p>
-    </div>
-  );
-}
-
 function Info({ heading, value }: { heading: string; value: ReactNode }) {
   return (
     <p className="text-sm">
       <b>{heading}:</b> <span className="text-[#000000BF]">{value}</span>
     </p>
-  );
-}
-
-function SellerInfoAside() {
-  return (
-    <div className="lg:mt-24 space-y-10 max-lg:p-4 text-sm">
-      <div className="bg-white p-4 rounded-[15.2px] space-y-4">
-        <div className="flex gap-2">
-          <img width={42} height={42} src="/assets/images/demo-avatar.png" alt="Avatar" />
-          <div className="text-[#000000BF]">
-            <p className="font-medium">Alayande Bamidele</p>
-            <p className="text-xs">@Datalite Gadgets</p>
-          </div>
-        </div>
-        <div className="flex gap-4 items-center">
-          <img src="/assets/images/twemoji_flag-nigeria.png" width={20} alt="Flag" /> |{" "}
-          <span className="relative text-[#77777A] text-[9.82px]">
-            Online <span className="absolute -left-1.5 top-1 h-1 w-1 bg-green-400 rounded-full"></span>
-          </span>
-        </div>
-        <div className="flex justify-between gap-4 whitespace-nowrap text-xs">
-          <div className="text-[#00B306] bg-[#00B3061A] text-[9.5px] px-2 py-1 rounded-full text-center">
-            Verified ID
-          </div>
-          <div className="text-[7.34px] flex items-center gap-1">
-            <Star size={12} color="#F5B300" /> 4.8
-          </div>
-          <button className="text-white bg-primary text-[9.5px] px-2 py-1 rounded-full text-center">Follow</button>
-        </div>
-        <div className="h-1 border-t border-dashed border-[#66666666] w-[80%] mx-auto"></div>
-        <div className="flex gap-2">
-          <div className="bg-[#EEF0FF] px-2 py-0.5 rounded-lg flex flex-col gap-0.5 border-1 border-[#66666666] flex-1">
-            <span className="text-[9.43px]">3</span>
-            <span className="text-[8px]">Referrals</span>
-          </div>
-          <div className="bg-[#EEF0FF] px-2 py-0.5 rounded-lg flex flex-col gap-0.5 border-1 border-[#66666666] flex-1">
-            <span className="text-[9.43px]">6</span>
-            <span className="text-[8px]">Followers</span>
-          </div>
-          <div className="bg-[#EEF0FF] px-2 py-0.5 rounded-lg flex flex-col gap-0.5 border-1 border-[#66666666] flex-1">
-            <span className="text-[9.43px]">1</span>
-            <span className="text-[8px]">Following</span>
-          </div>
-        </div>
-        <div className="flex gap-2 flex-wrap justify-center items-center">
-          <button className="cursor-pointer active:scale-90 transition-transform text-[7.92px] px-[15.2px] py-[9.5px] w-fit bg-primary rounded-[20.01px] text-white">
-            Contact Seller
-          </button>
-          <button className="cursor-pointer active:scale-90 transition-transform text-[7.92px] px-[15.2px] py-[9.5px] w-fit border-primary border-1 rounded-[20.01px] text-primary">
-            Start Chat
-          </button>
-        </div>
-      </div>
-      <div className="flex items-center gap-1">
-        <span className="material-icons-outlined" style={{ fontSize: 12 }} color="#000000BF">
-          location_on
-        </span>{" "}
-        <p className="text-xs font-light text-[#000000BF]">
-          Municipal Area Council, Federal Capital Territory, Nigeria
-        </p>
-      </div>
-      <div className="text-xs space-y-4">
-        <h3 className="font-medium">Safety tips</h3>
-        <ul className="text-[#000000BF] font-light space-y-1 list-disc list-inside text-xs">
-          <li>Avoid paying in advance, even for delivery</li>
-          <li>Meet with the seller at a safe public place</li>
-          <li>Inspect the item and ensure it's exactly what you want</li>
-          <li>Make sure that the packed item is the one you've inspected</li>
-          <li>Only pay if you're satisfied</li>
-        </ul>
-      </div>
-    </div>
   );
 }

@@ -27,7 +27,7 @@ export default function RootLayout() {
           <Header />
 
           <div className="bg-container">
-            <div className="mobile:grid grid-cols-[auto_1fr] max-w-5xl mx-auto mobile:px-4 gap-4">
+            <div className="mobile:grid grid-cols-[auto_1fr] max-w-6xl mx-auto mobile:px-4 gap-4">
               <aside className="max-mobile:hidden">
                 <SideNav />
               </aside>

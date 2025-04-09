@@ -114,6 +114,8 @@ export default function ResellPage() {
 
 function ProductInfoModal(props: ReturnType<typeof useDisclosure> & { product?: Product }) {
   const { innerWidth } = useWindowDimensions();
+  // const {isOpen, onOpenChange, onOpen} = useDisclosure();
+  // function ResellerLinkMod
 
   return (
     <Modal

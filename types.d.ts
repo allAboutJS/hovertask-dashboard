@@ -49,7 +49,7 @@ export interface Task {
 }
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   user_id: number;
   category_id: number;

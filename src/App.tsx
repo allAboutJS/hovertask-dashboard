@@ -16,10 +16,12 @@ import { Toaster } from "sonner";
 import AdvertsPage from "./pages/earn/Adverts";
 import ResellPage from "./pages/earn/Resell";
 import ConnectAccountsPage from "./pages/earn/ConnectAccounts";
-import ListProductPage from "./pages/markeplace/ListProduct";
-import MarketplacePage from "./pages/markeplace/Marketplace";
-import CategoryPage from "./pages/markeplace/Category";
-import SingleProductPage from "./pages/markeplace/SingleProduct";
+import ListProductPage from "./pages/marketplace/ListProduct";
+import MarketplacePage from "./pages/marketplace/Marketplace";
+import CategoryPage from "./pages/marketplace/Category";
+import SingleProductPage from "./pages/marketplace/SingleProduct";
+import SellerPage from "./pages/marketplace/Seller";
+import AdvertisePage from "./pages/advertise/Advertise";
 
 export default function App() {
   return (
@@ -47,6 +49,10 @@ export default function App() {
               <Route path="marketplace/list-product" element={<ListProductPage />} />
               <Route path="marketplace/c/:category" element={<CategoryPage />} />
               <Route path="marketplace/p/:id" element={<SingleProductPage />} />
+              <Route path="marketplace/s/:id" element={<SellerPage />} />
+
+              {/* Advertise */}
+              <Route path="advertise" element={<AdvertisePage />} />
             </Route>
           </Routes>
         </BrowserRouter>
