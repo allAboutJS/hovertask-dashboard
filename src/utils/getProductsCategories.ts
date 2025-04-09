@@ -7,7 +7,7 @@ export default async function getProductsCategories() {
         headers: { authorization: `Bearer ${localStorage.getItem("auth_token")}` }
       })
     ).json()
-  ).map(({ key, name }: any) => {
-    return { key, label: name };
+  ).map(({ id, name }: any) => {
+    return { key: id, label: name };
   });
 }
