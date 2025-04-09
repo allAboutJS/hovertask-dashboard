@@ -35,8 +35,44 @@ export default function ProductCheckoutPage() {
         </div>
       </div>
 
-      <div>
+      <div className="space-y-20 max-mobile:space-y-6">
         <SellerInfoAside />
+
+        <div className="p-4">
+          <div className="text-sm space-y-3 bg-white/70 p-4 rounded-3xl">
+            <h4>Order summary</h4>
+            <div className="space-y-1">
+              <p className="flex justify-between">
+                Items Total({product.cartQuantity}):{" "}
+                <span className="font-medium">
+                  {" "}
+                  ₦
+                  {(product.discount
+                    ? (product.price - (product.price * product.discount) / 100) * product.cartQuantity
+                    : product.cartQuantity * product.price
+                  ).toFixed(2)}
+                </span>
+              </p>
+              <p className="flex justify-between">
+                Shipping fee: <span className="font-medium">₦{product.delivery_fee || 0.0}</span>
+              </p>
+            </div>
+
+            <hr />
+
+            <p className="flex justify-between">
+              Net Total:{" "}
+              <span className="font-medium">
+                ₦
+                {(
+                  (product.discount
+                    ? (product.price - (product.price * product.discount) / 100) * product.cartQuantity
+                    : product.cartQuantity * product.price) + (product.delivery_fee ? product.delivery_fee : 0)
+                ).toFixed(2)}
+              </span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -58,7 +94,7 @@ function CartItemCard(props: CartProduct) {
             <p>
               ₦
               {props.discount
-                ? Number((props.price * (props.discount / 100)).toLocaleString()).toFixed(2)
+                ? Number((props.price - (props.price * props.discount) / 100).toLocaleString()).toFixed(2)
                 : props.price.toLocaleString()}
             </p>
           </div>
@@ -135,7 +171,7 @@ function PaymentOptionCard(props: {
   const { icon, title, description, link, linkText } = props;
 
   return (
-    <div className="flex items-center gap-4 border-1 border-primary rounded-3xl py-4 px-4 mobile:px-8">
+    <div className="flex items-center gap-4 border-1 border-primary rounded-3xl py-4 px-4 mobile:px-8 max-sm:flex-col">
       <div>{icon}</div>
       <div className="flex-1">
         <p className="text-lg font-semibold">{title}</p>
