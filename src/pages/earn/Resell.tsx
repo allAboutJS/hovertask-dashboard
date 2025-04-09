@@ -10,18 +10,10 @@ import useWindowDimensions from "../../hooks/useWindowDimesions";
 import useProducts from "../../hooks/useProducts";
 import Loading from "../../components/Loading";
 import EmptyMapErr from "../../components/EmptyMapErr";
+import useProductCategories from "../../hooks/useProductCategories";
 
 export default function ResellPage() {
-  const categories = [
-    { key: "all", label: "all" },
-    { key: "phones_and_tablets", label: "phones and tablets" },
-    { key: "health_and_beauty", label: "health and beauty" },
-    { key: "computing", label: "computing" },
-    { key: "home_and_office", label: "home and office" },
-    { key: "fashion", label: "fashion" },
-    { key: "electronic", label: "electronic" },
-    { key: "baby_products", label: "baby products" }
-  ];
+  const categories = useProductCategories();
   const [currentCategory, setCurrentCategory] = useState<string>("all");
   const [currentlyViewedProduct, setCurrentlyViewedProduct] = useState<Product>();
   const products = useProducts();
@@ -58,17 +50,21 @@ export default function ResellPage() {
           <h2 className="font-semibold text-lg">All Categories</h2>
 
           <div className="flex gap-2 flex-wrap">
-            {categories.map((category) => (
-              <button
-                onClick={() => setCurrentCategory(category.key)}
-                className={cn("py-1 px-2 rounded-lg bg-zinc-200 border border-zinc-300 text-sm capitalize", {
-                  "bg-primary text-white transition-all active:scale-95": category.key === currentCategory
-                })}
-                key={category.key}
-              >
-                {category.label}
-              </button>
-            ))}
+            {categories ? (
+              categories.map((category) => (
+                <button
+                  onClick={() => setCurrentCategory(category.key)}
+                  className={cn("py-1 px-2 rounded-lg bg-zinc-200 border border-zinc-300 text-sm capitalize", {
+                    "bg-primary text-white transition-all active:scale-95": category.key === currentCategory
+                  })}
+                  key={category.key}
+                >
+                  {category.label}
+                </button>
+              ))
+            ) : (
+              <Loading />
+            )}
           </div>
         </div>
 

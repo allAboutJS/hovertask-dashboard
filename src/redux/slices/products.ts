@@ -1,23 +1,27 @@
 import { createSlice, SliceCaseReducers, SliceSelectors } from "@reduxjs/toolkit";
-import { Product } from "../../../types";
+import { Product, ProductStore } from "../../../types";
 
 const productsSlice = createSlice<
-  { value: Product[] | null },
-  SliceCaseReducers<{ value: Product[] | null }>,
+  ProductStore,
+  SliceCaseReducers<ProductStore>,
   string,
-  SliceSelectors<{ value: Product[] | null }>,
+  SliceSelectors<ProductStore>,
   string
 >({
   name: "products",
   initialState: {
-    value: null
+    value: null,
+    categories: null
   },
   reducers: {
-    setProducts(state, action: { payload: Product[] }) {
+    setProducts(state, action: { payload: Product[] | null }) {
       state.value = action.payload;
+    },
+    setCategories(state, action: { payload: ProductStore["categories"] }) {
+      state.categories = action.payload;
     }
   }
 });
 
-export const { setProducts } = productsSlice.actions;
+export const { setProducts, setCategories } = productsSlice.actions;
 export default productsSlice.reducer;

@@ -108,3 +108,8 @@ export interface ProductSectionProps {
 export interface CartProduct extends Product {
   cartQuantity: number;
 }
+
+export interface ProductStore {
+  value: Product[] | null;
+  categories: { key: string; label: string }[] | null;
+}
