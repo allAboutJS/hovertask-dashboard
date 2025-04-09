@@ -13,7 +13,7 @@ export default function ProductCard(props: ProductCardProps) {
     >
       <div className="bg-zinc-200 rounded-2xl overflow-hidden">
         <img
-          className={cn("aspect-[4/3] block", {
+          className={cn("aspect-[4/3] block w-full", {
             "w-[131px]": props.horizontal,
             "h-[97.7px]": !props.horizontal && !props.responsive
           })}
@@ -34,7 +34,7 @@ export default function ProductCard(props: ProductCardProps) {
             <p className="text-[11.28px]">
               ₦
               {props.discount
-                ? Number((props.price * (props.discount / 100)).toLocaleString()).toFixed(2)
+                ? Number((props.price - (props.price * props.discount) / 100).toLocaleString()).toFixed(2)
                 : props.price.toLocaleString()}
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function ProductCard(props: ProductCardProps) {
             {props.buttonText ?? "Buy Product"}
           </button>
           <Link
-            to={props.linkOverrideURL ?? `/marketplace/product/${Math.round(Math.random() * 10)}`}
+            to={props.linkOverrideURL ?? `/marketplace/p/${props.id}`}
             className={cn("flex items-center justify-center rounded-full min-h-[28.92px] min-w-[28.92px] border", {
               "border-primary text-primary": props.version !== "bordered"
             })}

@@ -1,12 +1,16 @@
 import { ArrowLeft, Image, Tag } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
-import { AuthUserDAO } from "../../../types";
+import { AuthUserDAO, Product } from "../../../types";
 import { DragEvent, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import cn from "../../utils/cn";
-import { Select, SelectItem } from "@heroui/react";
+import { Modal, ModalBody, ModalContent, Select, SelectItem, useDisclosure } from "@heroui/react";
 import productCategories from "../../utils/productCategories";
+import { useForm } from "react-hook-form";
+import ProductCard from "../../components/ProductCard";
+import Loading from "../../components/Loading";
+import apiEndpointBaseURL from "../../utils/apiEndpointBaseURL";
 
 export default function ListProductPage() {
   return (
@@ -73,10 +77,20 @@ function SellerInformation() {
 }
 
 function ListingForm() {
+  const userId = useSelector<any, string>((state: any) => state.auth.value.id);
   const [draggedOver, setDraggedOver] = useState(false);
   const [imagesLength, setImagesLength] = useState<number>(0);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [previewImageUrl, setPreviewImageUrl] = useState("");
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors }
+  } = useForm({ mode: "all" });
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (imagesLength) {
@@ -116,8 +130,34 @@ function ListingForm() {
     }
   }
 
+  async function submitForm() {
+    try {
+      setIsSubmitting(true);
+      const form = new FormData(formRef.current!);
+
+      form.append("user_id", userId);
+      form.append("currency", "NGN");
+      form.append("stock", "100");
+      form.append("meet_up_preference", "");
+
+      await fetch(apiEndpointBaseURL + "/products/create-product", {
+        method: "post",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("auth_token")}`
+        },
+        body: form
+      });
+
+      toast.success("Product listed successfully!");
+    } catch {
+      toast.error("Product listing failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
-    <form className="space-y-6">
+    <form ref={formRef} onSubmit={handleSubmit(onOpen)} className="space-y-6">
       <h3 className="text-sm text-center font-semibold">Images/Media Upload</h3>
 
       <div className="flex max-sm:flex-col max-sm:gap-6 sm:items-end">
@@ -155,7 +195,9 @@ function ListingForm() {
               type="file"
               accept="image/*"
               multiple
-              className="hidden"
+              className="opacity-0"
+              name="file_path"
+              required
             />
 
             <div
@@ -182,26 +224,46 @@ function ListingForm() {
 
       <GradientHeader>Product/Service Details</GradientHeader>
 
-      <div className="text-sm">
-        <label htmlFor="name">Product/Service Name</label>
-        <div>
-          <Tag className="-scale-x-[1]" />
-          <input type="text" placeholder="Product/Service Name" className="outline-none placeholder:text-xs" />
+      <div className="text-sm space-y-12">
+        <div className="space-y-2">
+          <label htmlFor="name">Product/Service Name</label>
+          <div className="flex gap-2 border p-2 rounded-full border-zinc-400">
+            <Tag size={18} className="-scale-x-[1]" />
+            <input
+              type="text"
+              placeholder="Product/Service Name"
+              className="outline-none placeholder:text-xs flex-1"
+              {...register("name", {
+                required: "Enter product name",
+                pattern: {
+                  value: /^[a-zA-Z0-9\s\-_,.()]{2,100}$/,
+                  message: "Enter a valid product name"
+                }
+              })}
+            />
+          </div>
+          {errors["name"] && <small className="text-danger">{errors["name"].message as string}</small>}
         </div>
 
-        <Select
-          label="Category"
-          labelPlacement="outside"
-          variant="bordered"
-          className="[&_button]:border-1 [&_button]:border-black"
-          placeholder="Select a category"
-        >
-          {productCategories.map((category) => (
-            <SelectItem key={category.key}>{category.label}</SelectItem>
-          ))}
-        </Select>
-
         <div>
+          <Select
+            label="Category"
+            labelPlacement="outside"
+            variant="bordered"
+            className="[&_button]:border-1 [&_button]:border-zinc-400 [&_button]:rounded-full"
+            placeholder="Select a category"
+            {...register("category_id", {
+              required: "Select product category"
+            })}
+          >
+            {productCategories.map((category, i) => (
+              <SelectItem key={i + 1}>{category.label}</SelectItem>
+            ))}
+          </Select>
+          {errors["category"] && <small className="text-danger">{errors["category"].message as string}</small>}
+        </div>
+
+        <div className="-translate-y-6 space-y-2">
           <label htmlFor="description">
             <p>Product/Service Description</p>
             <p className="font-light text-zinc-600">
@@ -209,12 +271,271 @@ function ListingForm() {
             </p>
           </label>
           <textarea
+            {...register("description", {
+              required: "Enter product description",
+              pattern: {
+                value: /^[a-zA-Z0-9\s\-_,.():;'"!?@%&*/\\[\]{}|+=<>~`$#^]{10,1000}$/,
+                message: "Remove invalid characters from description"
+              }
+            })}
             name="description"
             id="description"
-            className="outline-none border border-black rounded-2xl w-full min-h-44 text-sm p-4"
+            className="outline-none border border-zinc-400 rounded-2xl w-full min-h-44 text-sm p-4"
           ></textarea>
+          {errors["description"] && <small className="text-danger">{errors["description"].message as string}</small>}
         </div>
       </div>
+
+      <GradientHeader>Product/Service Pricing</GradientHeader>
+
+      <div className="text-sm space-y-6">
+        <div className="space-y-2">
+          <label htmlFor="price">Price</label>
+          <p className="flex items-center gap-2">
+            <img src="/images/nigerian-flag.png" width={20} alt="" /> NGN{" "}
+            <span style={{ fontSize: 18 }} className="material-icons-outlined">
+              arrow_drop_down
+            </span>
+          </p>
+          <div className="flex gap-2 border p-2 rounded-full border-zinc-400">
+            <span className="font-medium text-base">₦</span>
+            <input
+              {...register("price", {
+                required: "Enter product price",
+                min: {
+                  value: 1,
+                  message: "Price must be greater than 0"
+                },
+                pattern: {
+                  value: /^\d+$/,
+                  message: "Enter valid price"
+                }
+              })}
+              type="number"
+              min={1}
+              placeholder=""
+              name="price"
+              className="outline-none placeholder:text-xs flex-1"
+            />
+          </div>
+          {errors["price"] && <small className="text-danger">{errors["price"].message as string}</small>}
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="price">Discount</label>
+          <div className="flex gap-2 border p-2 rounded-full border-zinc-400">
+            <img src="/images/streamline_discount-percent-coupon.png" alt="" />
+            <input
+              {...register("discount", {
+                max: {
+                  value: 100,
+                  message: "Discount cannot be greater than 100%"
+                },
+                pattern: {
+                  value: /^\d+$/,
+                  message: "Enter valid price"
+                }
+              })}
+              type="number"
+              defaultValue={0}
+              placeholder=""
+              className="outline-none placeholder:text-xs flex-1"
+            />
+          </div>
+          {errors["discount"] && <small className="text-danger">{errors["discount"].message as string}</small>}
+        </div>
+
+        <div>
+          <Select
+            label="Payment method"
+            labelPlacement="outside"
+            variant="bordered"
+            placeholder="Select payment method"
+            className="[&_button]:border-1 [&_button]:border-zinc-400 [&_button]:rounded-full"
+            {...register("payment_method", {
+              required: "Select payment method"
+            })}
+          >
+            <SelectItem key="paystack">Paystack</SelectItem>
+          </Select>
+          {errors["payment_method"] && (
+            <small className="text-danger">{errors["payment_method"].message as string}</small>
+          )}
+        </div>
+      </div>
+
+      <div className="text-sm space-y-4">
+        <div>
+          <h4 className="font-medium">Meetup Preference</h4>
+          <p>Buyers will be able to see your preferences on your listing.</p>
+        </div>
+
+        <label className="flex items-center gap-4" htmlFor="physical-shipping">
+          <input type="radio" name="shipping_available" id="physical-shipping" />
+          <div>
+            <p className="font-medium">Shipping/Delivery Available</p>
+            <p>Deliver physical products with ease</p>
+          </div>
+        </label>
+        <label className="flex items-center gap-4" htmlFor="digital-shipping">
+          <input type="radio" name="shipping_available" id="digital-shipping" />
+          <div>
+            <p className="font-medium">Digital Delivery/ Online Services Only</p>
+            <p>Seamless delivery for online products or services</p>
+          </div>
+        </label>
+      </div>
+
+      <div className="text-sm space-y-4">
+        <div className="space-y-2">
+          <label htmlFor="delivery_fee">Delivery Cost (Optional)</label>
+          <div className="flex gap-2 border p-2 rounded-full border-zinc-400">
+            <img src="/images/streamline_discount-percent-coupon.png" alt="" />
+            <input
+              type="number"
+              defaultValue={0}
+              placeholder=""
+              className="outline-none placeholder:text-xs flex-1"
+              {...register("delivery_fee", {
+                pattern: {
+                  value: /^\d+$/,
+                  message: "Enter valid amount"
+                }
+              })}
+            />
+          </div>
+          {errors["delivery_fee"] && <small className="text-danger">{errors["delivery_fee"].message as string}</small>}
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="estimated_delivery_date">Estimated Delivery Time</label>
+          <div className="flex gap-2 border p-2 rounded-full border-zinc-400">
+            <img src="/images/streamline_discount-percent-coupon.png" alt="" />
+            <input
+              type="text"
+              placeholder="E.g. 1 hour, 2 days, 2 week, 6 months, 1 year"
+              className="outline-none placeholder:text-xs flex-1"
+              {...register("estimated_delivery_date", {
+                required: "Enter estimated delivery time",
+                pattern: {
+                  value: /^\d+\s+(hour|day|month|year|week)s?$/i,
+                  message: "Enter valid delivery time. E.g. 1 day, 2 weeks, 2 months e.t.c."
+                }
+              })}
+            />
+          </div>
+          {errors["estimated_delivery_date"] && (
+            <small className="text-danger">{errors["estimated_delivery_date"].message as string}</small>
+          )}
+        </div>
+      </div>
+
+      <GradientHeader>Contact Information (Optional)</GradientHeader>
+
+      <div className="text-sm space-y-4">
+        <div className="space-y-2">
+          <label htmlFor="phone_number">Phone Number</label>
+          <div className="flex gap-2 border p-2 rounded-full border-zinc-400">
+            <img src="/images/streamline_discount-percent-coupon.png" alt="" />
+            <input
+              {...register("phone_number", {
+                pattern: {
+                  value: /^\+?\d{1,4}?[-.\s]?(\(?\d{1,4}\)?)[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
+                  message: "Enter valid phone number"
+                }
+              })}
+              type="tel"
+              name="phone_number"
+              className="outline-none placeholder:text-xs flex-1"
+            />
+          </div>
+          {errors["phone_number"] && <small className="text-danger">{errors["phone_number"].message as string}</small>}
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="email">Email</label>
+          <div className="flex gap-2 border p-2 rounded-full border-zinc-400">
+            <img src="/images/streamline_discount-percent-coupon.png" alt="" />
+            <input
+              {...register("phone_number", {
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Enter valid email address"
+                }
+              })}
+              type="email"
+              name="email"
+              className="outline-none placeholder:text-xs flex-1"
+            />
+          </div>
+          {errors["email"] && <small className="text-danger">{errors["email"].message as string}</small>}
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="social_media_link">Social Media Link</label>
+          <div className="flex gap-2 border p-2 rounded-full border-zinc-400">
+            <img src="/images/streamline_discount-percent-coupon.png" alt="" />
+            <input
+              type="url"
+              {...register("social_media_link", {
+                pattern: {
+                  value: /^(https?:\/\/)?([\w\-]+\.)+[\w\-]{2,}(:\d+)?(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/,
+                  message: "Enter valid social media link"
+                }
+              })}
+              name="social_media_link"
+              className="outline-none placeholder:text-xs flex-1"
+            />
+          </div>
+          {errors["social_media_link"] && (
+            <small className="text-danger">{errors["social_media_link"].message as string}</small>
+          )}
+        </div>
+      </div>
+
+      <div className="space-x-4">
+        <button
+          className="px-4 py-1.5 text-sm rounded-full transition-all active:scale-95 bg-primary text-white"
+          type="submit"
+        >
+          Continue
+        </button>
+        <button
+          className="px-4 py-1.5 text-sm rounded-full transition-all active:scale-95 hover:bg-primary/20 border border-primary text-primary"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} onClose={onClose}>
+        <ModalContent>
+          {(onClose: () => any) => (
+            <ModalBody className="flex flex-col gap-2 justify-center items-center">
+              <p>As you create your listing, preview how it will appear to others on Marketplace.</p>
+              <ProductCard {...{ ...(getValues() as Product), images: [previewImageUrl] }} />
+              <div className="space-x-4">
+                <button
+                  onClick={() => (submitForm(), onClose())}
+                  className="px-4 py-1.5 text-sm rounded-full transition-all active:scale-95 bg-primary text-white"
+                  type="button"
+                >
+                  Confirm and Publish
+                </button>
+                <button
+                  onClick={onClose}
+                  className="px-4 py-1.5 text-sm rounded-full transition-all active:scale-95 hover:bg-primary/20 border border-primary text-primary"
+                  type="button"
+                >
+                  Edit Details
+                </button>
+              </div>
+            </ModalBody>
+          )}
+        </ModalContent>
+      </Modal>
+
+      {isSubmitting && <Loading fixed />}
     </form>
   );
 }
