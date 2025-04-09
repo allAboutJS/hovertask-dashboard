@@ -51,7 +51,7 @@ export interface Task {
 interface Product {
   id: string;
   name: string;
-  user_id: number;
+  user_id: string;
   category_id: number;
   description: string;
   stock: number;

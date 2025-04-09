@@ -4,10 +4,12 @@ import MarketplaceSearchForm from "../../components/MarketplaceSearchForm";
 import { useState } from "react";
 import cn from "../../utils/cn";
 import ProductCard from "../../components/ProductCard";
-import { useSelector } from "react-redux";
 import { Product } from "../../../types";
 import { Modal, ModalBody, ModalContent, useDisclosure } from "@heroui/react";
 import useWindowDimensions from "../../hooks/useWindowDimesions";
+import useProducts from "../../hooks/useProducts";
+import Loading from "../../components/Loading";
+import EmptyMapErr from "../../components/EmptyMapErr";
 
 export default function ResellPage() {
   const categories = [
@@ -21,8 +23,8 @@ export default function ResellPage() {
     { key: "baby_products", label: "baby products" }
   ];
   const [currentCategory, setCurrentCategory] = useState<string>("all");
-  const products = useSelector<any, Product[] | null>((state: any) => state.products.value);
   const [currentlyViewedProduct, setCurrentlyViewedProduct] = useState<Product>();
+  const products = useProducts();
   const modalProps = useDisclosure();
 
   document.title = "Earn By Reselling Products";
@@ -73,17 +75,25 @@ export default function ResellPage() {
         <div className="space-y-5">
           <h2 className="font-semibold text-lg">Top Products to Buy or Resell</h2>
 
-          <div className="grid max-[380px]:grid-cols-1 max-[640px]:grid-cols-2 sm:grid-cols-3 p-4 rounded-3xl bg-primary/20 gap-x-2 gap-y-4">
-            {products?.map((product, i) => (
-              <ProductCard
-                responsive
-                key={i}
-                {...product}
-                linkOverrideURL={`/earn/resell/${i}`}
-                onButtonClickAction={() => (setCurrentlyViewedProduct(product), modalProps.onOpen())}
-              />
-            ))}
-          </div>
+          {products ? (
+            products.length ? (
+              <div className="grid max-[380px]:grid-cols-1 max-[640px]:grid-cols-2 sm:grid-cols-3 p-4 rounded-3xl bg-primary/20 gap-x-2 gap-y-4">
+                {products?.map((product, i) => (
+                  <ProductCard
+                    responsive
+                    key={i}
+                    {...product}
+                    linkOverrideURL={`/earn/resell/${i}`}
+                    onButtonClickAction={() => (setCurrentlyViewedProduct(product), modalProps.onOpen())}
+                  />
+                ))}
+              </div>
+            ) : (
+              <EmptyMapErr description="No products have been added yet" buttonInnerText="Refresh" />
+            )
+          ) : (
+            <Loading />
+          )}
         </div>
 
         <div>
@@ -91,21 +101,23 @@ export default function ResellPage() {
         </div>
       </div>
 
-      <div>
-        <div className="p-4 bg-primary bg-opacity-20 max-[1000px]:hidden text-xs rounded-2xl mt-[552px] space-y-3">
-          <img src="/images/Why_wait__Shop_the_latest_trends_and_essentials_on_-removebg-preview 2.png" alt="" />
-          <p>
-            Add a new product or service to the marketplace. Include details, set your price, and upload images to
-            attract buyers.
-          </p>
-          <Link
-            to="/marketplace/list-product"
-            className="flex items-center gap-2 px-2 py-1.5 rounded-xl bg-primary text-white w-full justify-center"
-          >
-            <ShoppingBag size={12} /> List a New Product
-          </Link>
+      {products && (
+        <div>
+          <div className="p-4 bg-primary bg-opacity-20 max-[1000px]:hidden text-xs rounded-2xl mt-[552px] space-y-3">
+            <img src="/images/Why_wait__Shop_the_latest_trends_and_essentials_on_-removebg-preview 2.png" alt="" />
+            <p>
+              Add a new product or service to the marketplace. Include details, set your price, and upload images to
+              attract buyers.
+            </p>
+            <Link
+              to="/marketplace/list-product"
+              className="flex items-center gap-2 px-2 py-1.5 rounded-xl bg-primary text-white w-full justify-center"
+            >
+              <ShoppingBag size={12} /> List a New Product
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
 
       <ProductInfoModal {...modalProps} product={currentlyViewedProduct} />
     </div>
