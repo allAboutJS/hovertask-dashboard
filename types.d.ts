@@ -104,3 +104,7 @@ export interface ProductSectionProps {
   useResponsiveCard?: boolean;
   loadAsyncProducts?: boolean;
 }
+
+export interface CartProduct extends Product {
+  cartQuantity: number;
+}

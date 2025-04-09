@@ -3,7 +3,7 @@ import { Product } from "../../../types";
 
 const products: Product[] = [
   {
-    id: 1,
+    id: "1",
     name: "Wireless Mouse",
     user_id: 1,
     category_id: 101,
@@ -24,7 +24,7 @@ const products: Product[] = [
     social_media_link: "https://twitter.com/seller1"
   },
   {
-    id: 2,
+    id: "2",
     name: "Bluetooth Headphones",
     user_id: 2,
     category_id: 102,
@@ -45,7 +45,7 @@ const products: Product[] = [
     social_media_link: null
   },
   {
-    id: 3,
+    id: "3",
     name: "Digital Drawing Tablet",
     user_id: 3,
     category_id: 103,
@@ -66,7 +66,7 @@ const products: Product[] = [
     social_media_link: "https://instagram.com/artistpro"
   },
   {
-    id: 4,
+    id: "4",
     name: "Yoga Mat",
     user_id: 4,
     category_id: 104,
@@ -87,7 +87,7 @@ const products: Product[] = [
     social_media_link: null
   },
   {
-    id: 5,
+    id: "5",
     name: "Gaming Keyboard",
     user_id: 5,
     category_id: 101,
@@ -108,7 +108,7 @@ const products: Product[] = [
     social_media_link: null
   },
   {
-    id: 6,
+    id: "6",
     name: "Stainless Steel Water Bottle",
     user_id: 6,
     category_id: 105,
@@ -129,7 +129,7 @@ const products: Product[] = [
     social_media_link: null
   },
   {
-    id: 7,
+    id: "7",
     name: "Laptop Stand",
     user_id: 7,
     category_id: 106,
@@ -150,7 +150,7 @@ const products: Product[] = [
     social_media_link: null
   },
   {
-    id: 8,
+    id: "8",
     name: "LED Desk Lamp",
     user_id: 8,
     category_id: 107,
@@ -171,7 +171,7 @@ const products: Product[] = [
     social_media_link: "https://facebook.com/lampstore"
   },
   {
-    id: 9,
+    id: "9",
     name: "Portable SSD - 1TB",
     user_id: 9,
     category_id: 108,
@@ -192,7 +192,7 @@ const products: Product[] = [
     social_media_link: null
   },
   {
-    id: 10,
+    id: "10",
     name: "Mini Projector",
     user_id: 10,
     category_id: 109,

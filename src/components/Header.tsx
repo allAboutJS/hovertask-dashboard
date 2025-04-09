@@ -9,6 +9,7 @@ import { SetStateAction, useState } from "react";
 export default function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
+  const cartItemsLength = useSelector<any, number>((state) => state.cart.value.length);
   const requiredMenuItems = ["Dashboard", "Earn", "Advertise", "Marketplace", "Buy Followers"];
   const { pathname } = useLocation();
 
@@ -32,8 +33,16 @@ export default function Header() {
             <div>
               <Moon size={14} />
             </div>
-            <Link className="inline-flex gap-1 items-center px-2 py-1 bg-white rounded-2xl" to="/cart">
-              <ShoppingCart size={14} /> Cart
+            <Link
+              className="inline-flex gap-1 items-center px-2 py-1 bg-white rounded-2xl relative"
+              to="/marketplace/cart"
+            >
+              <ShoppingCart size={14} /> Cart{" "}
+              {cartItemsLength ? (
+                <span className="absolute h-6 w-6 rounded-full bg-primary text-white text-xs flex items-center justify-center -top-2 -right-2">
+                  {cartItemsLength}
+                </span>
+              ) : null}
             </Link>
             <div className="flex gap-1 items-center px-2 py-1 bg-white rounded-2xl">
               <img src="/images/nigerian-flag.png" width={25} alt="Nigerian flag" /> {authUser.currency.toUpperCase()}
@@ -72,6 +81,7 @@ export default function Header() {
               {menu.map((menuItem) =>
                 requiredMenuItems.includes(menuItem.label) ? (
                   <Link
+                    key={menuItem.label}
                     className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl", {
                       "bg-primary text-white":
                         (pathname === "/" && menuItem.label === "Dashboard") ||
@@ -142,6 +152,7 @@ function MobileNav({
         <div className="space-y-2 px-6">
           {menu.map((menuItem) => (
             <Link
+              key={menuItem.label}
               onClick={() => setTimeout(() => setIsOpen(false), 600)}
               className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl", {
                 "bg-primary text-white":

@@ -22,6 +22,8 @@ import CategoryPage from "./pages/marketplace/Category";
 import SingleProductPage from "./pages/marketplace/SingleProduct";
 import SellerPage from "./pages/marketplace/Seller";
 import AdvertisePage from "./pages/advertise/Advertise";
+import CartPage from "./pages/marketplace/Cart";
+import ProductCheckoutPage from "./pages/marketplace/ProductCheckout";
 
 export default function App() {
   return (
@@ -50,6 +52,8 @@ export default function App() {
               <Route path="marketplace/c/:category" element={<CategoryPage />} />
               <Route path="marketplace/p/:id" element={<SingleProductPage />} />
               <Route path="marketplace/s/:id" element={<SellerPage />} />
+              <Route path="marketplace/cart" element={<CartPage />} />
+              <Route path="marketplace/checkout/:id" element={<ProductCheckoutPage />} />
 
               {/* Advertise */}
               <Route path="advertise" element={<AdvertisePage />} />

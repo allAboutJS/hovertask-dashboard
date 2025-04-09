@@ -7,6 +7,10 @@ import shareProduct from "../../utils/shareProduct";
 import addProductToWishlist from "../../utils/addProductToWishlist";
 import Feedback from "../../components/Feedback";
 import SellerInfoAside from "../../components/SellerInfoAside";
+import { useDispatch } from "react-redux";
+import { addProduct, removeProduct } from "../../redux/slices/cart";
+import { toast } from "sonner";
+import useCartItem from "../../hooks/useCartItem";
 
 export default function SingleProductPage() {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -15,6 +19,8 @@ export default function SingleProductPage() {
   const images = ["/assets/images/demo-product.png", "/assets/images/demo-product-2.png"];
   const { id } = useParams<{ id: string }>();
   const product = useProduct(id!);
+  const dispatch = useDispatch();
+  const cartProduct = useCartItem(id!);
 
   useEffect(() => {
     const singleSlideWidth = imageCarouselRef.current?.clientWidth;
@@ -202,9 +208,23 @@ export default function SingleProductPage() {
                   <button className="px-4 py-2 active:scale-90 transition-transform bg-primary rounded-xl text-sm text-white">
                     Contact Seller
                   </button>
-                  <button className="px-4 py-2 active:scale-90 transition-transform border-primary border-1 rounded-xl text-sm text-primary">
-                    Add to Cart
-                  </button>
+                  {cartProduct ? (
+                    <button
+                      onClick={() => (dispatch(removeProduct(id)), toast.success("Product removed from cart!"))}
+                      className="px-4 py-2 active:scale-90 transition-transform border-primary border-1 rounded-xl text-sm text-primary"
+                    >
+                      Remove from Cart
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => (
+                        dispatch(addProduct({ ...product, cartQuantity: 1 })), toast.success("Product added to cart!")
+                      )}
+                      className="px-4 py-2 active:scale-90 transition-transform border-primary border-1 rounded-xl text-sm text-primary"
+                    >
+                      Add to Cart
+                    </button>
+                  )}
                 </div>
               </div>
               {/* Product desciption */}

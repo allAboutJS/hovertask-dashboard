@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { ProductCardProps } from "../../types";
 import cn from "../utils/cn";
 
-const ProductCard = (props: ProductCardProps) => {
+export default function ProductCard(props: ProductCardProps) {
   return (
     <div
       className={cn("flex flex-col bg-white rounded-2xl p-4 space-y-2", {
@@ -73,6 +73,4 @@ const ProductCard = (props: ProductCardProps) => {
       </div>
     </div>
   );
-};
-
-export default ProductCard;
+}
