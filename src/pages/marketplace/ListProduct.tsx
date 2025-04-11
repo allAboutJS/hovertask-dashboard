@@ -13,6 +13,8 @@ import Loading from "../../components/Loading";
 import apiEndpointBaseURL from "../../utils/apiEndpointBaseURL";
 
 export default function ListProductPage() {
+  document.title = "List New Product - Hovertask Dashboard";
+
   return (
     <div className="mobile:grid grid-cols-[1fr_214px] min-h-full">
       <div className="bg-white shadow p-4 space-y-8">
@@ -82,7 +84,7 @@ function ListingForm() {
   const [imagesLength, setImagesLength] = useState<number>(0);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [previewImageUrl, setPreviewImageUrl] = useState("");
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const modalProps = useDisclosure();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
@@ -131,33 +133,29 @@ function ListingForm() {
   }
 
   async function submitForm() {
-    try {
-      setIsSubmitting(true);
-      const form = new FormData(formRef.current!);
+    setIsSubmitting(true);
+    const form = new FormData(formRef.current!);
 
-      form.append("user_id", userId);
-      form.append("currency", "NGN");
-      form.append("stock", "100");
-      form.append("meet_up_preference", "");
+    form.append("user_id", userId);
+    form.append("currency", "NGN");
+    form.append("stock", "100");
+    form.append("meet_up_preference", "");
 
-      await fetch(apiEndpointBaseURL + "/products/create-product", {
-        method: "post",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("auth_token")}`
-        },
-        body: form
-      });
+    const response = await fetch(apiEndpointBaseURL + "/products/create-product", {
+      method: "post",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("auth_token")}`
+      },
+      body: form
+    });
 
-      toast.success("Product listed successfully!");
-    } catch {
-      toast.error("Product listing failed. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    if (!response.ok) throw new Error();
+
+    toast.success("Product listed successfully!");
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit(onOpen)} className="space-y-6">
+    <form ref={formRef} onSubmit={handleSubmit(modalProps.onOpen)} className="space-y-6">
       <h3 className="text-sm text-center font-semibold">Images/Media Upload</h3>
 
       <div className="flex max-sm:flex-col max-sm:gap-6 sm:items-end">
@@ -186,6 +184,13 @@ function ListingForm() {
             <input
               ref={imageInputRef}
               onChange={(e) => {
+                if (e.target.files && e.target.files.length > 5) {
+                  e.target.files = null;
+                  return toast.error("Only a maximum of 5 images is allowed");
+                }
+
+                if (!e.target.files || !e.target.files?.length) return toast.warning("Please select an image");
+
                 setImagesLength(e.target.files?.length!);
                 setPreviewImageUrl((prev) => {
                   URL.revokeObjectURL(prev);
@@ -345,7 +350,7 @@ function ListingForm() {
           {errors["discount"] && <small className="text-danger">{errors["discount"].message as string}</small>}
         </div>
 
-        <div>
+        <div className="pt-2">
           <Select
             label="Payment method"
             labelPlacement="outside"
@@ -508,32 +513,13 @@ function ListingForm() {
         </button>
       </div>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} onClose={onClose}>
-        <ModalContent>
-          {(onClose: () => any) => (
-            <ModalBody className="flex flex-col gap-2 justify-center items-center">
-              <p>As you create your listing, preview how it will appear to others on Marketplace.</p>
-              <ProductCard {...{ ...(getValues() as Product), images: [previewImageUrl] }} />
-              <div className="space-x-4">
-                <button
-                  onClick={() => (submitForm(), onClose())}
-                  className="px-4 py-1.5 text-sm rounded-full transition-all active:scale-95 bg-primary text-white"
-                  type="button"
-                >
-                  Confirm and Publish
-                </button>
-                <button
-                  onClick={onClose}
-                  className="px-4 py-1.5 text-sm rounded-full transition-all active:scale-95 hover:bg-primary/20 border border-primary text-primary"
-                  type="button"
-                >
-                  Edit Details
-                </button>
-              </div>
-            </ModalBody>
-          )}
-        </ModalContent>
-      </Modal>
+      <ListingPreviewModal
+        {...modalProps}
+        getValues={getValues}
+        previewImageUrl={previewImageUrl}
+        submitForm={submitForm}
+        setIsSubmitting={setIsSubmitting}
+      />
 
       {isSubmitting && <Loading fixed />}
     </form>
@@ -545,5 +531,86 @@ function GradientHeader({ children }: { children: string }) {
     <h3 className="px-4 py-2 bg-gradient-to-b from-white to-primary/25 text-center text-sm font-semibold">
       {children}
     </h3>
+  );
+}
+
+function ListingPreviewModal(
+  props: ReturnType<typeof useDisclosure> & {
+    previewImageUrl: string;
+    submitForm(): any;
+    getValues(): any;
+    setIsSubmitting: React.Dispatch<React.SetStateAction<boolean>>;
+  }
+) {
+  const successModalProps = useDisclosure();
+
+  return (
+    <Modal isOpen={props.isOpen} onOpenChange={props.onOpenChange} onClose={props.onClose}>
+      <ModalContent>
+        {(onClose: () => any) => (
+          <ModalBody className="flex flex-col gap-2 justify-center items-center text-center p-4">
+            <p>As you create your listing, preview how it will appear to others on Marketplace.</p>
+            <ProductCard {...{ ...(props.getValues() as Product), images: [props.previewImageUrl] }} />
+            <div className="space-x-4">
+              <button
+                onClick={async () => {
+                  onClose();
+
+                  try {
+                    await props.submitForm();
+                    successModalProps.onOpen();
+                  } catch {
+                    toast.error("Product listing failed. Please try again.");
+                  } finally {
+                    props.setIsSubmitting(false);
+                  }
+                }}
+                className="px-4 py-1.5 text-sm rounded-full transition-all active:scale-95 bg-primary text-white"
+                type="button"
+              >
+                Confirm and Publish
+              </button>
+              <button
+                onClick={onClose}
+                className="px-4 py-1.5 text-sm rounded-full transition-all active:scale-95 hover:bg-primary/20 border border-primary text-primary"
+                type="button"
+              >
+                Edit Details
+              </button>
+            </div>
+
+            <ProductListingSuccessModal {...successModalProps} />
+          </ModalBody>
+        )}
+      </ModalContent>
+    </Modal>
+  );
+}
+
+function ProductListingSuccessModal(props: ReturnType<typeof useDisclosure>) {
+  const { isOpen, onOpenChange, onClose } = props;
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} onOpenChange={onOpenChange}>
+      <ModalContent>
+        {(_onClose: () => void) => (
+          <ModalBody>
+            <div className="flex flex-col gap-1 items-center justify-center">
+              <img src="/images/animated-checkmark.gif" alt="" />
+              <h3>Your Listing is Live!</h3>
+              <p>Your product has been successfully added to the marketplace.</p>
+              <div className="flex items-center justify-center gap-4">
+                <Link className="bg-primary text-white p-2 rounded-lg" to="/">
+                  Go to Dashboard
+                </Link>
+                <button className="border-primary text-primary p-2 rounded-lg" onClick={_onClose}>
+                  Go to Dashboard
+                </button>
+              </div>
+            </div>
+          </ModalBody>
+        )}
+      </ModalContent>
+    </Modal>
   );
 }

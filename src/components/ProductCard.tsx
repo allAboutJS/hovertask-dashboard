@@ -2,6 +2,7 @@ import { Heart, ShoppingBag, StarIcon } from "lucide-react";
 import { Link } from "react-router";
 import { ProductCardProps } from "../../types";
 import cn from "../utils/cn";
+import getPercentageValue from "../utils/getPercentageValue";
 
 export default function ProductCard(props: ProductCardProps) {
   return (
@@ -30,11 +31,13 @@ export default function ProductCard(props: ProductCardProps) {
             </button>
           </div>
           <div className="flex gap-6">
-            <p className="text-[9.4px] text-[#77777A] line-through">₦{props.price}</p>
+            {props.discount && props.discount > 0 && (
+              <p className="text-[9.4px] text-[#77777A] line-through">₦{props.price.toLocaleString()}</p>
+            )}
             <p className="text-[11.28px]">
               ₦
-              {props.discount
-                ? Number((props.price - (props.price * props.discount) / 100).toLocaleString()).toFixed(2)
+              {props.discount && props.discount > 0
+                ? Number(getPercentageValue(props.price, props.discount).toFixed(2)).toLocaleString()
                 : props.price.toLocaleString()}
             </p>
           </div>
