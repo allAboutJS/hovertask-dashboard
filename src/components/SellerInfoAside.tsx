@@ -1,18 +1,21 @@
 import { Star } from "lucide-react";
+import { AuthUserDAO } from "../../types";
 
-export default function SellerInfoAside() {
+export default function SellerInfoAside(props: AuthUserDAO) {
   return (
     <div className="lg:mt-24 space-y-10 max-lg:p-4 text-sm">
       <div className="bg-white p-4 rounded-[15.2px] space-y-4">
         <div className="flex gap-2">
           <img width={42} height={42} src="/assets/images/demo-avatar.png" alt="Avatar" />
           <div className="text-[#000000BF]">
-            <p className="font-medium">Alayande Bamidele</p>
-            <p className="text-xs">@Datalite Gadgets</p>
+            <p className="font-medium">
+              {props.fname} {props.lname}
+            </p>
+            <p className="text-xs">@{props.username}</p>
           </div>
         </div>
         <div className="flex gap-4 items-center">
-          <img src="/assets/images/twemoji_flag-nigeria.png" width={20} alt="Flag" /> |{" "}
+          <img src="/images/nigerian-flag.png" width={20} alt="Flag" /> |{" "}
           <span className="relative text-[#77777A] text-[9.82px]">
             Online <span className="absolute -left-1.5 top-1 h-1 w-1 bg-green-400 rounded-full"></span>
           </span>
@@ -22,22 +25,22 @@ export default function SellerInfoAside() {
             Verified ID
           </div>
           <div className="text-[7.34px] flex items-center gap-1">
-            <Star size={12} color="#F5B300" /> 4.8
+            <Star size={12} color="#F5B300" /> 0
           </div>
           <button className="text-white bg-primary text-[9.5px] px-2 py-1 rounded-full text-center">Follow</button>
         </div>
         <div className="h-1 border-t border-dashed border-[#66666666] w-[80%] mx-auto"></div>
         <div className="flex gap-2">
           <div className="bg-[#EEF0FF] px-2 py-0.5 rounded-lg flex flex-col gap-0.5 border-1 border-[#66666666] flex-1">
-            <span className="text-[9.43px]">3</span>
+            <span className="text-[9.43px]">0</span>
             <span className="text-[8px]">Referrals</span>
           </div>
           <div className="bg-[#EEF0FF] px-2 py-0.5 rounded-lg flex flex-col gap-0.5 border-1 border-[#66666666] flex-1">
-            <span className="text-[9.43px]">6</span>
+            <span className="text-[9.43px]">0</span>
             <span className="text-[8px]">Followers</span>
           </div>
           <div className="bg-[#EEF0FF] px-2 py-0.5 rounded-lg flex flex-col gap-0.5 border-1 border-[#66666666] flex-1">
-            <span className="text-[9.43px]">1</span>
+            <span className="text-[9.43px]">0</span>
             <span className="text-[8px]">Following</span>
           </div>
         </div>
@@ -54,9 +57,7 @@ export default function SellerInfoAside() {
         <span className="material-icons-outlined" style={{ fontSize: 12 }} color="#000000BF">
           location_on
         </span>{" "}
-        <p className="text-xs font-light text-[#000000BF]">
-          Municipal Area Council, Federal Capital Territory, Nigeria
-        </p>
+        <p className="text-xs font-light text-[#000000BF]">No address provided</p>
       </div>
       <div className="text-xs space-y-4">
         <h3 className="font-medium">Safety tips</h3>

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import type { AuthUserDAO, Product, Task } from "../../types";
+import type { AuthUserDAO, Task } from "../../types";
 import { DollarSign, Wallet } from "lucide-react";
 import { setAuthUserFields } from "../redux/slices/auth";
 import { Link } from "react-router";
@@ -11,6 +11,8 @@ import { setTasks } from "../redux/slices/tasks";
 import getTasks from "../utils/getTasks";
 import Loading from "../components/Loading";
 import TaskCard from "../components/TaskCard";
+import useProducts from "../hooks/useProducts";
+import EmptyMapErr from "../components/EmptyMapErr";
 
 export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
@@ -196,17 +198,29 @@ function AvailableTasks() {
 }
 
 function PopularProducts() {
-  const products = useSelector<any, Product[] | null>((state: any) => state.products.value);
+  const { products, reload } = useProducts();
 
   return (
     <div className="space-y-3">
       <h2 className="text-lg font-semibold">Popular Products</h2>
 
-      <div className="flex gap-4 overflow-x-auto bg-primary/30 p-4 rounded-3xl w-full">
-        {products?.map((product) => (
-          <ProductCard {...product} key={product.name} version="bordered" buttonText="Check Product" />
-        ))}
-      </div>
+      {products ? (
+        products.length > 0 ? (
+          <div className="flex gap-4 overflow-x-auto bg-primary/30 p-4 rounded-3xl w-full">
+            {products?.map((product) => (
+              <ProductCard {...product} key={product.name} version="bordered" buttonText="Check Product" />
+            ))}
+          </div>
+        ) : (
+          <EmptyMapErr
+            description="No products are available yet"
+            buttonInnerText="Reload Products"
+            onButtonClick={reload}
+          />
+        )
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 }

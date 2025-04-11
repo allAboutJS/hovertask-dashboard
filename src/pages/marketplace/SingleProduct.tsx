@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { addProduct, removeProduct } from "../../redux/slices/cart";
 import { toast } from "sonner";
 import useCartItem from "../../hooks/useCartItem";
+import useProductSeller from "../../hooks/useProductSeller";
 
 export default function SingleProductPage() {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -21,6 +22,7 @@ export default function SingleProductPage() {
   const product = useProduct(id!);
   const dispatch = useDispatch();
   const cartProduct = useCartItem(id!);
+  const seller = useProductSeller(id!);
 
   useEffect(() => {
     const singleSlideWidth = imageCarouselRef.current?.clientWidth;
@@ -48,17 +50,19 @@ export default function SingleProductPage() {
   return (
     <div className="mobile:grid grid-cols-[1fr_200px] gap-4 min-h-full">
       <div className="bg-white shadow-md px-4 py-8 space-y-8 overflow-hidden">
-        {product ? (
+        {product && seller ? (
           <>
             <header className="flex gap-4">
               <Link to={location.pathname.includes("dashboard") ? "/dashboard/marketplce" : "/marketplace"}>
                 <ArrowLeft size={25} />
               </Link>
               <div className="flex items-center gap-4">
-                <img src="/assets/images/demo-avatar.png" width={52} alt="Seller avatar" />
+                <img src={seller.avatar || "/assets/images/demo-avatar.png"} width={52} alt="Seller avatar" />
                 <div>
-                  <h1 className="text-xl font-semibold">Datalite Gadgets</h1>
-                  <Link className="text-primary hover:underline" to="/marketplace/s/id">
+                  <h1 className="text-xl font-semibold capitalize">
+                    {seller.fname} {seller.lname}
+                  </h1>
+                  <Link className="text-primary hover:underline" to={`"/marketplace/s/${seller.id}`}>
                     View Profile
                   </Link>
                 </div>
@@ -69,7 +73,7 @@ export default function SingleProductPage() {
             <div>
               <div className="relative overflow-hidden space-y-3">
                 {/* Nav buttons */}
-                {product.images.length > 1 && (
+                {product.images?.length > 1 && (
                   <>
                     {activeImageIndex > 0 && (
                       <button
@@ -95,7 +99,7 @@ export default function SingleProductPage() {
                   ref={imageCarouselRef}
                   className="max-w-full overflow-auto snap-mandatory snap-x flex no-scrollbar"
                 >
-                  {product.images.map((image) => (
+                  {product.images?.map((image) => (
                     <div className="snap-center snap-always w-full min-w-full max-w-full" key={image}>
                       <img className="max-w-[90%] block mx-auto" src={image} alt="" />
                     </div>
@@ -128,9 +132,9 @@ export default function SingleProductPage() {
                   <div className="space-y-1 col-span-9">
                     <h2 className="text-lg font-medium">{product.name}</h2>
                     <p className="text-sm text-[#000000BF]">{product.description}</p>
-                    <Info heading="Brand" value="none" />
-                    <Info heading="Size" value="none" />
-                    <Info heading="Color" value="none" />
+                    <Info heading="Brand" value="None" />
+                    <Info heading="Size" value="None" />
+                    <Info heading="Color" value="None" />
                   </div>
 
                   <div className="col-span-2 flex flex-col justify-between space-y-3">
@@ -138,14 +142,16 @@ export default function SingleProductPage() {
                     <div className="relative before:absolute before:w-full before:h-full before:bg-gradient-to-b before:from-[#4B70F5] before:to-[#2C418F00] before:rounded-lg before:-rotate-6 before:z-0 before:opacity-20 w-fit">
                       {product.discount && (
                         <p className="line-through text-[#77777A] text-xs relative">
-                          ₦{Number(product.price.toLocaleString()).toFixed(2)}
+                          ₦{Number(product.price).toLocaleString()}
                         </p>
                       )}
                       <p className="text-lg font-semibold relative">
                         ₦
                         {product.discount
-                          ? (product.price - (product.price * product.discount) / 100).toFixed(2)
-                          : product.price}
+                          ? Number(
+                              (product.price - (product.price * product.discount) / 100).toFixed(2)
+                            ).toLocaleString()
+                          : product.price.toLocaleString()}
                       </p>
                     </div>
                     {/* Price */}
@@ -181,18 +187,18 @@ export default function SingleProductPage() {
                       <span style={{ fontSize: 14 }} className="material-icons-outlined">
                         location_on
                       </span>{" "}
-                      Lagos, Ikeja, 27 mins ago.
+                      Address not provided
                     </span>
                     <span>|</span>
                     <span className="inline-flex items-center gap-2">
-                      <Eye size={14} /> {product.reviews_count} views
+                      <Eye size={14} /> {product.reviews_count || 0} views
                     </span>
                   </div>
                   <div className="flex gap-6">
-                    <span className="text-primary">({product.reviews_count} Reviews)</span>
-                    <span>300 units</span>
+                    <span className="text-primary">({product.reviews_count || 0} Reviews)</span>
+                    <span>{product.stock || 0} units</span>
                     <span className="flex items-center gap-1">
-                      <b className="text-black">{product.rating}</b>
+                      <b className="text-black">{product.rating || 0}</b>
                       {Array(5)
                         .fill(true)
                         .map((_, i) => (
@@ -267,12 +273,12 @@ export default function SingleProductPage() {
                   unique link.
                 </p>
               </div>
-              <div className="flex justify-between flex-wrap gap-2">
+              <div className="flex justify-between flex-wrap gap-2 items-end">
                 <div>
                   <h3 className="text-lg">Take Action Now!</h3>
                   <p className="font-light">Click the button to start earning today.</p>
                 </div>
-                <button className="px-4 py-2 active:scale-90 transition-transform bg-primary rounded-xl text-white text-sm">
+                <button className="px-4 py-2 active:scale-90 transition-transform bg-primary rounded-xl text-white text-sm h-fit">
                   Generate Reseller Link
                 </button>
               </div>
@@ -283,9 +289,7 @@ export default function SingleProductPage() {
         )}
       </div>
 
-      <div>
-        <SellerInfoAside />
-      </div>
+      <div>{seller && <SellerInfoAside {...seller} />}</div>
     </div>
   );
 }

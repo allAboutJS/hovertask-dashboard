@@ -16,7 +16,7 @@ export default function ResellPage() {
   const categories = useProductCategories();
   const [currentCategory, setCurrentCategory] = useState<string>("all");
   const [currentlyViewedProduct, setCurrentlyViewedProduct] = useState<Product>();
-  const products = useProducts();
+  const { products, reload } = useProducts();
   const modalProps = useDisclosure();
 
   document.title = "Earn By Reselling Products";
@@ -79,13 +79,16 @@ export default function ResellPage() {
                     responsive
                     key={i}
                     {...product}
-                    linkOverrideURL={`/earn/resell/${i}`}
                     onButtonClickAction={() => (setCurrentlyViewedProduct(product), modalProps.onOpen())}
                   />
                 ))}
               </div>
             ) : (
-              <EmptyMapErr description="No products have been added yet" buttonInnerText="Refresh" />
+              <EmptyMapErr
+                description="No products have been added yet"
+                buttonInnerText="Refresh"
+                onButtonClick={reload}
+              />
             )
           ) : (
             <Loading />

@@ -6,6 +6,8 @@ import { CartProduct } from "../../../types";
 import { useDispatch } from "react-redux";
 import { updateQuantity } from "../../redux/slices/cart";
 import SellerInfoAside from "../../components/SellerInfoAside";
+import getPercentageValue from "../../utils/getPercentageValue";
+import Loading from "../../components/Loading";
 
 export default function ProductCheckoutPage() {
   const { id } = useParams();
@@ -29,10 +31,14 @@ export default function ProductCheckoutPage() {
           <h1 className="text-xl font-semibold">Product Checkout</h1>
         </div>
 
-        <div>
-          <CartItemCard {...product} />
-          <ChooseOnlinePaymentMethodPage />.
-        </div>
+        {product ? (
+          <div>
+            <CartItemCard {...product} />
+            <ChooseOnlinePaymentMethodPage />.
+          </div>
+        ) : (
+          <Loading />
+        )}
       </div>
 
       <div className="space-y-20 max-mobile:space-y-6">
@@ -64,11 +70,9 @@ export default function ProductCheckoutPage() {
               Net Total:{" "}
               <span className="font-medium">
                 ₦
-                {(
-                  (product.discount
-                    ? (product.price - (product.price * product.discount) / 100) * product.cartQuantity
-                    : product.cartQuantity * product.price) + (product.delivery_fee ? product.delivery_fee : 0)
-                ).toFixed(2)}
+                {product.discount
+                  ? (getPercentageValue(product.price, product.discount) * product.cartQuantity).toFixed(2)
+                  : (product.price * product.cartQuantity).toFixed(2)}
               </span>
             </p>
           </div>
@@ -94,7 +98,7 @@ function CartItemCard(props: CartProduct) {
             <p>
               ₦
               {props.discount
-                ? Number((props.price - (props.price * props.discount) / 100).toLocaleString()).toFixed(2)
+                ? Number(getPercentageValue(props.price, props.discount).toFixed(2)).toLocaleString()
                 : props.price.toLocaleString()}
             </p>
           </div>

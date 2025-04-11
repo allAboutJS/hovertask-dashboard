@@ -1,10 +1,13 @@
 import { ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
-import productCategories from "../utils/productCategories";
+import useProductCategories from "../hooks/useProductCategories";
+import Loading from "./Loading";
+import EmptyMapErr from "./EmptyMapErr";
 
 export default function MarketplaceAside() {
   const [currentCategory, setCurrentCategory] = useState<string>("all");
+  const categories = useProductCategories();
 
   return (
     <div className="mt-24 space-y-10 max-lg:hidden">
@@ -17,17 +20,29 @@ export default function MarketplaceAside() {
         </div>
         <SearchForm />
         <div className="space-y-2">
-          {productCategories.map((category) => (
-            <button
-              onClick={() => setCurrentCategory(category.key)}
-              className={`${
-                currentCategory == category.key ? "bg-primary text-white" : "bg-[#EBEBEB]"
-              } border-1 border-zinc-300 py-1 px-2 rounded-xl whitespace-nowrap text-sm`}
-              key={category.key}
-            >
-              {category.label}
-            </button>
-          ))}
+          {categories ? (
+            categories.length > 0 ? (
+              categories.map((category) => (
+                <button
+                  onClick={() => setCurrentCategory(category.key)}
+                  className={`${
+                    currentCategory == category.key ? "bg-primary text-white" : "bg-[#EBEBEB]"
+                  } border-1 border-zinc-300 py-1 px-2 rounded-xl whitespace-nowrap text-sm`}
+                  key={category.key}
+                >
+                  {category.label}
+                </button>
+              ))
+            ) : (
+              <EmptyMapErr
+                onButtonClick={() => useProductCategories({ refresh: true })}
+                description="No product categories available yet"
+                buttonInnerText="Reload Categories"
+              />
+            )
+          ) : (
+            <Loading />
+          )}
         </div>
       </div>
 

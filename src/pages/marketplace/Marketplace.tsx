@@ -2,13 +2,14 @@ import { Link } from "react-router";
 import MarketplaceSearchForm from "../../components/MarketplaceSearchForm";
 import { ArrowLeft } from "lucide-react";
 import ProductsSection from "../../components/ProductsSection";
-import { useSelector } from "react-redux";
-import { Product } from "../../../types";
 import CarouselAdBanner from "../../components/CarouselAdBanner";
 import MarketplaceAside from "../../components/MarketplaceAside";
+import useProducts from "../../hooks/useProducts";
+import Loading from "../../components/Loading";
+import EmptyMapErr from "../../components/EmptyMapErr";
 
 export default function MarketplacePage() {
-  const products = useSelector<any, Product[]>((state: any) => state.products.value);
+  const { products, reload } = useProducts();
 
   return (
     <div className="mobile:grid grid-cols-[1fr_180px] gap-4 min-h-full">
@@ -30,39 +31,53 @@ export default function MarketplacePage() {
           Discover trending products and services or showcase yours to thousands of buyers daily.
         </p>
 
-        <ProductsSection products={products} heading="Trending Products and Services" link="/marketplace/c/trending" />
+        {products ? (
+          products.length > 0 ? (
+            <>
+              <ProductsSection
+                products={products}
+                heading="Trending Products and Services"
+                link="/marketplace/c/trending"
+              />
 
-        <ProductsSection
-          products={products}
-          startComponent={<img src="/images/Group 1000004394.png" width={150} alt="" />}
-        />
+              <ProductsSection
+                products={products}
+                startComponent={<img src="/images/Group 1000004394.png" width={150} alt="" />}
+              />
 
-        <CarouselAdBanner />
+              <CarouselAdBanner />
 
-        <ProductsSection
-          heading="Best Deals and Services"
-          products={products}
-          link="/marketplace/c/best-deals-and-services"
-        />
+              <ProductsSection
+                heading="Best Deals and Services"
+                products={products}
+                link="/marketplace/c/best-deals-and-services"
+              />
 
-        <ProductsSection
-          heading="Trending Women's Wear"
-          products={products}
-          link="/marketplace/c/trending-womens-wear"
-        />
+              <ProductsSection
+                heading="Trending Women's Wear"
+                products={products}
+                link="/marketplace/c/trending-womens-wear"
+              />
 
-        <ProductsSection
-          products={products}
-          startComponent={<img src="/images/Group 1000004396.png" width={150} alt="" />}
-        />
+              <ProductsSection
+                products={products}
+                startComponent={<img src="/images/Group 1000004396.png" width={150} alt="" />}
+              />
 
-        <ProductsSection
-          heading="Hottest Deal Services"
-          products={products}
-          link="/marketplace/c/hottest-deal-services"
-        />
+              <ProductsSection
+                heading="Hottest Deal Services"
+                products={products}
+                link="/marketplace/c/hottest-deal-services"
+              />
 
-        <CarouselAdBanner />
+              <CarouselAdBanner />
+            </>
+          ) : (
+            <EmptyMapErr buttonInnerText="Reload" description="No products available yet" onButtonClick={reload} />
+          )
+        ) : (
+          <Loading />
+        )}
       </div>
 
       <div>
