@@ -2,7 +2,7 @@ import { Bookmark, Heart, Star } from "lucide-react";
 import { useState } from "react";
 import cn from "../../utils/cn";
 import Feedback from "../../components/Feedback";
-import SellerInfoAside from "../../components/SellerInfoAside";
+// import SellerInfoAside from "../../components/SellerInfoAside";
 
 export default function SellerPage() {
   return (
@@ -77,9 +77,7 @@ export default function SellerPage() {
         <SellingReviewsFollowersTab />
       </div>
 
-      <div>
-        <SellerInfoAside />
-      </div>
+      <div>{/* <SellerInfoAside {...seller} /> */}</div>
     </div>
   );
 }
