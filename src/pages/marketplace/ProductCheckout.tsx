@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { CartProduct } from "../../../types";
 import { useDispatch } from "react-redux";
 import { updateQuantity } from "../../redux/slices/cart";
-import SellerInfoAside from "../../components/SellerInfoAside";
+// import SellerInfoAside from "../../components/SellerInfoAside";
 import getPercentageValue from "../../utils/getPercentageValue";
 import Loading from "../../components/Loading";
 
@@ -42,7 +42,7 @@ export default function ProductCheckoutPage() {
       </div>
 
       <div className="space-y-20 max-mobile:space-y-6">
-        <SellerInfoAside />
+        {/* <SellerInfoAside /> */}
 
         <div className="p-4">
           <div className="text-sm space-y-3 bg-white/70 p-4 rounded-3xl">
