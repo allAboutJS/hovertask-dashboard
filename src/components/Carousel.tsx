@@ -38,7 +38,7 @@ export default function Carousel({ children }: { children: React.ReactNode[] }) 
   }, [carouselRef.current?.clientWidth]);
 
   return (
-    <div className="max-full min-w-full">
+    <div className="max-w-full min-w-full">
       <div ref={carouselRef} className="flex max-w-full overflow-hidden">
         {children.map((child, i) => (
           <div key={i} className="w-full min-w-full">

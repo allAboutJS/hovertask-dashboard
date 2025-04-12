@@ -18,19 +18,21 @@ export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
 
   return (
-    <div className="px-4 py-6 space-y-10 bg-white shadow min-h-full">
-      <Greeting lname={authUser.lname} how_you_want_to_use={authUser.how_you_want_to_use} />
-      <BalanceBoard balance={authUser.balance} />
-      <WelcomeMessage email_verified_at={authUser.email_verified_at} />
-      <AvailableTasks />
-      <Carousel>
-        <img src="/images/Group 1000004390.png" alt="" />
-        <img src="/images/Group 1000004393.png" alt="" />
-        <img src="/images/Group 1000004395.png" alt="" />
-      </Carousel>
-      <AdBanner />
-      <PopularProducts />
-      <BecomeMemberModal />
+    <div className="mobile:grid grid-cols-[1fr_200px] gap-4 min-h-full">
+      <div className="px-4 py-6 space-y-10 bg-white shadow min-h-full max-w-full overflow-x-hidden">
+        <Greeting lname={authUser.lname} how_you_want_to_use={authUser.how_you_want_to_use} />
+        <BalanceBoard balance={authUser.balance} />
+        <WelcomeMessage email_verified_at={authUser.email_verified_at} />
+        <AvailableTasks />
+        <Carousel>
+          <img src="/images/Group 1000004390.png" alt="" />
+          <img src="/images/Group 1000004393.png" alt="" />
+          <img src="/images/Group 1000004395.png" alt="" />
+        </Carousel>
+        <AdBanner />
+        <PopularProducts />
+        <BecomeMemberModal />
+      </div>
     </div>
   );
 }

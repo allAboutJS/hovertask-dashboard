@@ -26,44 +26,50 @@ export default function Earn() {
     }
   ];
   return (
-    <div className="bg-white shadow p-4 pt-12 space-y-12 min-h-full">
-      <div className="bg-primary/20 p-6 rounded-3xl relative">
-        <div className="flex gap-4 max-w-xs">
-          <Link to="/">
-            <ArrowLeft />
-          </Link>
+    <div className="mobile:grid grid-cols-[1fr_200px] gap-4 min-h-full">
+      <div className="bg-white shadow p-4 pt-12 space-y-12 min-h-full">
+        <div className="bg-primary/20 p-6 rounded-3xl relative">
+          <div className="flex gap-4 max-w-xs">
+            <Link to="/">
+              <ArrowLeft />
+            </Link>
 
-          <div className="space-y-2">
-            <h1 className="text-xl font-semibold">Choose Your Earning Path</h1>
-            <p className="text-sm text-zinc-500">Select how want to earn and start making money today</p>
+            <div className="space-y-2">
+              <h1 className="text-xl font-semibold">Choose Your Earning Path</h1>
+              <p className="text-sm text-zinc-500">Select how want to earn and start making money today</p>
+            </div>
+          </div>
+
+          <div className="max-w-md flex justify-center">
+            <img
+              width={150}
+              src="/images/3D_rendering_of_new_1000_Nigerian_naira_notes_flying_in_different_angles_and_orientations_isolated_on_transparent_background-removebg-preview 1.png"
+              alt=""
+            />
+          </div>
+
+          <div className="absolute max-mobile:hidden right-4 -top-16">
+            <img
+              src="/images/Social_Media_-_Sandrin_Design_-_11_-_sandrin__-removebg-preview 1.png"
+              width={280}
+              alt=""
+            />
           </div>
         </div>
 
-        <div className="max-w-md flex justify-center">
-          <img
-            width={150}
-            src="/images/3D_rendering_of_new_1000_Nigerian_naira_notes_flying_in_different_angles_and_orientations_isolated_on_transparent_background-removebg-preview 1.png"
-            alt=""
-          />
+        <div className="space-y-4 bg-primary/5 rounded-3xl p-2">
+          {earningOptions.map((option) => (
+            <EarningOption key={option.title} {...option} />
+          ))}
         </div>
 
-        <div className="absolute max-mobile:hidden right-4 -top-16">
-          <img src="/images/Social_Media_-_Sandrin_Design_-_11_-_sandrin__-removebg-preview 1.png" width={280} alt="" />
+        <div className="sm:grid grid-cols-2 p-4 space-x-4 space-y-8 shadow rounded-3xl">
+          <BenefitOfPerformingTasks />
+          <OverviewOfCommissionsFromReselling />
         </div>
-      </div>
 
-      <div className="space-y-4 bg-primary/5 rounded-3xl p-2">
-        {earningOptions.map((option) => (
-          <EarningOption key={option.title} {...option} />
-        ))}
+        <EarnByResellingModal />
       </div>
-
-      <div className="sm:grid grid-cols-2 p-4 space-x-4 space-y-8 shadow rounded-3xl">
-        <BenefitOfPerformingTasks />
-        <OverviewOfCommissionsFromReselling />
-      </div>
-
-      <EarnByResellingModal />
     </div>
   );
 }

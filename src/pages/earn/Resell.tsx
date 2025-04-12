@@ -22,7 +22,7 @@ export default function ResellPage() {
   document.title = "Earn By Reselling Products";
 
   return (
-    <div className="grid min-[1000px]:grid-cols-[1fr_182px] min-h-full gap-4">
+    <div className="grid min-[1000px]:grid-cols-[1fr_200px] min-h-full gap-4">
       <div className="shadow min-h-full bg-white p-4 space-y-12">
         <div
           style={{ backgroundImage: "url('/images/Rectangle 39253.png')" }}

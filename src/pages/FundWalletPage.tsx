@@ -44,7 +44,7 @@ export default function FundWalletPage() {
 
   return (
     <div className="px-4 py-6 space-y-6">
-      <div className="flex items-center gap-4">
+      <div className="flex gap-4">
         <Link to="/">
           <ArrowLeft />
         </Link>

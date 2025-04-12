@@ -22,7 +22,7 @@ export default function CategoryPage() {
   const extraCategoryHeading = headerCategoryMap[randomCategory];
 
   return (
-    <div className="mobile:grid grid-cols-[1fr_180px] gap-4 min-h-full">
+    <div className="mobile:grid grid-cols-[1fr_200px] gap-4 min-h-full">
       <div className="min-h-full shadow bg-white p-4 space-y-8 overflow-hidden">
         <div className="flex gap-4 flex-1">
           <Link to="/marketplace">
