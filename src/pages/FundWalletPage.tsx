@@ -2,9 +2,45 @@ import { ArrowLeft, Wallet } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
 import { AuthUserDAO } from "../../types";
+import { useState } from "react";
+import initiateTransaction from "../utils/initiateTransaction";
+import { toast } from "sonner";
+import verifyTransaction from "../utils/verifiyTrassanction";
 
 export default function FundWalletPage() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
+  const [amount, setAmount] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  function handleFundWallet(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    toast.promise(
+      () =>
+        new Promise(async (resolve, reject) => {
+          try {
+            setIsSubmitting(true);
+            const response = await initiateTransaction({ email: authUser.email, amount: Number(amount) });
+
+            if (!response.status) reject();
+            else {
+              const newWindow = window.open(response.data.authorization_url, "_blank");
+
+              if (!newWindow) reject("Please allow popups for this website");
+              else resolve(undefined), verifyTransaction(response.data.reference);
+            }
+          } catch (error: any) {
+            reject(error.message || "An error occurred. Please try again later.");
+          } finally {
+            setIsSubmitting(false);
+          }
+        }),
+      {
+        loading: "Initializing transaction...",
+        error: (e: string) => e,
+        success: "Transaction initialized successfully!"
+      }
+    );
+  }
 
   return (
     <div className="px-4 py-6 space-y-6">
@@ -33,7 +69,7 @@ export default function FundWalletPage() {
       <div className="p-4 rounded-3xl bg-primary/20 max-w-lg text-sm space-y-3">
         <p>Please input the amount you wish to add to your wallet</p>
 
-        <form className="flex items-center gap-2.5">
+        <form className="flex items-center gap-2.5" onSubmit={handleFundWallet}>
           <div className="flex flex-1 gap-4 items-center bg-white py-2 px-4 rounded-full border border-zinc-300">
             <span className="text-xl font-semibold text-zinc-500">₦</span>
             <input
@@ -44,9 +80,14 @@ export default function FundWalletPage() {
               required
               min={1000}
               id=""
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
             />
           </div>
-          <button className="bg-primary p-2 rounded-xl text-white transition-transform active:scale-95">
+          <button
+            disabled={isSubmitting}
+            className="bg-primary p-2 rounded-xl text-white transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transition-none"
+          >
             Fund Wallet
           </button>
         </form>

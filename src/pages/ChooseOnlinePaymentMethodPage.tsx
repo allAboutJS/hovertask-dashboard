@@ -1,5 +1,10 @@
 import { ArrowLeft, CreditCard } from "lucide-react";
 import { Link } from "react-router";
+import initiateTransaction from "../utils/initiateTransaction";
+import verifyTransaction from "../utils/verifiyTrassanction";
+import { toast } from "sonner";
+import { useSelector } from "react-redux";
+import { AuthUserDAO } from "../../types";
 
 export default function ChooseOnlinePaymentMethodPage() {
   const paymentOptions = [
@@ -7,22 +12,19 @@ export default function ChooseOnlinePaymentMethodPage() {
       title: "MasterCard / Visa / Verver Card",
       description: "Pay instantly with your credit or debit card",
       icon: <CreditCard size={32} />,
-      link: "#",
-      linkText: "Pay with Card"
+      buttonText: "Pay with Card"
     },
     {
       title: "Bank Transfer (USSD)",
       description: "Transfer funds using your bank's USSD code",
       icon: <span className="text-3xl font-semibold">₦</span>,
-      link: "#",
-      linkText: "Pay via USSD"
+      buttonText: "Pay via USSD"
     },
     {
       title: "Internet Banking Transfer",
       description: "Make a transfer using your bank's mobile or internet banking app",
       icon: <InternetBankTransferIcon />,
-      link: "#",
-      linkText: "Make Transfer"
+      buttonText: "Make Transfer"
     }
   ];
 
@@ -48,14 +50,35 @@ export default function ChooseOnlinePaymentMethodPage() {
   );
 }
 
-function PaymentOptionCard(props: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  link: string;
-  linkText: string;
-}) {
-  const { icon, title, description, link, linkText } = props;
+function PaymentOptionCard(props: { icon: React.ReactNode; title: string; description: string; buttonText: string }) {
+  const { icon, title, description, buttonText } = props;
+  const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
+
+  function initiatePaymentTransaction() {
+    toast.promise(
+      () =>
+        new Promise(async (resolve, reject) => {
+          try {
+            const response = await initiateTransaction({ email: authUser.email, amount: 1000 });
+
+            if (!response.status) reject();
+            else {
+              const newWindow = window.open(response.data.authorization_url, "_blank");
+
+              if (!newWindow) reject("Please allow popups for this website");
+              else resolve(undefined), verifyTransaction(response.data.reference);
+            }
+          } catch (error: any) {
+            reject(error.message || "An error occurred. Please try again later.");
+          }
+        }),
+      {
+        loading: "Initiating transaction...",
+        error: (e: string) => e,
+        success: "Transaction initialized successfully!"
+      }
+    );
+  }
 
   return (
     <div className="flex items-center gap-4 border-1 border-primary rounded-3xl py-4 px-4 mobile:px-8">
@@ -64,9 +87,9 @@ function PaymentOptionCard(props: {
         <p className="text-lg font-semibold">{title}</p>
         <p className="text-sm text-gray-500">{description}</p>
       </div>
-      <Link to={link} className="bg-primary text-sm px-4 py-2 rounded-xl text-white">
-        {linkText}
-      </Link>
+      <button onClick={initiatePaymentTransaction} className="bg-primary text-sm px-4 py-2 rounded-xl text-white">
+        {buttonText}
+      </button>
     </div>
   );
 }

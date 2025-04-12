@@ -113,3 +113,8 @@ export interface ProductStore {
   value: Product[] | null;
   categories: { key: string; label: string }[] | null;
 }
+
+export interface TransactionInitializationInfo {
+  amount: number;
+  email: String;
+}
