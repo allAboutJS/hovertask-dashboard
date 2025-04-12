@@ -13,6 +13,7 @@ import Loading from "../components/Loading";
 import TaskCard from "../components/TaskCard";
 import useProducts from "../hooks/useProducts";
 import EmptyMapErr from "../components/EmptyMapErr";
+import sendVerificationEmail from "../utils/sendVerificationEmail";
 
 export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
@@ -122,7 +123,7 @@ function BalanceBoard({ balance }: { balance?: number }) {
 }
 
 function WelcomeMessage({ email_verified_at }: { email_verified_at?: string | null }) {
-  const dispatch = useDispatch();
+  const email = useSelector<any, string>((state: any) => state.auth.value.email);
 
   return email_verified_at ? (
     <div className="text-center text-sm space-y-2">
@@ -140,7 +141,7 @@ function WelcomeMessage({ email_verified_at }: { email_verified_at?: string | nu
         your account
       </p>
       <button
-        onClick={() => dispatch(setAuthUserFields({ email_verified_at: new Date().toUTCString() }))}
+        onClick={() => sendVerificationEmail(email)}
         className="text-danger underline hover:bg-danger/20 px-4 py-1.5 rounded-full block w-fit mx-auto"
       >
         Kindly Verify Your Account
