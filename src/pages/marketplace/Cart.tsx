@@ -33,7 +33,7 @@ function CartItemCard(props: Product) {
   return (
     <div className="flex bg-white rounded-2xl space-y-2 shadow-md p-6 gap-4 max-sm:flex-col max-sm:items-stretch items-center">
       <div className="bg-zinc-200 rounded-2xl overflow-hidden">
-        <img className="aspect-[4/3] block" src={props.images[0]} alt={props.name} />
+        <img className="aspect-[4/3] block" src={props.images && props.images[0]} alt={props.name} />
       </div>
       <div className="space-y-2 flex flex-col justify-end flex-1">
         <div>

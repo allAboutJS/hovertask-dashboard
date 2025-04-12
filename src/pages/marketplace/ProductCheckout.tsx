@@ -5,14 +5,16 @@ import { toast } from "sonner";
 import { CartProduct } from "../../../types";
 import { useDispatch } from "react-redux";
 import { updateQuantity } from "../../redux/slices/cart";
-// import SellerInfoAside from "../../components/SellerInfoAside";
 import getPercentageValue from "../../utils/getPercentageValue";
 import Loading from "../../components/Loading";
+import useSeller from "../../hooks/useProductSeller";
+import SellerInfoAside from "../../components/SellerInfoAside";
 
 export default function ProductCheckoutPage() {
   const { id } = useParams();
   const product = useCartItem(id!);
   const navigate = useNavigate();
+  const seller = useSeller(id!);
 
   if (!product) {
     toast.error("This item has not yet been added to cart");
@@ -31,7 +33,7 @@ export default function ProductCheckoutPage() {
           <h1 className="text-xl font-semibold">Product Checkout</h1>
         </div>
 
-        {product ? (
+        {product && seller ? (
           <div>
             <CartItemCard {...product} />
             <ChooseOnlinePaymentMethodPage />.
@@ -42,7 +44,7 @@ export default function ProductCheckoutPage() {
       </div>
 
       <div className="space-y-20 max-mobile:space-y-6">
-        {/* <SellerInfoAside /> */}
+        {seller && <SellerInfoAside {...seller} />}
 
         <div className="p-4">
           <div className="text-sm space-y-3 bg-white/70 p-4 rounded-3xl">
@@ -88,7 +90,7 @@ function CartItemCard(props: CartProduct) {
   return (
     <div className="flex bg-white rounded-2xl space-y-2 shadow-md p-6 gap-4 max-sm:flex-col max-sm:items-stretch items-center">
       <div className="bg-zinc-200 rounded-2xl overflow-hidden">
-        <img className="aspect-[4/3] block" src={props.images[0]} alt={props.name} />
+        <img className="aspect-[4/3] block" src={props.images && props.images[0]} alt={props.name} />
       </div>
       <div className="space-y-2 flex flex-col justify-end flex-1">
         <div>
