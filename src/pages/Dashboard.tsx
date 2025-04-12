@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AuthUserDAO, Task } from "../../types";
 import { DollarSign, Wallet } from "lucide-react";
-import { setAuthUserFields } from "../redux/slices/auth";
 import { Link } from "react-router";
 import ProductCard from "../components/ProductCard";
 import Carousel from "../components/Carousel";
