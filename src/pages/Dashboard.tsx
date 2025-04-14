@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import ProductCard from "../components/ProductCard";
 import Carousel from "../components/Carousel";
 import { Modal, ModalBody, ModalContent, useDisclosure } from "@heroui/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { setTasks } from "../redux/slices/tasks";
 import getTasks from "../utils/getTasks";
 import Loading from "../components/Loading";
@@ -13,6 +13,8 @@ import TaskCard from "../components/TaskCard";
 import useProducts from "../hooks/useProducts";
 import EmptyMapErr from "../components/EmptyMapErr";
 import sendVerificationEmail from "../utils/sendVerificationEmail";
+import useDraggable from "../hooks/useDraggable";
+import cn from "../utils/cn";
 
 export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
@@ -201,6 +203,8 @@ function AvailableTasks() {
 
 function PopularProducts() {
   const { products, reload } = useProducts();
+  const productsContainer = useRef<HTMLDivElement>(null);
+  const { isDragging } = useDraggable(productsContainer);
 
   return (
     <div className="space-y-3">
@@ -208,8 +212,14 @@ function PopularProducts() {
 
       {products ? (
         products.length > 0 ? (
-          <div className="flex gap-4 overflow-x-auto bg-primary/30 p-4 rounded-3xl w-full">
-            {products?.map((product) => (
+          <div
+            ref={productsContainer}
+            className={cn("flex gap-4 overflow-x-auto bg-primary/30 p-4 rounded-3xl w-full", {
+              "cursor-grabbing": isDragging,
+              "cursor-grab": !isDragging
+            })}
+          >
+            {products.map((product) => (
               <ProductCard {...product} key={product.name} version="bordered" buttonText="Check Product" />
             ))}
           </div>
