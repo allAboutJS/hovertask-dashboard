@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AuthUserDAO, Task } from "../../types";
 import { DollarSign, Wallet } from "lucide-react";
-import { setAuthUserFields } from "../redux/slices/auth";
 import { Link } from "react-router";
 import ProductCard from "../components/ProductCard";
 import Carousel from "../components/Carousel";
@@ -13,6 +12,7 @@ import Loading from "../components/Loading";
 import TaskCard from "../components/TaskCard";
 import useProducts from "../hooks/useProducts";
 import EmptyMapErr from "../components/EmptyMapErr";
+import sendVerificationEmail from "../utils/sendVerificationEmail";
 
 export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
@@ -122,9 +122,9 @@ function BalanceBoard({ balance }: { balance?: number }) {
 }
 
 function WelcomeMessage({ email_verified_at }: { email_verified_at?: string | null }) {
-  const dispatch = useDispatch();
+  const email = useSelector<any, string>((state) => state.auth.value.email);
 
-  return email_verified_at ? (
+  return !email_verified_at ? (
     <div className="text-center text-sm space-y-2">
       <h2 className="text-xl font-semibold text-success">Welcome To The Website</h2>
       <p>
@@ -140,7 +140,7 @@ function WelcomeMessage({ email_verified_at }: { email_verified_at?: string | nu
         your account
       </p>
       <button
-        onClick={() => dispatch(setAuthUserFields({ email_verified_at: new Date().toUTCString() }))}
+        onClick={() => sendVerificationEmail(email)}
         className="text-danger underline hover:bg-danger/20 px-4 py-1.5 rounded-full block w-fit mx-auto"
       >
         Kindly Verify Your Account
