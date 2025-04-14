@@ -124,7 +124,7 @@ function BalanceBoard({ balance }: { balance?: number }) {
 function WelcomeMessage({ email_verified_at }: { email_verified_at?: string | null }) {
   const email = useSelector<any, string>((state) => state.auth.value.email);
 
-  return !email_verified_at ? (
+  return email_verified_at ? (
     <div className="text-center text-sm space-y-2">
       <h2 className="text-xl font-semibold text-success">Welcome To The Website</h2>
       <p>
