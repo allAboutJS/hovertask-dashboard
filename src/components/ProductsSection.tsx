@@ -2,9 +2,13 @@ import { Link } from "react-router";
 import ProductCard from "./ProductCard";
 import { ProductSectionProps } from "../../types";
 import cn from "../utils/cn";
+import { useRef } from "react";
+import useDraggable from "../hooks/useDraggable";
 
 const ProductsSection = (props: ProductSectionProps) => {
   const { heading, products, vertical, startComponent, link, grid, useResponsiveCard, loadAsyncProducts } = props;
+  const productViewsSection = useRef<HTMLDivElement>(null);
+  const { isDragging } = useDraggable(productViewsSection);
 
   return (
     <div className="space-y-4">
@@ -33,13 +37,16 @@ const ProductsSection = (props: ProductSectionProps) => {
             "flex-col": vertical,
             "grid grid-cols-2 max-[320px]:grid-cols-1 sm:grid-cols-3": grid,
             "flex flex-1": !grid,
-            "p-4 rounded-[inherit] bg-[#EBEFFF]": startComponent
+            "p-4 rounded-[inherit] bg-[#EBEFFF]": startComponent,
+            "cursor-grabbing": isDragging && !grid,
+            "cursor-grab": !isDragging && !grid
           })}
+          ref={productViewsSection}
         >
           {products.map((product) => (
             <ProductCard
               horizontal={vertical}
-              key={product.name}
+              key={product.id}
               {...product}
               responsive={useResponsiveCard}
               linkOverrideURL={`/marketplace/p/${product.id}`}

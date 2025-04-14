@@ -19,3 +19,18 @@
 button:not(:disabled) {
   cursor: pointer;
 }
+
+body,
+html {
+  user-select: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  -webkit-appearance: none;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
