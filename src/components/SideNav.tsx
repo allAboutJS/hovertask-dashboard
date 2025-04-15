@@ -8,12 +8,20 @@ import useActiveLink from "../hooks/useActiveLink";
 
 export default function SideNav() {
   const activeLink = useActiveLink();
+  const updatedMenu = menu.map((menuItem) => {
+    if (menuItem.label === "Buy Followers") {
+      delete menuItem.options;
+      menuItem.path = menuItem.basePath;
+    }
+
+    return menuItem;
+  });
 
   return (
     <div className="max-w-[243px] space-y-8 text-sm">
       <div className="bg-primary py-20 pl-6 rounded-3xl text-white">
         <div className="border-1 border-[#FFFFFF33] pl-4 pr-2 py-10 rounded-2xl space-y-3">
-          {menu.map((menuItem) => {
+          {updatedMenu.map((menuItem) => {
             return menuItem.options ? (
               <MenuOptionDropdown {...menuItem} />
             ) : (

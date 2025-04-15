@@ -39,7 +39,7 @@ export default function RootLayout() {
         </div>
       )}
 
-      {loadedAuthUser === false && <Loading />}
+      {loadedAuthUser === false && <Loading fixed />}
 
       {}
     </>
