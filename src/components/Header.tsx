@@ -1,10 +1,10 @@
 import { BellDot, ChevronDown, Menu, Moon, Search, ShoppingCart, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router";
-import type { AuthUserDAO } from "../../types";
+import type { AuthUserDAO, MenuDropdownProps } from "../../types";
 import menu from "../utils/menu";
 import cn from "../utils/cn";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 
 export default function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -80,17 +80,21 @@ export default function Header() {
             >
               {menu.map((menuItem) =>
                 requiredMenuItems.includes(menuItem.label) ? (
-                  <Link
-                    key={menuItem.label}
-                    className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl", {
-                      "bg-primary text-white":
-                        (pathname === "/" && menuItem.label === "Dashboard") ||
-                        (menuItem.label !== "Dashboard" && pathname.includes(menuItem.path))
-                    })}
-                    to={menuItem.path}
-                  >
-                    {menuItem.icon} {menuItem.label}
-                  </Link>
+                  menuItem.options ? (
+                    <MenuOptionDropdown {...menuItem} setIsMenuOpen={setIsMobileNavOpen} key={menuItem.label} />
+                  ) : (
+                    <Link
+                      key={menuItem.label}
+                      className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl", {
+                        "bg-primary text-white":
+                          (pathname === "/" && menuItem.label === "Dashboard") ||
+                          (menuItem.label !== "Dashboard" && pathname.includes(menuItem.path))
+                      })}
+                      to={menuItem.path}
+                    >
+                      {menuItem.icon} {menuItem.label}
+                    </Link>
+                  )
                 ) : null
               )}
             </nav>
@@ -136,7 +140,6 @@ function MobileNav({
         })}
       ></div>
       <nav
-        role="navigation"
         data-open={isOpen || undefined}
         className={cn(
           "fixed top-0 left-0 bottom-0 z-[100] mobile:hidden bg-white pt-3 pb-6 space-y-2 shadow-lg -translate-x-full transition-transform",
@@ -150,22 +153,89 @@ function MobileNav({
         </button>
         <div className="clear-right"></div>
         <div className="space-y-2 px-6">
-          {menu.map((menuItem) => (
-            <Link
-              key={menuItem.label}
-              onClick={() => setTimeout(() => setIsOpen(false), 600)}
-              className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl", {
-                "bg-primary text-white":
-                  (pathname === "/" && menuItem.label === "Dashboard") ||
-                  (menuItem.label !== "Dashboard" && pathname.includes(menuItem.path))
-              })}
-              to={menuItem.path}
-            >
-              {menuItem.icon} {menuItem.label}
-            </Link>
-          ))}
+          {menu.map((menuItem) =>
+            menuItem.options ? (
+              <MenuOptionDropdown {...menuItem} setIsMenuOpen={setIsOpen} />
+            ) : (
+              <Link
+                key={menuItem.label}
+                onClick={() => setTimeout(() => setIsOpen(false), 600)}
+                className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl", {
+                  "bg-primary text-white":
+                    (pathname === "/" && menuItem.label === "Dashboard") ||
+                    (menuItem.label !== "Dashboard" && pathname.includes(menuItem.path))
+                })}
+                to={menuItem.path}
+              >
+                {menuItem.icon} {menuItem.label}
+              </Link>
+            )
+          )}
         </div>
       </nav>
     </>
+  );
+}
+
+function MenuOptionDropdown(props: MenuDropdownProps & { setIsMenuOpen?: React.Dispatch<SetStateAction<boolean>> }) {
+  const { pathname } = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflowY = isOpen ? "hidden" : "auto";
+  }, [isOpen]);
+
+  return (
+    <div aria-haspopup="menu" className="relative">
+      <div
+        className={cn("flex items-center w-fit rounded-xl", {
+          "bg-primary text-white":
+            (pathname === "/" && props.label === "Dashboard") ||
+            (props.label !== "Dashboard" && pathname.includes(props.basePath))
+        })}
+      >
+        <Link
+          onClick={() => props.setIsMenuOpen && props.setIsMenuOpen(false)}
+          to={props.basePath}
+          className="flex items-center gap-2 px-3 py-1.5"
+        >
+          {props.icon} {props.label}
+        </Link>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={cn("flex items-center transition-all active:scale-90 px-2", {
+            "rotate-180": isOpen
+          })}
+        >
+          <ChevronDown size={13} />
+        </button>
+      </div>
+
+      {isOpen && <div className="fixed inset-0" onClick={() => setIsOpen(false)}></div>}
+
+      <div
+        aria-live="polite"
+        className={cn(
+          "absolute [top:calc(100%+2px)] p-2 rounded-xl bg-white shadow-lg text-black text-xs transition-all [transform-origin:_top]",
+          {
+            "opacity-0 overflow-hidden scale-0": !isOpen
+          }
+        )}
+      >
+        {props.options.map((option) => (
+          <Link
+            key={option.label}
+            onClick={() => (setIsOpen(false), props.setIsMenuOpen && props.setIsMenuOpen(false))}
+            className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl whitespace-nowrap", {
+              "bg-primary text-white": option.path == pathname,
+              "hover:text-primary": option.path != pathname
+            })}
+            to={option.path}
+          >
+            {option.icon} {option.label}
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }

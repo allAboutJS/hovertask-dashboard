@@ -7,7 +7,7 @@ import EmptyMapErr from "./EmptyMapErr";
 
 export default function MarketplaceAside() {
   const [currentCategory, setCurrentCategory] = useState<string>("all");
-  const categories = useProductCategories();
+  const { categories, refresh } = useProductCategories();
 
   return (
     <div className="mt-24 space-y-10 max-lg:hidden">
@@ -35,13 +35,19 @@ export default function MarketplaceAside() {
               ))
             ) : (
               <EmptyMapErr
-                onButtonClick={() => useProductCategories({ refresh: true })}
+                onButtonClick={refresh}
                 description="No product categories available yet"
                 buttonInnerText="Reload Categories"
               />
             )
-          ) : (
+          ) : categories === null ? (
             <Loading />
+          ) : (
+            <EmptyMapErr
+              onButtonClick={refresh}
+              description="Failed to load product categories."
+              buttonInnerText="Try Again"
+            />
           )}
         </div>
       </div>

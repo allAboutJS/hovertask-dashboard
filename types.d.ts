@@ -118,3 +118,14 @@ export interface TransactionInitializationInfo {
   amount: number;
   email: String;
 }
+
+export interface MenuDropdownProps {
+  label: string;
+  icon: React.ReactNode,
+  basePath: string;
+  options: {
+    label: string;
+    icon: React.ReactNode,
+    path: string;
+  }[]
+}

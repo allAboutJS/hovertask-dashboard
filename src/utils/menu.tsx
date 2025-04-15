@@ -1,4 +1,4 @@
-import { CheckCircle, LayoutDashboard, LogOut, Store, UserPlus, Wallet } from "lucide-react";
+import { CheckCircle, LayoutDashboard, List, ListCheck, LogOut, Store, Target, UserPlus, Wallet } from "lucide-react";
 
 export default [
   {
@@ -17,13 +17,47 @@ export default [
     icon: <CheckCircle size={13} />
   },
   {
-    path: "/marketplace",
+    basePath: "/marketplace",
     label: "Marketplace",
-    icon: <Store size={13} />
+    icon: <Store size={13} />,
+    options: [
+      {
+        path: "/marketplace/list-product",
+        label: "List a New Product",
+        icon: <List size={13} />
+      },
+      {
+        path: "/marketplace/listings",
+        label: "View Product Listings",
+        icon: <ListCheck size={13} />
+      },
+      {
+        path: "/marketplace/performance",
+        label: "Track Performance",
+        icon: <Target size={13} />
+      }
+    ]
   },
   {
-    path: "/buy-followers",
+    basePath: "/buy-followers",
     label: "Buy Followers",
+    icon: <UserPlus size={13} />,
+    options: [
+      {
+        path: "/buy-followers",
+        label: "Buy Followers",
+        icon: <UserPlus size={13} />
+      },
+      {
+        path: "/add-me-up",
+        label: "Add Me Up",
+        icon: <UserPlus size={13} />
+      }
+    ]
+  },
+  {
+    path: "/add-me-up",
+    label: "Add Me Up",
     icon: <UserPlus size={13} />
   },
   {

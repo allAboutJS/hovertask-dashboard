@@ -1,6 +1,9 @@
 import { Link, useLocation } from "react-router";
 import menu from "../utils/menu";
 import cn from "../utils/cn";
+import type { MenuDropdownProps } from "../../types";
+import { useEffect, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 export default function SideNav() {
   const { pathname } = useLocation();
@@ -10,7 +13,9 @@ export default function SideNav() {
       <div className="bg-primary py-20 pl-6 rounded-3xl text-white">
         <div className="border-1 border-[#FFFFFF33] pl-4 pr-2 py-10 rounded-2xl space-y-3">
           {menu.map((menuItem) => {
-            return (
+            return menuItem.options ? (
+              <MenuOptionDropdown {...menuItem} />
+            ) : (
               <Link
                 className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl w-fit", {
                   "bg-white text-primary":
@@ -47,6 +52,65 @@ export default function SideNav() {
           <h5 className="font-semibold">Earn By Reselling Products</h5>
           <p className="text-xs">Choose high-demand products and enjoy attractive commissions</p>
         </Link>
+      </div>
+    </div>
+  );
+}
+
+function MenuOptionDropdown(props: MenuDropdownProps) {
+  const { pathname } = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflowY = isOpen ? "hidden" : "auto";
+  }, [isOpen]);
+
+  return (
+    <div aria-haspopup="menu" className="relative">
+      <div
+        className={cn("flex items-center w-fit rounded-xl", {
+          "bg-white text-primary":
+            (pathname === "/" && props.label === "Dashboard") ||
+            (props.label !== "Dashboard" && pathname.includes(props.basePath))
+        })}
+      >
+        <Link to={props.basePath} className={cn("flex items-center gap-2 px-3 py-1.5 w-fit")}>
+          {props.icon} {props.label}
+        </Link>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={cn("flex items-center transition-all active:scale-90 px-2", {
+            "rotate-180": isOpen
+          })}
+        >
+          <ChevronDown size={13} />
+        </button>
+      </div>
+
+      {isOpen && <div className="fixed inset-0" onClick={() => setIsOpen(false)}></div>}
+
+      <div
+        aria-live="polite"
+        className={cn(
+          "absolute [top:calc(100%+2px)] p-2 rounded-xl bg-white text-black text-xs transition-all [transform-origin:_top] z-10",
+          {
+            "opacity-0 overflow-hidden scale-0": !isOpen
+          }
+        )}
+      >
+        {props.options.map((option) => (
+          <Link
+            key={option.label}
+            onClick={() => setIsOpen(false)}
+            className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl", {
+              "bg-primary text-white": option.path == pathname,
+              "hover:text-primary": option.path != pathname
+            })}
+            to={option.path}
+          >
+            {option.icon} {option.label}
+          </Link>
+        ))}
       </div>
     </div>
   );

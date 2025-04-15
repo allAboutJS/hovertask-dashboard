@@ -1,11 +1,12 @@
 import cn from "../utils/cn";
 
-export default function Loading({ fixed }: { fixed?: boolean }) {
-  return (
+export default function Loading({ fixed, animationOnly }: { fixed?: boolean; animationOnly?: boolean }) {
+  return animationOnly ? (
+    <img src="/images/loading.gif" alt="" />
+  ) : (
     <div
-      className={cn("flex items-center justify-center bg-white/80", {
-        "fixed inset-0 -top-8": fixed,
-        "h-screen": !fixed
+      className={cn("flex items-center justify-center", {
+        "fixed inset-0 -top-8 bg-white/80": fixed
       })}
     >
       <img src="/images/loading.gif" alt="" />

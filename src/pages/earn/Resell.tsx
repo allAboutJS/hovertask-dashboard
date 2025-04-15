@@ -13,7 +13,7 @@ import EmptyMapErr from "../../components/EmptyMapErr";
 import useProductCategories from "../../hooks/useProductCategories";
 
 export default function ResellPage() {
-  const categories = useProductCategories();
+  const { categories, refresh } = useProductCategories();
   const [currentCategory, setCurrentCategory] = useState<string>("all");
   const [currentlyViewedProduct, setCurrentlyViewedProduct] = useState<Product>();
   const { products, reload } = useProducts();
@@ -62,8 +62,14 @@ export default function ResellPage() {
                   {category.label}
                 </button>
               ))
-            ) : (
+            ) : categories === null ? (
               <Loading />
+            ) : (
+              <EmptyMapErr
+                onButtonClick={refresh}
+                description="Failed to load product categories."
+                buttonInnerText="Try Again"
+              />
             )}
           </div>
         </div>
