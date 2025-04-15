@@ -3,13 +3,15 @@ import authReducer from "./slices/auth";
 import tasksReducer from "./slices/tasks";
 import productsReducer from "./slices/products";
 import cartReducer from "./slices/cart";
+import contactsReducer from "./slices/contacts";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     tasks: tasksReducer,
     products: productsReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    contacts: contactsReducer
   }
 });
 

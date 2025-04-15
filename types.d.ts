@@ -129,3 +129,23 @@ export interface MenuDropdownProps {
     path: string;
   }[]
 }
+
+export interface ContactCardProps {
+  id: string;
+  name: string;
+  image_url: string;
+  points_required: number;
+  contact_url: string;
+  horizontal?: boolean;
+  responsive?: boolean;
+  version?: "bordered";
+  buttonText?: string;
+  isGroup?: boolean;
+  onButtonClickAction?(): any;
+  linkOverrideURL?: string;
+}
+
+export interface ContactSectionProps extends Omit<ProductSectionProps, "products"> {
+  contacts: ContactCardProps[];
+  isGroup?: boolean;
+}

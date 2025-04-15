@@ -24,6 +24,7 @@ import SellerPage from "./pages/marketplace/Seller";
 import AdvertisePage from "./pages/advertise/Advertise";
 import CartPage from "./pages/marketplace/Cart";
 import ProductCheckoutPage from "./pages/marketplace/ProductCheckout";
+import AddMeUp from "./pages/AddMeUp/AddMeUp";
 
 export default function App() {
   return (
@@ -57,6 +58,9 @@ export default function App() {
 
               {/* Advertise */}
               <Route path="advertise" element={<AdvertisePage />} />
+
+              {/* Add Me Up */}
+              <Route path="add-me-up" element={<AddMeUp />} />
             </Route>
           </Routes>
         </BrowserRouter>

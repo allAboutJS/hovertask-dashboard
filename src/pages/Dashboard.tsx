@@ -15,6 +15,7 @@ import EmptyMapErr from "../components/EmptyMapErr";
 import sendVerificationEmail from "../utils/sendVerificationEmail";
 import useDraggable from "../hooks/useDraggable";
 import cn from "../utils/cn";
+import HorizontalLine from "../components/HorizontalLine";
 
 export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
@@ -37,10 +38,6 @@ export default function Dashboard() {
       </div>
     </div>
   );
-}
-
-function HorizontalLine() {
-  return <div className="self-stretch border-r border-1 border-zinc-300"></div>;
 }
 
 function Greeting({ lname, how_you_want_to_use }: { lname?: string; how_you_want_to_use?: string }) {
