@@ -5,13 +5,14 @@ import type { AuthUserDAO, MenuDropdownProps } from "../../types";
 import menu from "../utils/menu";
 import cn from "../utils/cn";
 import { SetStateAction, useEffect, useState } from "react";
+import useActiveLink from "../hooks/useActiveLink";
 
 export default function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
   const cartItemsLength = useSelector<any, number>((state) => state.cart.value.length);
   const requiredMenuItems = ["Dashboard", "Earn", "Advertise", "Marketplace", "Buy Followers"];
-  const { pathname } = useLocation();
+  const activeLink = useActiveLink();
 
   return (
     <header className="bg-gradient-to-b from-[#4B70F559] to-[#9D9D9D1A] p-4">
@@ -86,9 +87,7 @@ export default function Header() {
                     <Link
                       key={menuItem.label}
                       className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl", {
-                        "bg-primary text-white":
-                          (pathname === "/" && menuItem.label === "Dashboard") ||
-                          (menuItem.label !== "Dashboard" && pathname.includes(menuItem.path))
+                        "bg-primary text-white": activeLink === menuItem.path
                       })}
                       to={menuItem.path}
                     >
@@ -116,20 +115,14 @@ export default function Header() {
         </div>
       </div>
 
-      <MobileNav setIsOpen={setIsMobileNavOpen} isOpen={isMobileNavOpen} pathname={pathname} />
+      <MobileNav setIsOpen={setIsMobileNavOpen} isOpen={isMobileNavOpen} />
     </header>
   );
 }
 
-function MobileNav({
-  setIsOpen,
-  isOpen,
-  pathname
-}: {
-  setIsOpen: React.Dispatch<SetStateAction<boolean>>;
-  isOpen: boolean;
-  pathname: string;
-}) {
+function MobileNav({ setIsOpen, isOpen }: { setIsOpen: React.Dispatch<SetStateAction<boolean>>; isOpen: boolean }) {
+  const activeLink = useActiveLink();
+
   return (
     <>
       <div
@@ -161,9 +154,7 @@ function MobileNav({
                 key={menuItem.label}
                 onClick={() => setTimeout(() => setIsOpen(false), 600)}
                 className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl", {
-                  "bg-primary text-white":
-                    (pathname === "/" && menuItem.label === "Dashboard") ||
-                    (menuItem.label !== "Dashboard" && pathname.includes(menuItem.path))
+                  "bg-primary text-white": activeLink === menuItem.path
                 })}
                 to={menuItem.path}
               >
@@ -180,6 +171,7 @@ function MobileNav({
 function MenuOptionDropdown(props: MenuDropdownProps & { setIsMenuOpen?: React.Dispatch<SetStateAction<boolean>> }) {
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const activeLink = useActiveLink();
 
   useEffect(() => {
     document.body.style.overflowY = isOpen ? "hidden" : "auto";
@@ -189,9 +181,7 @@ function MenuOptionDropdown(props: MenuDropdownProps & { setIsMenuOpen?: React.D
     <div aria-haspopup="menu" className="relative">
       <div
         className={cn("flex items-center w-fit rounded-xl", {
-          "bg-primary text-white":
-            (pathname === "/" && props.label === "Dashboard") ||
-            (props.label !== "Dashboard" && pathname.includes(props.basePath))
+          "bg-primary text-white": activeLink === props.basePath
         })}
       >
         <Link

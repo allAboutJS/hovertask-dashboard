@@ -1,12 +1,13 @@
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import menu from "../utils/menu";
 import cn from "../utils/cn";
 import type { MenuDropdownProps } from "../../types";
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import useActiveLink from "../hooks/useActiveLink";
 
 export default function SideNav() {
-  const { pathname } = useLocation();
+  const activeLink = useActiveLink();
 
   return (
     <div className="max-w-[243px] space-y-8 text-sm">
@@ -18,9 +19,7 @@ export default function SideNav() {
             ) : (
               <Link
                 className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl w-fit", {
-                  "bg-white text-primary":
-                    (pathname === "/" && menuItem.label === "Dashboard") ||
-                    (menuItem.label !== "Dashboard" && pathname.includes(menuItem.path))
+                  "bg-white text-primary": activeLink === menuItem.path
                 })}
                 key={menuItem.label}
                 to={menuItem.path}
@@ -58,8 +57,8 @@ export default function SideNav() {
 }
 
 function MenuOptionDropdown(props: MenuDropdownProps) {
-  const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const activeLink = useActiveLink();
 
   useEffect(() => {
     document.body.style.overflowY = isOpen ? "hidden" : "auto";
@@ -69,9 +68,7 @@ function MenuOptionDropdown(props: MenuDropdownProps) {
     <div aria-haspopup="menu" className="relative">
       <div
         className={cn("flex items-center w-fit rounded-xl", {
-          "bg-white text-primary":
-            (pathname === "/" && props.label === "Dashboard") ||
-            (props.label !== "Dashboard" && pathname.includes(props.basePath))
+          "bg-white text-primary": activeLink === props.basePath
         })}
       >
         <Link to={props.basePath} className={cn("flex items-center gap-2 px-3 py-1.5 w-fit")}>
@@ -103,8 +100,8 @@ function MenuOptionDropdown(props: MenuDropdownProps) {
             key={option.label}
             onClick={() => setIsOpen(false)}
             className={cn("flex items-center gap-3 px-3 py-1.5 rounded-xl", {
-              "bg-primary text-white": option.path == pathname,
-              "hover:text-primary": option.path != pathname
+              "bg-primary text-white": option.path == activeLink,
+              "hover:text-primary": option.path != activeLink
             })}
             to={option.path}
           >
