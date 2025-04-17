@@ -84,7 +84,7 @@ export default function AddMeUp() {
     <div className="mobile:grid grid-cols-[1fr_214px] gap-4 min-h-full">
       <div className="bg-white shadow-md px-4 py-8 space-y-8 overflow-hidden min-h-full">
         <div className="flex gap-4 flex-1">
-          <Link to="/earn">
+          <Link to="/">
             <ArrowLeft />
           </Link>
 
@@ -161,7 +161,7 @@ function PointsInformation() {
 
         <Link
           className="p-2 text-xs rounded-xl transition-all hover:bg-primary/80 active:scale-95 bg-primary text-white"
-          to="#"
+          to="/add-me-up/profile"
         >
           Get More Points
         </Link>
@@ -192,7 +192,7 @@ function PointsInformation() {
               <span className="text-xl font-semibold">0</span> Inactive
             </span>
           </p>
-          <Link to="#" className="text-primary hover:underline">
+          <Link to="/add-me-up/list-profile" className="text-primary hover:underline">
             View
           </Link>
         </div>

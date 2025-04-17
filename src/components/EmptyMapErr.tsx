@@ -3,7 +3,7 @@ export default function EmptyMapErr({
   onButtonClick,
   buttonInnerText
 }: {
-  description: string;
+  description: React.ReactNode;
   buttonInnerText: string;
   onButtonClick?(): any;
 }) {

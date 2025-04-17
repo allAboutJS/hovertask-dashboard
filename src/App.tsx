@@ -25,6 +25,9 @@ import AdvertisePage from "./pages/advertise/Advertise";
 import CartPage from "./pages/marketplace/Cart";
 import ProductCheckoutPage from "./pages/marketplace/ProductCheckout";
 import AddMeUp from "./pages/AddMeUp/AddMeUp";
+import Profile from "./pages/AddMeUp/Profile";
+import ListProfile from "./pages/AddMeUp/ListProfile";
+import ListProfileForm from "./pages/AddMeUp/ListProfileForm";
 
 export default function App() {
   return (
@@ -38,7 +41,6 @@ export default function App() {
               <Route path="become-a-member" element={<MembershipPage />} />
               <Route path="choose-online-payment-method" element={<ChooseOnlinePaymentMethodPage />} />
               <Route path="fund-wallet" element={<FundWalletPage />} />
-
               {/* Earn by reselling */}
               <Route path="earn" element={<Earn />} />
               <Route path="earn/tasks" element={<Tasks />} />
@@ -46,7 +48,6 @@ export default function App() {
               <Route path="earn/adverts" element={<AdvertsPage />} />
               <Route path="earn/resell" element={<ResellPage />} />
               <Route path="earn/connect-accounts" element={<ConnectAccountsPage />} />
-
               {/* Marketplace */}
               <Route path="marketplace" element={<MarketplacePage />} />
               <Route path="marketplace/list-product" element={<ListProductPage />} />
@@ -55,12 +56,13 @@ export default function App() {
               <Route path="marketplace/s/:id" element={<SellerPage />} />
               <Route path="marketplace/cart" element={<CartPage />} />
               <Route path="marketplace/checkout/:id" element={<ProductCheckoutPage />} />
-
               {/* Advertise */}
               <Route path="advertise" element={<AdvertisePage />} />
-
               {/* Add Me Up */}
               <Route path="add-me-up" element={<AddMeUp />} />
+              <Route path="add-me-up/profile" element={<Profile />} />
+              <Route path="add-me-up/list-profile" element={<ListProfile />} />
+              <Route path="add-me-up/list-profile-form" element={<ListProfileForm />} />
             </Route>
           </Routes>
         </BrowserRouter>
