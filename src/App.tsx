@@ -28,6 +28,7 @@ import AddMeUp from "./pages/AddMeUp/AddMeUp";
 import Profile from "./pages/AddMeUp/Profile";
 import ListProfile from "./pages/AddMeUp/ListProfile";
 import ListProfileForm from "./pages/AddMeUp/ListProfileForm";
+import PointsPage from "./pages/AddMeUp/Points";
 
 export default function App() {
   return (
@@ -63,6 +64,7 @@ export default function App() {
               <Route path="add-me-up/profile" element={<Profile />} />
               <Route path="add-me-up/list-profile" element={<ListProfile />} />
               <Route path="add-me-up/list-profile-form" element={<ListProfileForm />} />
+              <Route path="add-me-up/points" element={<PointsPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
