@@ -5,6 +5,7 @@ import { Select, SelectItem } from "@heroui/react";
 import Input from "../../components/Input";
 import { useState } from "react";
 import Loading from "../../components/Loading";
+import AddMeUpAside from "../../components/AddMeUpAside";
 
 export default function ListProfileForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -127,6 +128,8 @@ export default function ListProfileForm() {
 
         {isSubmitting && <Loading fixed />}
       </div>
+
+      <AddMeUpAside />
     </div>
   );
 }

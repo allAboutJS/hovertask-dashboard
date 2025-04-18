@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 import Loading from "../../components/Loading";
 import { toast } from "sonner";
 import Input from "../../components/Input";
+import AddMeUpAside from "../../components/AddMeUpAside";
 
 export default function Profile() {
   const authUser = useSelector<any, AuthUserDAO>((state: any) => state.auth.value);
@@ -58,6 +59,8 @@ export default function Profile() {
           </button>
         </div>
       </div>
+
+      <AddMeUpAside />
     </div>
   );
 }

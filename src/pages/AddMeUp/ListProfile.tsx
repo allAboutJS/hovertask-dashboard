@@ -3,6 +3,7 @@ import { Link, NavigateFunction, useNavigate } from "react-router";
 import cn from "../../utils/cn";
 import { useState } from "react";
 import EmptyMapErr from "../../components/EmptyMapErr";
+import AddMeUpAside from "../../components/AddMeUpAside";
 
 export default function ListProfile() {
   const [activeTab, setActiveTab] = useState<"active" | "inactive">("active");
@@ -49,6 +50,8 @@ export default function ListProfile() {
           )}
         </div>
       </div>
+
+      <AddMeUpAside />
     </div>
   );
 }

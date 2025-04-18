@@ -1,5 +1,6 @@
 import { ArrowLeft, Gift, ShoppingCart } from "lucide-react";
 import { Link } from "react-router";
+import AddMeUpAside from "../../components/AddMeUpAside";
 
 export default function PointsPage() {
   return (
@@ -19,6 +20,8 @@ export default function PointsPage() {
         <PointsBoard />
         <RecentTransactions />
       </div>
+
+      <AddMeUpAside />
     </div>
   );
 }

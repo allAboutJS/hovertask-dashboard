@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 import { AuthUserDAO, ContactCardProps } from "../../../types";
 import HorizontalLine from "../../components/HorizontalLine";
 import ContactsSection from "../../components/ContactSection";
+import AddMeUpAside from "../../components/AddMeUpAside";
 
-const contacts: ContactCardProps[] = [
+export const contacts: ContactCardProps[] = [
   {
     id: "1",
     name: "Alice Thompson",
@@ -106,6 +107,8 @@ export default function AddMeUp() {
         <ContactsSection contacts={contacts} isGroup heading="New Groups Added" link="/add-me-up/add-contacts" />
         <CarouselAdBanner />
       </div>
+
+      <AddMeUpAside />
     </div>
   );
 }
