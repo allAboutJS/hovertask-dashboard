@@ -75,7 +75,7 @@ export default function ImageInput(
       onDragOver={handleDragOver}
       onDrop={handleDrop}
       onDragLeave={handleDragOut}
-      className={cn("aspect-video bg-zinc-200 rounded-lg relative border border-zinc-400/80 text-sm", {
+      className={cn("aspect-video bg-zinc-200/50 rounded-lg relative border border-zinc-300 text-sm", {
         "border-dashed border-4": draggedOver
       })}
     >
