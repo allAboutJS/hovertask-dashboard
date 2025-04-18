@@ -12,12 +12,11 @@ export default function RootLayout() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getAuthUser()
-      .then((user) => (dispatch(setAuthUser(user)), setLoadedAuthUser(true)))
-      .catch((err) => {
-        console.error(err);
-        setLoadedAuthUser(null);
-      });
+    (function fetchUser() {
+      getAuthUser()
+        .then((user) => (dispatch(setAuthUser(user)), setLoadedAuthUser(true)))
+        .catch(fetchUser);
+    })();
   }, [loadedAuthUser]);
 
   return (

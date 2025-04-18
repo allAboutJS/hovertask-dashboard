@@ -29,6 +29,7 @@ import Profile from "./pages/AddMeUp/Profile";
 import ListProfile from "./pages/AddMeUp/ListProfile";
 import ListProfileForm from "./pages/AddMeUp/ListProfileForm";
 import PointsPage from "./pages/AddMeUp/Points";
+import EditProfilePage from "./pages/EditProfile";
 
 export default function App() {
   return (
@@ -42,6 +43,7 @@ export default function App() {
               <Route path="become-a-member" element={<MembershipPage />} />
               <Route path="choose-online-payment-method" element={<ChooseOnlinePaymentMethodPage />} />
               <Route path="fund-wallet" element={<FundWalletPage />} />
+              <Route path="edit-profile" element={<EditProfilePage />} />
               {/* Earn by reselling */}
               <Route path="earn" element={<Earn />} />
               <Route path="earn/tasks" element={<Tasks />} />

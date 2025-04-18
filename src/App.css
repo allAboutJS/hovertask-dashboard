@@ -34,3 +34,9 @@ html {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+#edit-profile-board {
+  background-image: url("/images/edit-profile-bg.png");
+  background-size: cover;
+  background-position: center center;
+}

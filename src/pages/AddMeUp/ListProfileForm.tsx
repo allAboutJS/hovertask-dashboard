@@ -1,11 +1,11 @@
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { Link } from "react-router";
 import ImageInput from "../../components/ImageInput";
-import { Select, SelectItem } from "@heroui/react";
 import Input from "../../components/Input";
 import { useState } from "react";
 import Loading from "../../components/Loading";
 import AddMeUpAside from "../../components/AddMeUpAside";
+import CustomSelect from "../../components/Select";
 
 export default function ListProfileForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,17 +50,13 @@ export default function ListProfileForm() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <Select
+          <CustomSelect
+            options={listingTypes}
             label="Listing Type"
             name="type"
             labelPlacement="outside"
             placeholder="Select listing type"
-            className="[&_button]:border-1 [&_button]:bg-200/50 [&_button]:border-zinc-300 [&_button]:rounded-lg"
-          >
-            {listingTypes.map((type) => (
-              <SelectItem key={type.key}>{type.label}</SelectItem>
-            ))}
-          </Select>
+          />
 
           <Input type="text" label="Display Name" placeholder="Enter display name" />
 
@@ -87,31 +83,23 @@ export default function ListProfileForm() {
           </div>
 
           <div className="pt-2">
-            <Select
+            <CustomSelect
+              options={listingDurations}
               label="How long do you want your profile listed"
               labelPlacement="outside"
               name="duration"
               placeholder="Select how long you want"
-              className="[&_button]:border-1 [&_button]:bg-200/50 [&_button]:border-zinc-300 [&_button]:rounded-lg"
-            >
-              {listingDurations.map((type) => (
-                <SelectItem key={type.key}>{type.label}</SelectItem>
-              ))}
-            </Select>
+            />
           </div>
 
           <div className="pt-2">
-            <Select
+            <CustomSelect
+              options={genders}
               label="Which genders do you want"
               labelPlacement="outside"
               placeholder="Select gender"
               name="gender"
-              className="[&_button]:border-1 [&_button]:bg-200/50 [&_button]:border-zinc-300 [&_button]:rounded-lg"
-            >
-              {genders.map((type) => (
-                <SelectItem key={type.key}>{type.label}</SelectItem>
-              ))}
-            </Select>
+            />
           </div>
 
           <div className="max-w-sm space-y-2">
