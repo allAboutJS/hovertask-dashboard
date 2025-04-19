@@ -148,4 +148,5 @@ export interface ContactCardProps {
 export interface ContactSectionProps extends Omit<ProductSectionProps, "products"> {
   contacts: ContactCardProps[];
   isGroup?: boolean;
+  onClickAction?(): any;
 }

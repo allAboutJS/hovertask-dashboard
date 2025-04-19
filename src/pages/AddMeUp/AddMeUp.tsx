@@ -6,6 +6,7 @@ import { AuthUserDAO, ContactCardProps } from "../../../types";
 import HorizontalLine from "../../components/HorizontalLine";
 import ContactsSection from "../../components/ContactSection";
 import AddMeUpAside from "../../components/AddMeUpAside";
+import { toast } from "sonner";
 
 export const contacts: ContactCardProps[] = [
   {
@@ -103,8 +104,19 @@ export default function AddMeUp() {
 
         <UserInfoSection />
         <PointsInformation />
-        <ContactsSection contacts={contacts} heading="New Contacts Added" link="/add-me-up/add-contacts" />
-        <ContactsSection contacts={contacts} isGroup heading="New Groups Added" link="/add-me-up/add-contacts" />
+        <ContactsSection
+          onClickAction={() => toast.success("User added successfully!")}
+          contacts={contacts}
+          heading="New Contacts Added"
+          link="/add-me-up/add-contacts"
+        />
+        <ContactsSection
+          onClickAction={() => toast.success("Group joined successfully!")}
+          contacts={contacts}
+          isGroup
+          heading="New Groups Added"
+          link="/add-me-up/add-contacts"
+        />
         <CarouselAdBanner />
       </div>
 

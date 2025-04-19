@@ -50,6 +50,7 @@ export default function ContactsSection(props: ContactSectionProps) {
               {...contact}
               responsive={useResponsiveCard}
               linkOverrideURL={`/marketplace/p/${contact.id}`}
+              onButtonClickAction={props.onClickAction}
             />
           ))}
         </div>

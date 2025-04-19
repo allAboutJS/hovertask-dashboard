@@ -23,7 +23,10 @@ export default function ContactCard(props: ContactCardProps) {
         <p className="flex items-center gap-1">
           <Gift size={16} /> {props.points_required}p
         </p>
-        <button className="p-2 text-xs rounded-xl transition-all hover:bg-primary/80 active:scale-95 bg-primary text-white">
+        <button
+          onClick={props.onButtonClickAction}
+          className="p-2 text-xs rounded-xl transition-all hover:bg-primary/80 active:scale-95 bg-primary text-white"
+        >
           {props.isGroup ? "Join Group" : "Add Contact"}
         </button>
       </div>
