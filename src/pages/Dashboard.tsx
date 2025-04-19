@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AuthUserDAO, Task } from "../../types";
-import { DollarSign, Wallet } from "lucide-react";
+import { ChevronDown, DollarSign, Wallet } from "lucide-react";
 import { Link } from "react-router";
 import ProductCard from "../components/ProductCard";
 import Carousel from "../components/Carousel";
@@ -16,6 +16,7 @@ import sendVerificationEmail from "../utils/sendVerificationEmail";
 import useDraggable from "../hooks/useDraggable";
 import cn from "../utils/cn";
 import HorizontalLine from "../components/HorizontalLine";
+import Input from "../components/Input";
 
 export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
@@ -279,6 +280,98 @@ function BecomeMemberModal() {
           </ModalBody>
         )}
       </ModalContent>
+      <AddMeUpModal />
     </Modal>
+  );
+}
+
+function AddMeUpModal() {
+  const { isOpen, onOpenChange, onOpen } = useDisclosure();
+  const addWhatsAppModalProps = useDisclosure();
+
+  useEffect(() => {
+    onOpen();
+  }, []);
+
+  return (
+    <>
+      <Modal size="md" isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {() => (
+            <ModalBody className="mb-4">
+              <img
+                width={150}
+                src="/images/_WhatsApp_tiene_un_nuevo_diseño_y_así_lo_puedes_descargar_-removebg-preview 1.png"
+                className="block mx-auto"
+                alt=""
+              />
+              <h3 className="font-semibold text-lg text-center">Need More WhatsApp Contacts or Viewers? Got You</h3>
+              <p className="text-sm text-zinc-700 text-center">
+                Add new friends, rack up points and get your profile listed for others to add you back
+              </p>
+              <button
+                onClick={addWhatsAppModalProps.onOpen}
+                className="p-2 rounded-xl text-sm transition-all bg-primary text-white active:scale-95 block w-fit mx-auto"
+              >
+                Continue
+              </button>
+            </ModalBody>
+          )}
+        </ModalContent>
+      </Modal>
+      <AddWhatsAppNumberModal {...addWhatsAppModalProps} />
+    </>
+  );
+}
+
+function AddWhatsAppNumberModal(props: ReturnType<typeof useDisclosure>) {
+  const { isOpen, onOpenChange } = props;
+  const [isLoading, setIsLoading] = useState(false);
+
+  function simulateLoading() {
+    setIsLoading(true);
+
+    setTimeout(() => setIsLoading(false), 4000);
+  }
+
+  return (
+    <>
+      <Modal size="md" isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {() => (
+            <ModalBody className="mb-4 p-6">
+              <img
+                width={150}
+                src="/images/What is WhatsApp Business API -The Complete Guide 2024 - Karix 1.png"
+                className="block mx-auto"
+                alt=""
+              />
+              <h3 className="font-semibold text-lg text-center">Add WhatsApp Number</h3>
+              <p className="text-sm text-zinc-700 text-center">Kindly add your WhatsApp number to continue</p>
+              <Input
+                label="WhatsApp Number"
+                placeholder="Enter your WhatsApp number"
+                icon={
+                  <button
+                    type="button"
+                    className="flex items-center gap-1 hover:bg-zinc-200 py-1 px-2 rounded-lg transition-all active:scale-95"
+                  >
+                    <img src="/images/nigerian-flag.png" width={15} alt="" />
+                    <ChevronDown size={12} />
+                  </button>
+                }
+              />
+              <button
+                onClick={simulateLoading}
+                className="p-2 rounded-xl text-sm transition-all bg-primary text-white active:scale-95 block w-fit mx-auto"
+              >
+                Continue
+              </button>
+            </ModalBody>
+          )}
+        </ModalContent>
+      </Modal>
+      {isLoading && <Loading fixed />}
+    </>
   );
 }
