@@ -6,7 +6,7 @@ export default function Loading({ fixed, animationOnly }: { fixed?: boolean; ani
   ) : (
     <div
       className={cn("flex items-center justify-center", {
-        "fixed inset-0 bg-white/80 z-50": fixed
+        "fixed inset-0 bg-white/80 z-[999999]": fixed
       })}
     >
       <img src="/images/loading.gif" alt="" />

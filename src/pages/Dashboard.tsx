@@ -286,7 +286,7 @@ function BecomeMemberModal() {
 }
 
 function AddMeUpModal() {
-  const { isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
   const addWhatsAppModalProps = useDisclosure();
 
   useEffect(() => {
@@ -310,7 +310,7 @@ function AddMeUpModal() {
                 Add new friends, rack up points and get your profile listed for others to add you back
               </p>
               <button
-                onClick={addWhatsAppModalProps.onOpen}
+                onClick={() => (onClose(), addWhatsAppModalProps.onOpen())}
                 className="p-2 rounded-xl text-sm transition-all bg-primary text-white active:scale-95 block w-fit mx-auto"
               >
                 Continue
@@ -362,7 +362,7 @@ function AddWhatsAppNumberModal(props: ReturnType<typeof useDisclosure>) {
                 }
               />
               <button
-                onClick={simulateLoading}
+                onClick={() => (props.onClose(), simulateLoading())}
                 className="p-2 rounded-xl text-sm transition-all bg-primary text-white active:scale-95 block w-fit mx-auto"
               >
                 Continue
