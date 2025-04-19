@@ -1,10 +1,10 @@
-import { ArrowLeft, CheckCircle, Copy, List, Mail, Phone, Star, User, X } from "lucide-react";
+import { ArrowLeft, CheckCircle, Copy, List, Lock, LogOutIcon, Mail, Phone, Star, User, X } from "lucide-react";
 import { Link } from "react-router";
 import { AuthUserDAO } from "../../types";
 import { useSelector } from "react-redux";
 import Input from "../components/Input";
 import CustomSelect from "../components/Select";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function EditProfilePage() {
@@ -18,13 +18,14 @@ export default function EditProfilePage() {
             <ArrowLeft />
           </Link>
 
-          <h1 className="text-xl font-semibold">List Profile</h1>
+          <h1 className="text-xl font-semibold">Edit Profile</h1>
         </div>
-
         <AccountInfoBoard authUser={authUser} />
         <AccountSettings />
         <ReferAndEarn username={authUser.username} />
         <SocialMediaAccounts />
+        <Security />
+        <Logout />
       </div>
     </div>
   );
@@ -228,15 +229,126 @@ function SocialMediaAccounts() {
 }
 
 function EditSocialMediaForm(props: { setIsOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
+  interface FormValues {
+    facebook: [profileUrl: string, username: string];
+    twitter: [profileUrl: string, username: string];
+    tikTok: [profileUrl: string, username: string];
+    instagram: [profileUrl: string, username: string];
+  }
+
+  const [selectedMedia, setSelectedMedia] = useState<string[]>([]);
+  const [formValues, setFormValues] = useState<FormValues>({
+    facebook: ["", ""],
+    twitter: ["", ""],
+    tikTok: ["", ""],
+    instagram: ["", ""]
+  });
   const socialMediaPlatforms = [
     { key: "facebook", label: "Facebook" },
     { key: "twitter", label: "Twitter" },
     { key: "instagram", label: "Instagram" },
-    { key: "tiktok", label: "TikTok" }
+    { key: "tikTok", label: "TikTok" }
   ];
+  const socialMediaPlatformLogoUrls = {
+    facebook: "/images/devicon_facebook.png",
+    twitter: "/images/hugeicons_new-twitter.png",
+    tikTok: "/images/logos_tiktok-icon.png",
+    instagram: "/images/skill-icons_instagram.png"
+  };
+
+  useEffect(() => {
+    if (selectedMedia.length === 1 && selectedMedia[0] === "") setSelectedMedia([]);
+  }, [selectedMedia]);
 
   return (
-    <div className="shadow-md rounded-3xl p-6">
+    <div className="shadow-md rounded-3xl p-6 space-y-6">
+      <div className="flex justify-end">
+        <button
+          onClick={() => props.setIsOpen(false)}
+          className="p-2 rounded-full hover:bg-zinc-100 active:scale-95 transition-transform"
+        >
+          <X size={18} />
+        </button>
+      </div>
+
+      <CustomSelect
+        options={socialMediaPlatforms}
+        placeholder="Select platform"
+        label="Select Platform"
+        startContent={<Mail size={14} className="mr-2" />}
+        labelPlacement="outside"
+        onChange={(e) => setSelectedMedia(Array.from(new Set(e.target.value.split(","))))}
+        selectionMode="multiple"
+      />
+
+      {selectedMedia.map((medium, i) =>
+        selectedMedia[i] !== "" ? (
+          <div className="space-y-2">
+            <p className="flex items-center gap-4">
+              <img src={socialMediaPlatformLogoUrls[medium as keyof FormValues]} />{" "}
+              {socialMediaPlatforms.find((platform) => platform.key === medium)?.label}
+            </p>
+            <div className="flex items-center gap-2">
+              <div className="space-y-2 flex-1">
+                <Input
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      [medium]: [e.target.value, formValues[medium as keyof FormValues][1]]
+                    })
+                  }
+                  value={formValues[medium as keyof FormValues][0]}
+                />
+                <Input
+                  onChange={(e) =>
+                    setFormValues({
+                      ...formValues,
+                      [medium]: [formValues[medium as keyof FormValues][0], e.target.value]
+                    })
+                  }
+                  value={formValues[medium as keyof FormValues][1]}
+                />
+              </div>
+
+              <button className="px-4 py-2 rounded-xl text-sm transition-all active:scale-95 bg-primary text-white">
+                Save
+              </button>
+            </div>
+          </div>
+        ) : null
+      )}
+    </div>
+  );
+}
+
+function Security() {
+  const [isEditing, setIsEditing] = useState(false);
+
+  return (
+    <div className="space-y-6">
+      <h2 className="text-xl font-medium">Security</h2>
+
+      <div className="space-y-3">
+        <div className="flex gap-4 items-center px-4 py-6 rounded-3xl border border-zinc-400">
+          <User size={28} className="text-primary" />
+          <p className="flex-1 line-clamp-1">Change your password</p>
+          <button
+            onClick={() => setIsEditing(true)}
+            className="px-4 py-2 rounded-full text-sm transition-all active:scale-95 bg-primary text-white"
+          >
+            Edit Info
+          </button>
+        </div>
+
+        {isEditing && <EditPasswordForm setIsOpen={setIsEditing} />}
+      </div>
+    </div>
+  );
+}
+
+function EditPasswordForm(props: { setIsOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
+  return (
+    <div className="shadow-md rounded-3xl p-6 space-y-6">
       <div className="flex justify-end">
         <button
           onClick={() => props.setIsOpen(false)}
@@ -247,18 +359,35 @@ function EditSocialMediaForm(props: { setIsOpen: React.Dispatch<React.SetStateAc
       </div>
 
       <form className="space-y-4">
-        <CustomSelect
-          options={socialMediaPlatforms}
-          placeholder="Select platform"
-          label="Select Platform"
-          startContent={<Mail size={14} className="mr-2" />}
-          labelPlacement="outside"
+        <Input label="Old Password" placeholder="Enter old password" icon={<Lock size={14} />} type="password" />
+        <Input label="New Password" placeholder="Enter new password" icon={<Lock size={14} />} type="password" />
+        <Input
+          label="Confirm New Password"
+          placeholder="Confirm new password"
+          icon={<Lock size={14} />}
+          type="password"
         />
-
         <button type="submit" className="px-4 py-3 rounded-2xl transition-all active:scale-95 bg-primary text-white">
           Save
         </button>
       </form>
+    </div>
+  );
+}
+
+function Logout() {
+  return (
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-xl font-medium">Logout</h2>
+        <p className="font-light">
+          Ensure your account is safe by signing out when you're done using the platform, especially on shared devices.
+        </p>
+      </div>
+
+      <button className="px-4 py-3 rounded-2xl transition-all active:scale-95 bg-primary text-white flex items-center gap-2">
+        <LogOutIcon size={18} /> Logout
+      </button>
     </div>
   );
 }
