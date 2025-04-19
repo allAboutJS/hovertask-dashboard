@@ -124,7 +124,7 @@ function UserInfoSection() {
           <p className="text-lg font-medium">
             Hi, {authUser.fname} {authUser.lname}
           </p>
-          <Link to="/me" className="text-sm hover:underline text-primary">
+          <Link to="/add-me-up/profile" className="text-sm hover:underline text-primary">
             View Profile
           </Link>
         </div>
@@ -133,13 +133,13 @@ function UserInfoSection() {
       <div className="flex gap-2 items-center">
         <Link
           className="py-2 px-4 text-sm rounded-xl transition-all hover:bg-primary/80 active:scale-95 bg-primary text-white"
-          to="#"
+          to="/add-me-up/list-profile-form"
         >
           List Contact
         </Link>
         <Link
           className="py-2 px-4 text-sm rounded-xl transition-all hover:bg-primary/10 active:scale-95 border border-primary text-primary"
-          to="#"
+          to="/add-me-up/list-profile-form"
         >
           List Group
         </Link>
@@ -164,7 +164,7 @@ function PointsInformation() {
 
         <Link
           className="p-2 text-xs rounded-xl transition-all hover:bg-primary/80 active:scale-95 bg-primary text-white"
-          to="/add-me-up/profile"
+          to="/add-me-up/points"
         >
           Get More Points
         </Link>

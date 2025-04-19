@@ -11,6 +11,15 @@ import AddMeUpAside from "../../components/AddMeUpAside";
 export default function Profile() {
   const authUser = useSelector<any, AuthUserDAO>((state: any) => state.auth.value);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  function simulateLoading() {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
+  }
 
   return (
     <div className="mobile:grid grid-cols-[1fr_214px] gap-4 min-h-full">
@@ -51,16 +60,24 @@ export default function Profile() {
         {isEditMode && <ProfileEditForm setIsEditMode={setIsEditMode} />}
 
         <div className="space-y-4">
-          <button className="py-2 px-8 text-sm rounded-md transition-all flex items-center gap-2 hover:bg-danger/80 active:scale-95 bg-danger text-white">
+          <button
+            onClick={simulateLoading}
+            className="py-2 px-8 text-sm rounded-md transition-all flex items-center gap-2 hover:bg-danger/80 active:scale-95 bg-danger text-white"
+          >
             <Power size={16} /> Logout
           </button>
-          <button className="py-2 px-8 text-sm rounded-md transition-all flex items-center gap-2 hover:bg-danger/20 active:scale-95 border border-danger text-danger">
+          <button
+            onClick={simulateLoading}
+            className="py-2 px-8 text-sm rounded-md transition-all flex items-center gap-2 hover:bg-danger/20 active:scale-95 border border-danger text-danger"
+          >
             <Trash size={16} /> Delete Your Account
           </button>
         </div>
       </div>
 
       <AddMeUpAside />
+
+      {isLoading && <Loading fixed />}
     </div>
   );
 }
