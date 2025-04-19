@@ -30,6 +30,7 @@ import ListProfile from "./pages/AddMeUp/ListProfile";
 import ListProfileForm from "./pages/AddMeUp/ListProfileForm";
 import PointsPage from "./pages/AddMeUp/Points";
 import EditProfilePage from "./pages/EditProfile";
+import UpdateBankDetailsPage from "./pages/UpdateBankDetails";
 
 export default function App() {
   return (
@@ -44,6 +45,7 @@ export default function App() {
               <Route path="choose-online-payment-method" element={<ChooseOnlinePaymentMethodPage />} />
               <Route path="fund-wallet" element={<FundWalletPage />} />
               <Route path="edit-profile" element={<EditProfilePage />} />
+              <Route path="update-bank-details" element={<UpdateBankDetailsPage />} />
               {/* Earn by reselling */}
               <Route path="earn" element={<Earn />} />
               <Route path="earn/tasks" element={<Tasks />} />

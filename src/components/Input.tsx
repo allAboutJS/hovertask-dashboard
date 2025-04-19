@@ -2,9 +2,9 @@ import { useState } from "react";
 import cn from "../utils/cn";
 
 export default function Input(
-  props: React.InputHTMLAttributes<HTMLInputElement> & { label?: string; icon?: React.ReactNode }
+  props: React.InputHTMLAttributes<HTMLInputElement> & { label?: string; icon?: React.ReactNode; errorMessage?: string }
 ) {
-  const { label, icon, ...rest } = props;
+  const { errorMessage, label, icon, ...rest } = props;
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -32,6 +32,7 @@ export default function Input(
           className="border border-zinc-300 bg-zinc-200/50 rounded-lg px-4 py-2 focus:outline-none focus:border-primary transition-all text-sm"
         />
       )}
+      {errorMessage && <small className="text-danger">{errorMessage}</small>}
     </div>
   );
 }
