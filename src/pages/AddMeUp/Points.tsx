@@ -12,8 +12,8 @@ export default function PointsPage() {
           </Link>
 
           <div className="space-y-2">
-            <h1 className="text-xl font-semibold">List Profile</h1>
-            <p className="text-sm text-zinc-500">Manage Your Account</p>
+            <h1 className="text-xl font-semibold">Add Me Up Points</h1>
+            <p className="text-sm text-zinc-500">Manage your points</p>
           </div>
         </div>
 

@@ -1,4 +1,3 @@
-// import { Link } from "react-router";
 import { Gift } from "lucide-react";
 import { ContactCardProps } from "../../types";
 import cn from "../utils/cn";
