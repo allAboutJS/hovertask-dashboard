@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AuthUserDAO, Task } from "../../types";
 import { ChevronDown, DollarSign, Wallet } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import ProductCard from "../components/ProductCard";
 import Carousel from "../components/Carousel";
 import { Modal, ModalBody, ModalContent, useDisclosure } from "@heroui/react";
@@ -17,6 +17,9 @@ import useDraggable from "../hooks/useDraggable";
 import cn from "../utils/cn";
 import HorizontalLine from "../components/HorizontalLine";
 import Input from "../components/Input";
+import { useForm } from "react-hook-form";
+import apiEndpointBaseURL from "../utils/apiEndpointBaseURL";
+import { toast } from "sonner";
 
 export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
@@ -327,11 +330,32 @@ function AddMeUpModal() {
 function AddWhatsAppNumberModal(props: ReturnType<typeof useDisclosure>) {
   const { isOpen, onOpenChange } = props;
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const {
+    register,
+    formState: { errors, isValid },
+    getValues
+  } = useForm({ mode: "onBlur" });
 
-  function simulateLoading() {
-    setIsLoading(true);
+  function submitPhoneNumber() {
+    if (isValid) {
+      setIsLoading(true);
 
-    setTimeout(() => setIsLoading(false), 4000);
+      fetch(apiEndpointBaseURL + "/addmeup/create", {
+        method: "post",
+        body: JSON.stringify(getValues),
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+          "content-type": "application/json"
+        }
+      })
+        .then((response) => {
+          if (response.ok) navigate("/add-me-up"), toast.success("WhatsApp number added successfully!");
+          else throw new Error("Request failed!");
+        })
+        .catch((error) => toast.error(error.message || "An unknown error occurred. Please try again."))
+        .finally(() => setIsLoading(false));
+    }
   }
 
   return (
@@ -360,9 +384,17 @@ function AddWhatsAppNumberModal(props: ReturnType<typeof useDisclosure>) {
                     <ChevronDown size={12} />
                   </button>
                 }
+                {...register("whatsapp_number", {
+                  required: "Enter your WhatsApp number",
+                  pattern: {
+                    value: /^\+?\d{8,16}$/,
+                    message: "Enter a valid number"
+                  }
+                })}
+                errorMessage={errors.whatsapp_number?.message as string}
               />
               <button
-                onClick={() => (props.onClose(), simulateLoading())}
+                onClick={submitPhoneNumber}
                 className="p-2 rounded-xl text-sm transition-all bg-primary text-white active:scale-95 block w-fit mx-auto"
               >
                 Continue
