@@ -31,6 +31,7 @@ import ListProfileForm from "./pages/AddMeUp/ListProfileForm";
 import PointsPage from "./pages/AddMeUp/Points";
 import EditProfilePage from "./pages/EditProfile";
 import UpdateBankDetailsPage from "./pages/UpdateBankDetails";
+import ReferAndEarnPage from "./pages/ReferAndEarn/ReferAndEarn";
 
 export default function App() {
   return (
@@ -69,6 +70,8 @@ export default function App() {
               <Route path="add-me-up/list-profile" element={<ListProfile />} />
               <Route path="add-me-up/list-profile-form" element={<ListProfileForm />} />
               <Route path="add-me-up/points" element={<PointsPage />} />
+              {/* Refer and Earn */}
+              <Route path="refer-and-earn" element={<ReferAndEarnPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
