@@ -343,7 +343,7 @@ function AddWhatsAppNumberModal(props: ReturnType<typeof useDisclosure>) {
 
       fetch(apiEndpointBaseURL + "/addmeup/create", {
         method: "post",
-        body: JSON.stringify(getValues),
+        body: JSON.stringify(getValues()),
         headers: {
           authorization: `Bearer ${localStorage.getItem("auth_token")}`,
           "content-type": "application/json"
