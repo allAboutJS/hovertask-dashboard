@@ -20,7 +20,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <div className="flex gap-2 items-center">
             <button onClick={() => setIsMobileNavOpen(true)} title="Menu" className="mobile:hidden p-2">
-              <Menu size={14} />
+              <Menu size={16} />
             </button>
             <Link to="/">
               <img src="/images/logo.png" width={100} alt="Logo" />
@@ -28,11 +28,11 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-2 text-sm">
+            <Link to="/notifications">
+              <BellDot size={18} />
+            </Link>
             <div>
-              <BellDot size={14} />
-            </div>
-            <div>
-              <Moon size={14} />
+              <Moon size={18} />
             </div>
             <Link
               className="inline-flex gap-1 items-center px-2 py-1 bg-white rounded-2xl relative"
