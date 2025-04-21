@@ -32,6 +32,7 @@ import PointsPage from "./pages/AddMeUp/Points";
 import EditProfilePage from "./pages/EditProfile";
 import UpdateBankDetailsPage from "./pages/UpdateBankDetails";
 import ReferAndEarnPage from "./pages/ReferAndEarn/ReferAndEarn";
+import TransactionsHistoryPage from "./pages/TransactionsHistory";
 
 export default function App() {
   return (
@@ -47,6 +48,7 @@ export default function App() {
               <Route path="fund-wallet" element={<FundWalletPage />} />
               <Route path="edit-profile" element={<EditProfilePage />} />
               <Route path="update-bank-details" element={<UpdateBankDetailsPage />} />
+              <Route path="transactions-history" element={<TransactionsHistoryPage />} />
               {/* Earn by reselling */}
               <Route path="earn" element={<Earn />} />
               <Route path="earn/tasks" element={<Tasks />} />

@@ -150,3 +150,11 @@ export interface ContactSectionProps extends Omit<ProductSectionProps, "products
   isGroup?: boolean;
   onClickAction?(): any;
 }
+
+export interface Transaction {
+  description: string;
+  amount: number;
+  status: 'successful' | 'failed' | 'pending';
+  type: 'debit' | 'credit';
+  date: string
+}
