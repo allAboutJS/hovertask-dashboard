@@ -9,6 +9,7 @@ import Loading from "../components/Loading";
 import { useSelector } from "react-redux";
 import { AuthUserDAO } from "../../types";
 import cn from "../utils/cn";
+import UserProfileCard from "../components/UserProfileCard";
 
 export default function UpdateBankDetailsPage() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
@@ -126,6 +127,10 @@ export default function UpdateBankDetailsPage() {
           </div>
         )}
         {isSubmitting && <Loading fixed />}
+      </div>
+
+      <div>
+        <UserProfileCard />
       </div>
     </div>
   );

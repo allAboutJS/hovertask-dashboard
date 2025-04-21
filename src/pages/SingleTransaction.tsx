@@ -1,6 +1,7 @@
 import { ArrowLeft, Share2 } from "lucide-react";
 import { Link } from "react-router";
 import { toast } from "sonner";
+import UserProfileCard from "../components/UserProfileCard";
 
 export default function SingleTransactionPage() {
   async function share() {
@@ -89,6 +90,10 @@ export default function SingleTransactionPage() {
             Contact Support
           </Link>
         </p>
+      </div>
+
+      <div>
+        <UserProfileCard />
       </div>
     </div>
   );

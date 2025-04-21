@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router";
+import UserProfileCard from "../components/UserProfileCard";
 
 const sections = [
   {
@@ -117,6 +118,10 @@ export default function TermsPage() {
             </ul>
           </div>
         ))}
+      </div>
+
+      <div>
+        <UserProfileCard />
       </div>
     </div>
   );

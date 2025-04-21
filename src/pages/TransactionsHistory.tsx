@@ -6,6 +6,7 @@ import { Transaction } from "../../types";
 import useTransactions from "../hooks/useTransactions";
 import { useSelector } from "react-redux";
 import cn from "../utils/cn";
+import UserProfileCard from "../components/UserProfileCard";
 
 export default function TransactionsHistoryPage() {
   const userBalance = useSelector<any, number>((state: any) => state.auth.value.balance);
@@ -143,6 +144,10 @@ export default function TransactionsHistoryPage() {
           {transactionsFilter === "pending" && <TransactionsTable transactions={pending} />}
           {transactionsFilter === "successful" && <TransactionsTable transactions={successful} />}
         </div>
+      </div>
+
+      <div>
+        <UserProfileCard />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import CustomSelect from "../components/Select";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 import EditPassword from "../components/EditPassword";
+import UserProfileCard from "../components/UserProfileCard";
 
 export default function EditProfilePage() {
   const authUser = useSelector<any, AuthUserDAO>((state: any) => state.auth.value);
@@ -27,6 +28,10 @@ export default function EditProfilePage() {
         <SocialMediaAccounts />
         <EditPassword />
         <Logout />
+      </div>
+
+      <div>
+        <UserProfileCard />
       </div>
     </div>
   );

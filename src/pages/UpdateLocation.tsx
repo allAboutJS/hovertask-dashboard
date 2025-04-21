@@ -7,6 +7,7 @@ import { useState } from "react";
 import Loading from "../components/Loading";
 import { toast } from "sonner";
 import lgas from "../utils/lgas";
+import UserProfileCard from "../components/UserProfileCard";
 
 export default function UpdateLocationPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -75,6 +76,10 @@ export default function UpdateLocationPage() {
         </form>
 
         {isLoading && <Loading fixed />}
+      </div>
+
+      <div>
+        <UserProfileCard />
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { ArrowLeft, Settings, ShoppingCart, HandCoins, ClipboardList, Truck } from "lucide-react";
 import { Link } from "react-router";
+import UserProfileCard from "../components/UserProfileCard";
 
 export default function NotificationsPage() {
   return (
@@ -46,6 +47,10 @@ export default function NotificationsPage() {
         <button className="text-primary hover:bg-primary/20 transition-transform text-sm p-2 rounded-full active:scale-95">
           See All Notifications
         </button>
+      </div>
+
+      <div>
+        <UserProfileCard />
       </div>
     </div>
   );

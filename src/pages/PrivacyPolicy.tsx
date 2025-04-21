@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router";
+import UserProfileCard from "../components/UserProfileCard";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -18,6 +19,10 @@ export default function PrivacyPolicyPage() {
             </p>
           </div>
         </div>
+      </div>
+
+      <div>
+        <UserProfileCard />
       </div>
     </div>
   );
