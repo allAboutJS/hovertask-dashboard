@@ -6,9 +6,11 @@ import states from "../utils/states";
 import { useState } from "react";
 import Loading from "../components/Loading";
 import { toast } from "sonner";
+import lgas from "../utils/lgas";
 
 export default function UpdateLocationPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [location, setLocation] = useState({ state: "", city: "" });
 
   function simulateLoading() {
     setIsLoading(true);
@@ -52,8 +54,19 @@ export default function UpdateLocationPage() {
           className="space-y-4"
         >
           <div className="grid grid-cols-2 gap-8">
-            <CustomSelect label="Region" placeholder="Select your region" options={states} isAutoComplete />
-            <CustomSelect label="City" placeholder="Select your city" options={[]} isAutoComplete />
+            <CustomSelect
+              label="Region"
+              placeholder="Select your region"
+              options={states}
+              isAutoComplete
+              onSelectionChange={(s) => setLocation((prev) => ({ ...prev, state: s as string }))}
+            />
+            <CustomSelect
+              label="City"
+              placeholder="Select your city"
+              options={location.state ? lgas.find((lga) => lga.state === location.state)?.cities! : []}
+              isAutoComplete
+            />
           </div>
 
           <button className="bg-primary p-2 rounded-xl text-white transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transition-none text-sm">
