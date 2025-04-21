@@ -37,6 +37,8 @@ import SingleTransactionPage from "./pages/SingleTransaction";
 import ChangePasswordPage from "./pages/ChangePassword";
 import UpdateLocationPage from "./pages/UpdateLocation";
 import NotificationsPage from "./pages/Notifications";
+import TermsPage from "./pages/Terms";
+import PrivacyPolicyPage from "./pages/PrivacyPolicy";
 
 export default function App() {
   return (
@@ -57,6 +59,8 @@ export default function App() {
               <Route path="change-password" element={<ChangePasswordPage />} />
               <Route path="update-location" element={<UpdateLocationPage />} />
               <Route path="notifications" element={<NotificationsPage />} />
+              <Route path="terms" element={<TermsPage />} />
+              <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
               {/* Earn by reselling */}
               <Route path="earn" element={<Earn />} />
               <Route path="earn/tasks" element={<Tasks />} />
