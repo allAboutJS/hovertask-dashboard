@@ -34,6 +34,7 @@ import UpdateBankDetailsPage from "./pages/UpdateBankDetails";
 import ReferAndEarnPage from "./pages/ReferAndEarn/ReferAndEarn";
 import TransactionsHistoryPage from "./pages/TransactionsHistory";
 import SingleTransactionPage from "./pages/SingleTransaction";
+import ChangePasswordPage from "./pages/ChangePassword";
 
 export default function App() {
   return (
@@ -51,6 +52,7 @@ export default function App() {
               <Route path="update-bank-details" element={<UpdateBankDetailsPage />} />
               <Route path="transactions-history" element={<TransactionsHistoryPage />} />
               <Route path="transactions-history/:id" element={<SingleTransactionPage />} />
+              <Route path="change-password" element={<ChangePasswordPage />} />
               {/* Earn by reselling */}
               <Route path="earn" element={<Earn />} />
               <Route path="earn/tasks" element={<Tasks />} />
