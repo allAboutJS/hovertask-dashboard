@@ -78,8 +78,6 @@ function SellerInformation() {
 
         <div className="px-2 py-1 rounded-full bg-success/10 text-success text-xs w-fit">Verified ID</div>
       </div>
-
-      {/* <p><span className="material-icons-outlined">location_on</span> {authUser.}</p> */}
     </div>
   );
 }
