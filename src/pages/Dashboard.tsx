@@ -20,6 +20,8 @@ import Input from "../components/Input";
 import { useForm } from "react-hook-form";
 import apiEndpointBaseURL from "../utils/apiEndpointBaseURL";
 import { toast } from "sonner";
+import getAuthUser from "../utils/getAuthUser";
+import { setAuthUser } from "../redux/slices/auth";
 
 export default function Dashboard() {
   const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
@@ -29,7 +31,7 @@ export default function Dashboard() {
       <div className="px-4 py-6 space-y-10 bg-white shadow min-h-full max-w-full overflow-x-hidden">
         <Greeting lname={authUser.lname} how_you_want_to_use={authUser.how_you_want_to_use} />
         <BalanceBoard balance={authUser.balance} />
-        <WelcomeMessage email_verified_at={authUser.email_verified_at} />
+        <WelcomeMessage />
         <AvailableTasks />
         <Carousel>
           <img src="/images/Group 1000004390.png" alt="" />
@@ -38,7 +40,8 @@ export default function Dashboard() {
         </Carousel>
         <AdBanner />
         <PopularProducts />
-        <BecomeMemberModal />
+        {authUser.email_verified_at && <BecomeMemberModal />}
+        {authUser.email_verified_at && <AddMeUpModal />}
       </div>
     </div>
   );
@@ -124,10 +127,27 @@ function BalanceBoard({ balance }: { balance?: number }) {
   );
 }
 
-function WelcomeMessage({ email_verified_at }: { email_verified_at?: string | null }) {
-  const email = useSelector<any, string>((state) => state.auth.value.email);
+function WelcomeMessage() {
+  const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
+  const dispatch = useDispatch();
 
-  return email_verified_at ? (
+  async function verifyAccountVerification() {
+    const authUser: AuthUserDAO = await getAuthUser();
+    authUser.email_verified_at && (toast.success("Account verified successfully!"), dispatch(setAuthUser(authUser)));
+  }
+
+  useEffect(() => {
+    let interval: number;
+
+    interval = setInterval(() => {
+      if (!authUser.email_verified_at) verifyAccountVerification();
+      else clearInterval(interval);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [authUser]);
+
+  return authUser.email_verified_at ? (
     <div className="text-center text-sm space-y-2">
       <h2 className="text-xl font-semibold text-success">Welcome To The Website</h2>
       <p>
@@ -143,7 +163,7 @@ function WelcomeMessage({ email_verified_at }: { email_verified_at?: string | nu
         your account
       </p>
       <button
-        onClick={() => sendVerificationEmail(email)}
+        onClick={async () => sendVerificationEmail(authUser.email)}
         className="text-danger underline hover:bg-danger/20 px-4 py-1.5 rounded-full block w-fit mx-auto"
       >
         Kindly Verify Your Account
@@ -283,7 +303,6 @@ function BecomeMemberModal() {
           </ModalBody>
         )}
       </ModalContent>
-      <AddMeUpModal />
     </Modal>
   );
 }
