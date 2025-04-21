@@ -1,4 +1,22 @@
-import { BellDot, ChevronDown, Menu, Moon, Search, ShoppingCart, X } from "lucide-react";
+import {
+  FileText,
+  Bell,
+  Lock,
+  MapPin,
+  CreditCard,
+  Shield,
+  Info,
+  BellDot,
+  ChevronDown,
+  LogOut,
+  Menu,
+  Moon,
+  Search,
+  ShoppingCart,
+  User,
+  X,
+  Ellipsis
+} from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router";
 import type { AuthUserDAO, MenuDropdownProps } from "../../types";
@@ -38,7 +56,7 @@ export default function Header() {
               className="inline-flex gap-1 items-center px-2 py-1 bg-white rounded-2xl relative"
               to="/marketplace/cart"
             >
-              <ShoppingCart size={14} /> Cart{" "}
+              <ShoppingCart size={14} /> <span className="max-[380px]:hidden">Cart</span>{" "}
               {cartItemsLength ? (
                 <span className="absolute h-6 w-6 rounded-full bg-primary text-white text-xs flex items-center justify-center -top-2 -right-2">
                   {cartItemsLength}
@@ -46,8 +64,10 @@ export default function Header() {
               ) : null}
             </Link>
             <div className="flex gap-1 items-center px-2 py-1 bg-white rounded-2xl">
-              <img src="/images/nigerian-flag.png" width={25} alt="Nigerian flag" /> {authUser.currency.toUpperCase()}
+              <img src="/images/nigerian-flag.png" width={25} alt="Nigerian flag" />{" "}
+              <span className="max-[380px]:hidden">{authUser.currency.toUpperCase()}</span>
             </div>
+            <SecondaryNav isMobile />
             <div className="max-[500px]:hidden mobile:hidden">
               <div>
                 {authUser.fname} {authUser.lname}
@@ -60,19 +80,7 @@ export default function Header() {
         </div>
 
         <div className="flex items-center justify-between text-sm gap-4">
-          <div className="flex items-center gap-3 max-mobile:hidden">
-            <div className="w-12 h-12 rounded-full bg-zinc-200 overflow-hidden">
-              <img src={authUser.avatar ?? "/images/default-avatar"} alt="Logged in user avatar" />
-            </div>
-            <div>
-              <div>
-                {authUser.fname} {authUser.lname}
-              </div>
-              <div className="flex items-center gap-1">
-                @{authUser.username} <ChevronDown size={12} />
-              </div>
-            </div>
-          </div>
+          <ProfileMenu authUser={authUser} />
 
           <div className="flex-1 space-y-3">
             <nav
@@ -96,6 +104,7 @@ export default function Header() {
                   )
                 ) : null
               )}
+              <SecondaryNav />
             </nav>
 
             <div>
@@ -122,6 +131,7 @@ export default function Header() {
 
 function MobileNav({ setIsOpen, isOpen }: { setIsOpen: React.Dispatch<SetStateAction<boolean>>; isOpen: boolean }) {
   const activeLink = useActiveLink();
+  const authUser = useSelector<any, AuthUserDAO>((state) => state.auth.value);
 
   return (
     <>
@@ -145,6 +155,11 @@ function MobileNav({ setIsOpen, isOpen }: { setIsOpen: React.Dispatch<SetStateAc
           <X size={16} />
         </button>
         <div className="clear-right"></div>
+
+        <div className="p-4">
+          <ProfileMenu authUser={authUser} isMobile onLinkClick={() => setIsOpen(false)} />
+        </div>
+
         <div className="space-y-2 px-6">
           {menu.map((menuItem) =>
             menuItem.options ? (
@@ -225,6 +240,109 @@ function MenuOptionDropdown(props: MenuDropdownProps & { setIsMenuOpen?: React.D
             {option.icon} {option.label}
           </Link>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function ProfileMenu({
+  authUser,
+  isMobile,
+  onLinkClick
+}: {
+  authUser: AuthUserDAO;
+  isMobile?: boolean;
+  onLinkClick?: () => any;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className={cn("flex items-center gap-3", { "max-mobile:hidden": !isMobile })}>
+      <div className="w-12 h-12 rounded-full bg-zinc-200 overflow-hidden">
+        <img src={authUser.avatar ?? "/images/default-user.png"} alt="Logged in user avatar" />
+      </div>
+      <div className="relative">
+        <div>
+          {authUser.fname} {authUser.lname}
+        </div>
+        <button onClick={() => setIsOpen(true)} className="flex items-center gap-1">
+          @{authUser.username} <ChevronDown size={12} />
+        </button>
+
+        {/* Overlay */}
+        {isOpen && <div className="fixed inset-0" onClick={() => setIsOpen(false)}></div>}
+
+        <div
+          className={cn(
+            "absolute bg-white p-2 space-y-2 flex flex-col text-sm shadow top-full whitespace-nowrap left-1/2 -translate-x-1/2 scale-0 transition-transform rounded-md",
+            {
+              "scale-100": isOpen
+            }
+          )}
+        >
+          <Link
+            onClick={() => (setIsOpen(false), onLinkClick && onLinkClick())}
+            className="flex items-center gap-1 hover:text-primary"
+            to="/edit-profile"
+          >
+            <User size={12} /> Edit Profile
+          </Link>
+          <button className="flex items-center gap-1 hover:text-primary">
+            <LogOut size={12} /> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SecondaryNav({ isMobile }: { isMobile?: boolean }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const menuItems = [
+    { icon: <FileText size={14} className="w-5 h-5" />, label: "Transaction History", to: "/transactions-history" },
+    { icon: <Bell size={14} className="w-5 h-5" />, label: "Notifications", to: "/notifications" },
+    { icon: <Lock size={14} />, label: "Manage Password", to: "/change-password" },
+    { icon: <MapPin size={14} />, label: "Manage Location", to: "/update-location" },
+    { icon: <CreditCard size={14} className="w-5 h-5" />, label: "Payment Info", to: "/update-bank-details" },
+    { icon: <Shield size={14} className="w-5 h-5" />, label: "Privacy Policy", to: "/privacy-policy" },
+    { icon: <Info size={14} className="w-5 h-5" />, label: "About Us", to: "/about-us" },
+    { icon: <Shield size={14} className="w-5 h-5" />, label: "Terms of Use", to: "/terms" }
+  ];
+
+  return (
+    <div
+      className={cn("relative", {
+        "mobile:hidden": isMobile
+      })}
+    >
+      <button onClick={() => setIsOpen(true)}>
+        {isMobile ? <Ellipsis size={16} className="rotate-90" /> : <Menu size={16} />}
+      </button>
+
+      {/* Overlay */}
+      {isOpen && <div className="fixed inset-0" onClick={() => setIsOpen(false)}></div>}
+
+      <div
+        className={cn(
+          "absolute bg-white p-2 space-y-2 flex flex-col text-sm shadow top-full whitespace-nowrap right-0 scale-0 transition-transform rounded-md [transform-origin:top_right] rounded-tr-none",
+          {
+            "scale-100": isOpen
+          }
+        )}
+      >
+        <ul className="space-y-5">
+          {menuItems.map((item, idx) => (
+            <Link
+              onClick={() => setIsOpen(false)}
+              to={item.to}
+              key={idx}
+              className="flex items-center gap-3 text-sm hover:text-primary"
+            >
+              {item.icon}
+              <span>{item.label}</span>
+            </Link>
+          ))}
+        </ul>
       </div>
     </div>
   );
