@@ -40,6 +40,7 @@ import NotificationsPage from "./pages/Notifications";
 import TermsPage from "./pages/Terms";
 import PrivacyPolicyPage from "./pages/PrivacyPolicy";
 import ProductListingsPage from "./pages/marketplace/ProductListings";
+import ProductPerformancePage from "./pages/marketplace/ProductPerformance";
 
 export default function App() {
   return (
@@ -78,6 +79,7 @@ export default function App() {
               <Route path="marketplace/cart" element={<CartPage />} />
               <Route path="marketplace/checkout/:id" element={<ProductCheckoutPage />} />
               <Route path="marketplace/listings" element={<ProductListingsPage />} />
+              <Route path="marketplace/performance" element={<ProductPerformancePage />} />
               {/* Advertise */}
               <Route path="advertise" element={<AdvertisePage />} />
               {/* Add Me Up */}

@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router";
 import cn from "../../utils/cn";
+import MarketplaceAside from "../../components/MarketplaceAside";
 
 export default function ProductListingsPage() {
   return (
@@ -20,7 +21,12 @@ export default function ProductListingsPage() {
         </div>
 
         <ProductStatusSummary />
+        <hr className="border-dashed" />
         <ProductList />
+      </div>
+
+      <div className="p-4">
+        <MarketplaceAside omitCategories />
       </div>
     </div>
   );
@@ -106,7 +112,7 @@ function ProductList() {
       {sampleProducts.map((product, idx) => {
         const status = getRandomStatus();
         return (
-          <div key={idx} className="flex justify-between items-center bg-white p-4 rounded-lg shadow border">
+          <div key={idx} className="flex justify-between items-center bg-white p-4 rounded-3xl shadow">
             {/* Left: Image and Info */}
             <div className="flex items-center gap-4">
               <img src={product.image} alt={product.name} className="w-14 h-14 rounded" />
@@ -115,17 +121,17 @@ function ProductList() {
                 <p className="text-sm text-gray-700 font-medium">₦{product.price.toLocaleString()}</p>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-xs text-gray-500">{product.stock ? "In Stock" : "Out of Stock"}</span>
-                  <button className="bg-blue-600 text-white text-xs px-2 py-1 rounded">
+                  <Link to="/marketplace/performance" className="bg-primary text-white text-xs px-2 py-1 rounded-full">
                     Track Product Performance
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
 
             {/* Right: Status + Actions */}
-            <div className="text-right space-y-1">
-              <div className={statusStyles[status as keyof typeof statusStyles]}>{status}</div>
-              <div className="flex gap-3 text-sm justify-end">
+            <div className="text-right space-y-1 text-xs flex flex-col justify-between self-stretch">
+              <div className={cn(statusStyles[status as keyof typeof statusStyles], "rounded-lg w-fit")}>{status}</div>
+              <div className="flex gap-3 justify-end">
                 <button className="text-blue-600 hover:underline">Edit</button>
                 {status === "Inactive" && <button className="text-green-600 hover:underline">Activate</button>}
               </div>
