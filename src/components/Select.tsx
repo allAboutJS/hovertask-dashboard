@@ -12,6 +12,7 @@ export default function CustomSelect(
     <div>
       {isAutoComplete ? (
         <Autocomplete
+          labelPlacement="outside"
           {...rest}
           className="[&_div[data-slot='main-wrapper']]:border-1 [&_div[data-slot='main-wrapper']]:bg-zinc-200/50 [&_div[data-slot='main-wrapper']]:border-zinc-300 [&_div[data-slot='main-wrapper']]:rounded-lg"
         >
@@ -21,6 +22,7 @@ export default function CustomSelect(
         </Autocomplete>
       ) : (
         <Select
+          labelPlacement="outside"
           {...rest}
           className="[&_button]:border-1 [&_button]:bg-200/50 [&_button]:border-zinc-300 [&_button]:rounded-lg"
         >
