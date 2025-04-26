@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { contacts } from "../pages/AddMeUp/AddMeUp";
+import { contacts } from "../pages/add-me-up/AddMeUp";
 
 export default function AddMeUpAside() {
   return (

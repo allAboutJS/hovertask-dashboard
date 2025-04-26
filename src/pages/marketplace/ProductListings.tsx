@@ -21,7 +21,7 @@ export default function ProductListingsPage() {
         </div>
 
         <ProductStatusSummary />
-        <hr className="border-dashed" />
+        <hr className="border-dashed" role="separator" />
         <ProductList />
       </div>
 
@@ -109,10 +109,10 @@ function ProductList() {
 
   return (
     <div className="space-y-4">
-      {sampleProducts.map((product, idx) => {
+      {sampleProducts.map((product) => {
         const status = getRandomStatus();
         return (
-          <div key={idx} className="flex justify-between items-center bg-white p-4 rounded-3xl shadow">
+          <div key={product.name} className="flex justify-between items-center bg-white p-4 rounded-3xl shadow">
             {/* Left: Image and Info */}
             <div className="flex items-center gap-4">
               <img src={product.image} alt={product.name} className="w-14 h-14 rounded" />

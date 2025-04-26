@@ -1,9 +1,10 @@
 import { ArrowLeft, Globe, History, MessageCircleIcon, ThumbsUpIcon, TwitterIcon } from "lucide-react";
 import { Link } from "react-router";
 import cn from "../../utils/cn";
-import { Modal, ModalBody, ModalContent, useDisclosure } from "@heroui/react";
+import { useDisclosure } from "@heroui/react";
 import { AuthUserDAO } from "../../../types";
 import { useSelector } from "react-redux";
+import InsufficientFundsModal from "../../components/InsufficientFundsModal";
 
 export default function AdvertisePage() {
   const modalProps = useDisclosure();
@@ -212,31 +213,6 @@ function FeatureCard({
   );
 }
 
-function InsufficientFundsModal(props: ReturnType<typeof useDisclosure>) {
-  const { isOpen, onOpenChange } = props;
-  return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent>
-        {() => (
-          <ModalBody className="flex flex-col justify-center items-center gap-3 text-center text-sm pb-4">
-            <img src="/images/fluent-color_calendar-cancel-16.png" width={40} alt="" />
-            <h4 className="font-semibold text-lg">Oops! Insufficient Funds</h4>
-            <p>
-              You do not have enough funds in your wallet to pay for this advert. Please fund your wallet and try again.
-            </p>
-            <Link
-              to="/fund-wallet"
-              className="px-4 py-2 rounded-xl text-sm text-white bg-primary active:scale-95 transition-transform"
-            >
-              Fund Wallet
-            </Link>
-          </ModalBody>
-        )}
-      </ModalContent>
-    </Modal>
-  );
-}
-
 function AdvertCard({ platform, description, price, iconUrl, bgColor, borderColor }: any) {
   return (
     <div className={`flex items-center gap-4 p-4 max-sm:flex-col rounded-xl border ${borderColor} ${bgColor}`}>
@@ -248,9 +224,12 @@ function AdvertCard({ platform, description, price, iconUrl, bgColor, borderColo
           <span className="font-bold">Price:</span> {price} per Advert Post
         </p>
       </div>
-      <button className="bg-primary text-white text-xs px-4 py-2 rounded-full hover:bg-primary/90 transition">
+      <Link
+        to="post-advert"
+        className="bg-primary text-white text-xs px-4 py-2 rounded-full hover:bg-primary/90 transition"
+      >
         Create Advert
-      </button>
+      </Link>
     </div>
   );
 }

@@ -4,9 +4,7 @@ import { toast } from "sonner";
 import cn from "../utils/cn";
 
 export default function ImageInput(
-  props: Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "accept" | "onChange" | "className"> & {
-    maxLength?: number;
-  }
+  props: Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "accept" | "onChange" | "className">
 ) {
   let { maxLength, ...rest } = props;
   const [draggedOver, setDraggedOver] = useState(false);
@@ -57,7 +55,7 @@ export default function ImageInput(
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files && e.target.files.length > maxLength!) {
       e.target.files = null;
-      return toast.error("Only a maximum of 5 images is allowed");
+      return toast.error(`Only a maximum of ${maxLength} images is allowed`);
     }
 
     if (!e.target.files || !e.target.files?.length) return toast.warning("Please select an image");
@@ -65,7 +63,7 @@ export default function ImageInput(
     setImagesLength(e.target.files?.length!);
     setPreviewImageUrl((prev) => {
       URL.revokeObjectURL(prev);
-      return URL.createObjectURL(e.target.files?.item(0)!);
+      return URL.createObjectURL(e.target.files![0]);
     });
   }
 

@@ -24,14 +24,14 @@ import SellerPage from "./pages/marketplace/Seller";
 import AdvertisePage from "./pages/advertise/Advertise";
 import CartPage from "./pages/marketplace/Cart";
 import ProductCheckoutPage from "./pages/marketplace/ProductCheckout";
-import AddMeUp from "./pages/AddMeUp/AddMeUp";
-import Profile from "./pages/AddMeUp/Profile";
-import ListProfile from "./pages/AddMeUp/ListProfile";
-import ListProfileForm from "./pages/AddMeUp/ListProfileForm";
-import PointsPage from "./pages/AddMeUp/Points";
+import AddMeUp from "./pages/add-me-up/AddMeUp";
+import Profile from "./pages/add-me-up/Profile";
+import ListProfile from "./pages/add-me-up/ListProfile";
+import ListProfileForm from "./pages/add-me-up/ListProfileForm";
+import PointsPage from "./pages/add-me-up/Points";
 import EditProfilePage from "./pages/EditProfile";
 import UpdateBankDetailsPage from "./pages/UpdateBankDetails";
-import ReferAndEarnPage from "./pages/ReferAndEarn/ReferAndEarn";
+import ReferAndEarnPage from "./pages/refer-and-earn/ReferAndEarn";
 import TransactionsHistoryPage from "./pages/TransactionsHistory";
 import SingleTransactionPage from "./pages/SingleTransaction";
 import ChangePasswordPage from "./pages/ChangePassword";
@@ -41,6 +41,7 @@ import TermsPage from "./pages/Terms";
 import PrivacyPolicyPage from "./pages/PrivacyPolicy";
 import ProductListingsPage from "./pages/marketplace/ProductListings";
 import ProductPerformancePage from "./pages/marketplace/ProductPerformance";
+import PostAdvertPage from "./pages/advertise/PostAdvert";
 
 export default function App() {
   return (
@@ -82,6 +83,7 @@ export default function App() {
               <Route path="marketplace/performance" element={<ProductPerformancePage />} />
               {/* Advertise */}
               <Route path="advertise" element={<AdvertisePage />} />
+              <Route path="advertise/post-advert" element={<PostAdvertPage />} />
               {/* Add Me Up */}
               <Route path="add-me-up" element={<AddMeUp />} />
               <Route path="add-me-up/profile" element={<Profile />} />
