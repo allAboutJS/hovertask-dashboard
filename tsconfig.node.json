@@ -20,5 +20,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
+  "typeAcquisition": {
+    "enable": false
+  },
   "include": ["vite.config.ts"]
 }

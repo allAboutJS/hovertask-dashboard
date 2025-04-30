@@ -1,8 +1,17 @@
-import { ArrowLeft, Globe, History, MessageCircleIcon, ThumbsUpIcon, TwitterIcon } from "lucide-react";
+import {
+  ArrowLeft,
+  Globe,
+  History,
+  MessageCircleIcon,
+  ThumbsUpIcon,
+  TwitterIcon,
+  Hexagon,
+  Megaphone
+} from "lucide-react";
 import { Link } from "react-router";
 import cn from "../../utils/cn";
 import { useDisclosure } from "@heroui/react";
-import { AuthUserDAO } from "../../../types";
+import type { AuthUserDAO } from "../../../types";
 import { useSelector } from "react-redux";
 import InsufficientFundsModal from "../../components/InsufficientFundsModal";
 
@@ -134,14 +143,17 @@ export default function AdvertisePage() {
 
         <div className="space-y-6">
           <div className="max-w-sm mx-auto flex items-center gap-4 p-4 rounded-3xl border-b border-primary overflow-x-auto">
-            <button className="flex items-center gap-2 flex-1 px-4 py-2 rounded-xl whitespace-nowrap text-sm active:scale-95 transition-all bg-primary text-white">
-              Advert Tasks
+            <button
+              type="button"
+              className="flex items-center gap-2 flex-1 px-4 py-2 rounded-xl whitespace-nowrap text-sm active:scale-95 transition-all bg-primary text-white"
+            >
+              <Hexagon className="h-4 w-4" /> Advert Tasks
             </button>
             <Link
               to="/advertise/engagement-tasks"
               className="flex items-center gap-2 flex-1 px-4 py-2 rounded-xl whitespace-nowrap text-sm active:scale-95 transition-all text-primary"
             >
-              Engagement Tasks
+              <Megaphone className="h-4 w-4" /> Engagement Tasks
             </Link>
           </div>
 

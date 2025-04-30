@@ -42,6 +42,7 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicy";
 import ProductListingsPage from "./pages/marketplace/ProductListings";
 import ProductPerformancePage from "./pages/marketplace/ProductPerformance";
 import PostAdvertPage from "./pages/advertise/PostAdvert";
+import EngagementTasks from "./pages/advertise/EngagementTasks";
 
 export default function App() {
   return (
@@ -84,6 +85,7 @@ export default function App() {
               {/* Advertise */}
               <Route path="advertise" element={<AdvertisePage />} />
               <Route path="advertise/post-advert" element={<PostAdvertPage />} />
+              <Route path="advertise/engagement-tasks" element={<EngagementTasks />} />
               {/* Add Me Up */}
               <Route path="add-me-up" element={<AddMeUp />} />
               <Route path="add-me-up/profile" element={<Profile />} />
