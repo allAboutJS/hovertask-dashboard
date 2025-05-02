@@ -178,7 +178,7 @@ function KycForm({
 }
 
 function FaceVerificationForm({
-  setFormStep,
+  // setFormStep,
   formStep
 }: {
   setFormStep: React.Dispatch<React.SetStateAction<number>>;
