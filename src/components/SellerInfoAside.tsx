@@ -1,7 +1,7 @@
 import { Star } from "lucide-react";
 import { AuthUserDAO } from "../../types";
 
-export default function SellerInfoAside(props: AuthUserDAO) {
+export default function SellerInfoAside(props: AuthUserDAO & { hideChatBtn?: boolean }) {
   return (
     <div className="lg:mt-24 space-y-10 max-lg:p-4 text-sm">
       <div className="bg-white p-4 rounded-[15.2px] space-y-4">
@@ -27,7 +27,9 @@ export default function SellerInfoAside(props: AuthUserDAO) {
           <div className="text-[7.34px] flex items-center gap-1">
             <Star size={12} color="#F5B300" /> 0
           </div>
-          <button className="text-white bg-primary text-[9.5px] px-2 py-1 rounded-full text-center">Follow</button>
+          {props.hideChatBtn || (
+            <button className="text-white bg-primary text-[9.5px] px-2 py-1 rounded-full text-center">Follow</button>
+          )}
         </div>
         <div className="h-1 border-t border-dashed border-[#66666666] w-[80%] mx-auto"></div>
         <div className="flex gap-2">
@@ -44,31 +46,37 @@ export default function SellerInfoAside(props: AuthUserDAO) {
             <span className="text-[8px]">Following</span>
           </div>
         </div>
-        <div className="flex gap-2 flex-wrap justify-center items-center">
-          <button className="cursor-pointer active:scale-90 transition-transform text-[7.92px] px-[15.2px] py-[9.5px] w-fit bg-primary rounded-[20.01px] text-white">
-            Contact Seller
-          </button>
-          <button className="cursor-pointer active:scale-90 transition-transform text-[7.92px] px-[15.2px] py-[9.5px] w-fit border-primary border-1 rounded-[20.01px] text-primary">
-            Start Chat
-          </button>
-        </div>
+        {props.hideChatBtn || (
+          <div className="flex gap-2 flex-wrap justify-center items-center">
+            <button className="cursor-pointer active:scale-90 transition-transform text-[7.92px] px-[15.2px] py-[9.5px] w-fit bg-primary rounded-[20.01px] text-white">
+              Contact Seller
+            </button>
+            <button className="cursor-pointer active:scale-90 transition-transform text-[7.92px] px-[15.2px] py-[9.5px] w-fit border-primary border-1 rounded-[20.01px] text-primary">
+              Start Chat
+            </button>
+          </div>
+        )}
       </div>
-      <div className="flex items-center gap-1">
-        <span className="material-icons-outlined" style={{ fontSize: 12 }} color="#000000BF">
-          location_on
-        </span>{" "}
-        <p className="text-xs font-light text-[#000000BF]">No address provided</p>
-      </div>
-      <div className="text-xs space-y-4">
-        <h3 className="font-medium">Safety tips</h3>
-        <ul className="text-[#000000BF] font-light space-y-1 list-disc list-inside text-xs">
-          <li>Avoid paying in advance, even for delivery</li>
-          <li>Meet with the seller at a safe public place</li>
-          <li>Inspect the item and ensure it's exactly what you want</li>
-          <li>Make sure that the packed item is the one you've inspected</li>
-          <li>Only pay if you're satisfied</li>
-        </ul>
-      </div>
+      {props.hideChatBtn || (
+        <>
+          <div className="flex items-center gap-1">
+            <span className="material-icons-outlined" style={{ fontSize: 12 }} color="#000000BF">
+              location_on
+            </span>{" "}
+            <p className="text-xs font-light text-[#000000BF]">No address provided</p>
+          </div>
+          <div className="text-xs space-y-4">
+            <h3 className="font-medium">Safety tips</h3>
+            <ul className="text-[#000000BF] font-light space-y-1 list-disc list-inside text-xs">
+              <li>Avoid paying in advance, even for delivery</li>
+              <li>Meet with the seller at a safe public place</li>
+              <li>Inspect the item and ensure it's exactly what you want</li>
+              <li>Make sure that the packed item is the one you've inspected</li>
+              <li>Only pay if you're satisfied</li>
+            </ul>
+          </div>
+        </>
+      )}
     </div>
   );
 }

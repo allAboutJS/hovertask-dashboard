@@ -43,6 +43,8 @@ import ProductListingsPage from "./pages/marketplace/ProductListings";
 import ProductPerformancePage from "./pages/marketplace/ProductPerformance";
 import PostAdvertPage from "./pages/advertise/PostAdvert";
 import EngagementTasks from "./pages/advertise/EngagementTasks";
+import KycVerification from "./pages/kyc/KycVerification";
+import KycVerificationForm from "./pages/kyc/KycVerificationForm";
 
 export default function App() {
   return (
@@ -94,6 +96,9 @@ export default function App() {
               <Route path="add-me-up/points" element={<PointsPage />} />
               {/* Refer and Earn */}
               <Route path="refer-and-earn" element={<ReferAndEarnPage />} />
+              {/* KYC Verification */}
+              <Route path="kyc" element={<KycVerification />} />
+              <Route path="kyc/start" element={<KycVerificationForm />} />
             </Route>
           </Routes>
         </BrowserRouter>
