@@ -45,6 +45,7 @@ import PostAdvertPage from "./pages/advertise/PostAdvert";
 import EngagementTasks from "./pages/advertise/EngagementTasks";
 import KycVerification from "./pages/kyc/KycVerification";
 import KycVerificationForm from "./pages/kyc/KycVerificationForm";
+import TasksHistoryPage from "./pages/advertise/TasksHistory";
 
 export default function App() {
   return (
@@ -88,6 +89,7 @@ export default function App() {
               <Route path="advertise" element={<AdvertisePage />} />
               <Route path="advertise/post-advert" element={<PostAdvertPage />} />
               <Route path="advertise/engagement-tasks" element={<EngagementTasks />} />
+              <Route path="advertise/tasks-history" element={<TasksHistoryPage />} />
               {/* Add Me Up */}
               <Route path="add-me-up" element={<AddMeUp />} />
               <Route path="add-me-up/profile" element={<Profile />} />

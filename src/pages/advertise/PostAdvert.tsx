@@ -110,7 +110,6 @@ function AdvertRequestForm() {
           placeholder="Select platform"
           className="[&_button]:rounded-full max-w-[250px] [&_button]:bg-white"
           startContent={<Globe />}
-          selectionMode="multiple"
           {...register("platforms", { required: "Select platform" })}
           errorMessage={errors.platforms?.message as string}
         />

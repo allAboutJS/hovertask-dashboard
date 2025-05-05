@@ -178,20 +178,20 @@ function KycForm({
 }
 
 function FaceVerificationForm({
-  // setFormStep,
+  setFormStep,
   formStep
 }: {
   setFormStep: React.Dispatch<React.SetStateAction<number>>;
   formStep: number;
 }) {
   const [capturing, setCapturing] = useState(false);
+  const [capturedImgUrl, setCapturedImgUrl] = useState("");
 
   useEffect(() => {
     const video = document.getElementById("video") as HTMLVideoElement;
     const startCameraBtn = document.getElementById("start-camera") as HTMLButtonElement;
     const canvas = document.getElementById("canvas") as HTMLCanvasElement;
     const snapBtn = document.getElementById("snap-btn") as HTMLButtonElement;
-    const snapshotImg = document.getElementById("snapshot") as HTMLImageElement;
 
     async function startCamera() {
       try {
@@ -204,7 +204,16 @@ function FaceVerificationForm({
       }
     }
 
-    async function takeSnapShot() {
+    function stopCamera() {
+      const stream = video.srcObject as MediaStream;
+      if (stream) {
+        const tracks = stream.getTracks();
+        for (const track of tracks) track.stop(); // Stops camera/mic
+        video.srcObject = null;
+      }
+    }
+
+    function takeSnapShot() {
       const context = canvas.getContext("2d");
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
@@ -212,7 +221,9 @@ function FaceVerificationForm({
       context!.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       const dataUrl = canvas.toDataURL("image/png");
-      snapshotImg.src = dataUrl;
+      setCapturedImgUrl(dataUrl);
+      stopCamera();
+      setCapturing(false);
     }
 
     if (capturing) snapBtn?.addEventListener("click", takeSnapShot);
@@ -232,35 +243,57 @@ function FaceVerificationForm({
       </div>
 
       <div>
-        <img src="" alt="" id="snapshot" />
-        {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
-        <video
-          src=""
-          className="max-w-lg rounded-3xl border border-dashed aspect-video bg-zinc-200/40 mx-auto w-full"
-          id="video"
-          autoPlay
-        />
-        <canvas className="h-0 w-0" />
-        <div className="flex justify-between items-center text-xs text-primary max-w-lg mx-auto">
-          <span className="flex items-center gap-1 p-4">
-            <User size={12} /> Uncover face
-          </span>
-          <span className="flex items-center gap-1 p-4">
-            <Sun size={12} /> Good lighting
-          </span>
-        </div>
+        {!capturing && capturedImgUrl && (
+          <img
+            src={capturedImgUrl}
+            alt=""
+            className="w-full max-w-lg rounded-3xl border border-dashed aspect-video bg-zinc-100 block mx-auto"
+          />
+        )}
+        {!capturedImgUrl && (
+          <>
+            {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
+            <video
+              src=""
+              className="max-w-lg rounded-3xl border border-dashed aspect-video bg-zinc-200/40 mx-auto w-full"
+              id="video"
+              autoPlay
+            />
+            <canvas id="canvas" className="h-0 w-0" />
+            <div className="flex justify-between items-center text-xs text-primary max-w-lg mx-auto">
+              <span className="flex items-center gap-1 p-4">
+                <User size={12} /> Uncover face
+              </span>
+              <span className="flex items-center gap-1 p-4">
+                <Sun size={12} /> Good lighting
+              </span>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="text-sm text-center space-y-4">
-        {capturing ? (
+        {capturing && (
           <button
-            id="snap-button"
+            id="snap-btn"
             type="button"
             className="px-4 py-1.5 w-full bg-primary text-white text-sm max-w-lg mx-auto block rounded-full"
           >
             Take a snapshot
           </button>
-        ) : (
+        )}
+
+        {!capturing && capturedImgUrl && (
+          <button
+            onClick={() => setFormStep(3)}
+            type="button"
+            className="px-4 py-1.5 w-full bg-primary text-white text-sm max-w-lg mx-auto block rounded-full"
+          >
+            Continue
+          </button>
+        )}
+
+        {!capturedImgUrl && !capturing && (
           <button
             id="start-camera"
             type="button"
