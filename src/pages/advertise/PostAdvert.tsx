@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import cn from "../../utils/cn";
 import { Modal, ModalBody, ModalContent, useDisclosure } from "@heroui/react";
 import InsufficientFundsModal from "../../components/InsufficientFundsModal";
-import { FieldValues, useForm } from "react-hook-form";
+import { type FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import Loading from "../../components/Loading";
 import { useSelector } from "react-redux";

@@ -1,4 +1,4 @@
-import { ArrowLeft, BookUser, Sun, User } from "lucide-react";
+import { ArrowLeft, BookUser, CheckCheck, Sun, User } from "lucide-react";
 import { Link } from "react-router";
 import SellerInfoAside from "../../components/SellerInfoAside";
 import { useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import cn from "../../utils/cn";
 import Input from "../../components/Input";
 import CustomSelect from "../../components/Select";
 import { toast } from "sonner";
+import { useForm } from "react-hook-form";
 
 export default function KycVerificationForm() {
   const authUser = useSelector<any, AuthUserDAO>((state: any) => state.auth.value);
@@ -72,6 +73,7 @@ export default function KycVerificationForm() {
         <form className="space-y-6">
           <KycForm {...{ formStep, setFormStep }} />
           <FaceVerificationForm {...{ formStep, setFormStep }} />
+          <FinalKycStep {...{ formStep, setFormStep }} />
         </form>
       </div>
 
@@ -87,6 +89,13 @@ function KycForm({
   setFormStep: React.Dispatch<React.SetStateAction<number>>;
   formStep: number;
 }) {
+  const [imagesUrl, setImages] = useState<[string, string]>(["", ""]);
+  const {
+    register,
+    trigger,
+    formState: { isValid, errors }
+  } = useForm({ mode: "onBlur" });
+
   return (
     <div className={cn("space-y-6", { hidden: formStep !== 1 })}>
       <div className="text-center">
@@ -95,14 +104,21 @@ function KycForm({
       </div>
 
       <div className="grid grid-cols-2 gap-6">
-        <CustomSelect placeholder="Your Country" options={[{ key: "nigeria", label: "Nigeria" }]} />
         <CustomSelect
+          {...register("country", { required: "Select your country" })}
+          placeholder="Your Country"
+          options={[{ key: "nigeria", label: "Nigeria" }]}
+          errorMessage={errors.country?.message as string}
+        />
+        <CustomSelect
+          {...register("document_type", { required: "Select your document type" })}
           placeholder="Document Type"
           options={[
             { key: "drivers_license", label: "Driver's License" },
             { key: "passport", label: "Passport" },
             { key: "national_id_card", label: "National ID Card" }
           ]}
+          errorMessage={errors.document_type?.message as string}
         />
       </div>
 
@@ -115,37 +131,117 @@ function KycForm({
             <label className="text-sm text-primary hover:underline cursor-pointer" htmlFor="input-1">
               Choose a file
             </label>
-            <input type="file" name="front_cover" id="input-1" className="invisible" />
+            <input
+              required
+              onChange={(e) => {
+                if (e.target.files && e.target.files.length > 0) {
+                  if (e.target.files[0].type.startsWith("image"))
+                    setImages((prev) => {
+                      // biome-ignore lint/style/noNonNullAssertion:
+                      const newUrl = URL.createObjectURL(e.target.files![0]);
+
+                      URL.revokeObjectURL(prev[0]);
+                      return [newUrl, prev[1]];
+                    });
+                  else
+                    setImages((prev) => {
+                      URL.revokeObjectURL(prev[0]);
+                      return ["/images/pdf-thumbnail.webp", prev[1]];
+                    });
+                } else setImages((prev) => [prev[0], ""]);
+              }}
+              type="file"
+              accept=".png,.jpg,.jpeg,.pdf"
+              name="front_cover"
+              id="input-1"
+              className="invisible"
+            />
           </div>
+          <img src={imagesUrl[0]} alt="" id="doc-front-side" className="max-h-full max-w-full mx-auto" />
         </div>
+
         <div className="relative aspect-video rounded-md bg-zinc-200/40 border border-dashed">
           <div className="absolute text-center p-4 inset-0 space-y-2">
             <BookUser className="h-8 w-8 mx-auto" />
-            <p>Front side of your document</p>
+            <p>Back side of your document</p>
             <p className="text-xs">Upload the front side of your document. We support JPG, PNG, and PDF</p>
             <label className="text-sm text-primary hover:underline cursor-pointer" htmlFor="input-2">
               Choose a file
             </label>
-            <input type="file" name="back_cover" id="input-2" className="invisible" />
+            <input
+              required
+              onChange={(e) => {
+                if (e.target.files && e.target.files.length > 0) {
+                  if (e.target.files[0].type.startsWith("image"))
+                    setImages((prev) => {
+                      // biome-ignore lint/style/noNonNullAssertion:
+                      const newUrl = URL.createObjectURL(e.target.files![0]);
+
+                      URL.revokeObjectURL(prev[1]);
+                      return [prev[0], newUrl];
+                    });
+                  else
+                    setImages((prev) => {
+                      URL.revokeObjectURL(prev[1]);
+                      return [prev[0], "/images/pdf-thumbnail.webp"];
+                    });
+                } else setImages((prev) => ["", prev[1]]);
+              }}
+              type="file"
+              name="back_cover"
+              accept=".png,.jpg,.jpeg,.pdf"
+              id="input-2"
+              className="invisible"
+            />
           </div>
+          <img src={imagesUrl[1]} alt="" id="doc-back-side" className="max-h-full max-w-full mx-auto" />
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
-        <input type="checkbox" name="consent" id="consent" />
-        <label htmlFor="consent" className="text-sm">
-          I confirm that I uploaded valid government-issued phot ID. This ID include my picture, signature, date of
-          birth, and address.
-        </label>
+      <div>
+        <div className="flex items-center gap-4">
+          <input type="checkbox" id="consent" {...register("consent", { required: "This field is required" })} />
+          <label htmlFor="consent" className="text-sm">
+            I confirm that I uploaded valid government-issued phot ID. This ID include my picture, signature, date of
+            birth, and address.
+          </label>
+        </div>
+        <small className="text-danger">{errors.consent?.message as string}</small>
       </div>
 
       <hr className="border-dashed" />
 
       <div className="grid grid-cols-2 gap-6">
-        <Input label="Full name" name="name" placeholder="Your fullname" />
-        <Input label="Date of birth" name="dob" placeholder="Your date of birth" />
-        <Input label="National ID No." name="national_id_number" placeholder="DD/MM/YY" />
-        <Input label="Expiration Date" name="expiry_date" placeholder="DD/MM/YY" />
+        <Input
+          id="name"
+          label="Full name"
+          placeholder="Your fullname"
+          {...register("name", { required: "Enter your full name" })}
+          errorMessage={errors.name?.message as string}
+        />
+        <Input
+          id="dob"
+          label="Date of birth"
+          placeholder="Your date of birth"
+          {...register("dob", { required: "Enter your date of birth" })}
+          errorMessage={errors.dob?.message as string}
+          type="date"
+        />
+        <Input
+          id="nid"
+          label="National ID No."
+          placeholder="DD/MM/YY"
+          {...register("national_id_number", { required: "Enter your national ID number" })}
+          errorMessage={errors.national_id_number?.message as string}
+        />
+        <Input
+          id="nid-expiry"
+          label="Expiration Date"
+          placeholder="DD/MM/YY"
+          {...register("expiry_date", { required: "Enter your national ID expiry date" })}
+          errorMessage={errors.expiry_date?.message as string}
+          type="date"
+        />
       </div>
 
       <p className="text-center">OR</p>
@@ -163,7 +259,12 @@ function KycForm({
 
       <div className="flex gap-6">
         <button
-          onClick={() => setFormStep(2)}
+          onClick={async () => {
+            await trigger();
+            if (!imagesUrl[0]) return toast.error("Select document front.");
+            if (!imagesUrl[1]) return toast.error("Select document back.");
+            if (isValid) setFormStep(2);
+          }}
           className="py-1.5 px-6 rounded-xl text-sm bg-primary text-white"
           type="button"
         >
@@ -247,10 +348,11 @@ function FaceVerificationForm({
           <img
             src={capturedImgUrl}
             alt=""
-            className="w-full max-w-lg rounded-3xl border border-dashed aspect-video bg-zinc-100 block mx-auto"
+            id="selfie"
+            className="w-auto max-w-lg h-auto max-h-96 rounded-3xl border border-dashed bg-zinc-100 block mx-auto"
           />
         )}
-        {!capturedImgUrl && (
+        {capturing && (
           <>
             {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
             <video
@@ -284,13 +386,23 @@ function FaceVerificationForm({
         )}
 
         {!capturing && capturedImgUrl && (
-          <button
-            onClick={() => setFormStep(3)}
-            type="button"
-            className="px-4 py-1.5 w-full bg-primary text-white text-sm max-w-lg mx-auto block rounded-full"
-          >
-            Continue
-          </button>
+          <>
+            <button
+              onClick={() => setCapturing(true)}
+              type="button"
+              className="px-4 py-1.5 w-full border border-primary text-primary text-sm max-w-lg mx-auto block rounded-full"
+            >
+              Retake Selfie
+            </button>
+
+            <button
+              onClick={() => setFormStep(3)}
+              type="button"
+              className="px-4 py-1.5 w-full bg-primary text-white text-sm max-w-lg mx-auto block rounded-full"
+            >
+              Continue
+            </button>
+          </>
         )}
 
         {!capturedImgUrl && !capturing && (
@@ -307,6 +419,122 @@ function FaceVerificationForm({
           Continue on phone
         </Link>
       </div>
+    </div>
+  );
+}
+
+function FinalKycStep({
+  setFormStep,
+  formStep
+}: {
+  setFormStep: React.Dispatch<React.SetStateAction<number>>;
+  formStep: number;
+}) {
+  useEffect(() => {
+    formStep;
+
+    const docFrontImgSrc = (document.getElementById("doc-front-side") as HTMLImageElement).src as string;
+    const docBackImgSrc = (document.getElementById("doc-back-side") as HTMLImageElement).src as string;
+    const selfieImgSrc = (document.getElementById("selfie") as HTMLImageElement)?.src as string;
+    const docFrontPreview = document.getElementById("doc-front-side-preview") as HTMLImageElement;
+    const docBackPreview = document.getElementById("doc-back-side-preview") as HTMLImageElement;
+    const selfiePreview = document.getElementById("selfie-preview") as HTMLImageElement;
+
+    const nameInput = document.getElementById("name") as HTMLInputElement;
+    const dobInput = document.getElementById("dob") as HTMLInputElement;
+    const nidInput = document.getElementById("nid") as HTMLInputElement;
+    const nidExpiryInput = document.getElementById("nid-expiry") as HTMLInputElement;
+    const nameElement = document.getElementById("name-preview") as HTMLElement;
+    const nidElement = document.getElementById("dob-preview") as HTMLElement;
+    const dobElement = document.getElementById("nid-preview") as HTMLElement;
+    const expiryElement = document.getElementById("nid-expiry-preview") as HTMLElement;
+
+    if (nameInput && nameElement) nameElement.textContent = nameInput.value;
+    if (dobInput && dobElement) dobElement.textContent = dobInput.value;
+    if (nidInput && nidElement) nidElement.textContent = nidInput.value;
+    if (nidExpiryInput && expiryElement) expiryElement.textContent = nidExpiryInput.value;
+    if (docFrontPreview) docFrontPreview.src = docFrontImgSrc;
+    if (docBackPreview) docBackPreview.src = docBackImgSrc;
+    if (selfiePreview) selfiePreview.src = selfieImgSrc;
+  }, [formStep]);
+
+  return (
+    <div className={cn("space-y-6", { hidden: formStep !== 3 })}>
+      <h2 className="text-center text-xl font-semibold">Review & Submit</h2>
+
+      <div className="space-y-2">
+        <div className="flex justify-center gap-4 max-w-lg mx-auto">
+          <div className="relative aspect-square rounded-md bg-zinc-200/40 border border-dashed flex-1">
+            <div className="absolute text-center p-4 inset-0 space-y-2 flex flex-col items-center justify-center">
+              <CheckCheck className="h-8 w-8 mx-auto text-success" />
+              <p>Front side of your document</p>
+              <p className="text-xs">Upload the front side of your document. We support JPG, PNG, and PDF</p>
+            </div>
+            <img src="" alt="" id="doc-front-side-preview" className="max-h-full max-w-full mx-auto" />
+          </div>
+          <div className="relative aspect-square rounded-md bg-zinc-200/40 border border-dashed flex-1">
+            <div className="absolute text-center p-4 inset-0 space-y-2 flex flex-col items-center justify-center">
+              <CheckCheck className="h-8 w-8 mx-auto text-success" />
+              <p>Back side of your document</p>
+              <p className="text-xs">Upload the front side of your document. We support JPG, PNG, and PDF</p>
+            </div>
+            <img src="" alt="" id="doc-back-side-preview" className="max-h-full max-w-full mx-auto" />
+          </div>
+        </div>
+
+        <button
+          onClick={() => setFormStep(1)}
+          type="button"
+          className="text-primary text-sm block mx-auto hover:underline"
+        >
+          Reupload Images
+        </button>
+      </div>
+
+      <div className="text-sm space-y-2 p-4 max-w-sm rounded-2xl shadow-md bg-white mx-auto">
+        <div className="flex items-center gap-4">
+          <img src="" id="selfie-preview" alt="" className="aspect-square rounded-xl max-w-56" />
+          <button
+            onClick={() => setFormStep(2)}
+            type="button"
+            className="text-primary text-sm hover:underline text-left"
+          >
+            Reupload selfie image
+          </button>
+        </div>
+
+        <div>
+          <p>
+            Fullname: <span className="font-medium" id="name-preview" />
+          </p>
+          <p>
+            National ID Number: <span className="font-medium" id="nid-preview" />
+          </p>
+          <p>
+            Date of Birth: <span className="font-medium" id="dob-preview" />
+          </p>
+          <p>
+            License Expiry Date: <span className="font-medium" id="nid-expiry-preview" />
+          </p>
+        </div>
+      </div>
+
+      <p className="text-center text-sm">
+        Once submitted, your details cannot be changed until the verification process is complete
+      </p>
+
+      <button
+        className="px-4 py-1.5 w-full bg-primary text-white text-sm max-w-lg mx-auto block rounded-full"
+        type="submit"
+      >
+        Submit for Verification
+      </button>
+
+      <p className="text-center text-sm">
+        <Link to="/support" className="text-primary underline">
+          Need help? Contact Support
+        </Link>
+      </p>
     </div>
   );
 }
