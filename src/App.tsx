@@ -46,6 +46,8 @@ import EngagementTasks from "./pages/advertise/EngagementTasks";
 import KycVerification from "./pages/kyc/KycVerification";
 import KycVerificationForm from "./pages/kyc/KycVerificationForm";
 import TasksHistoryPage from "./pages/advertise/TasksHistory";
+import SellerChat from "./pages/marketplace/Chat";
+import TaskPerformancePage from "./pages/advertise/TaskPerformance";
 
 export default function App() {
   return (
@@ -82,6 +84,7 @@ export default function App() {
               <Route path="marketplace/p/:id" element={<SingleProductPage />} />
               <Route path="marketplace/s/:id" element={<SellerPage />} />
               <Route path="marketplace/cart" element={<CartPage />} />
+              <Route path="marketplace/chat" element={<SellerChat />} />
               <Route path="marketplace/checkout/:id" element={<ProductCheckoutPage />} />
               <Route path="marketplace/listings" element={<ProductListingsPage />} />
               <Route path="marketplace/performance" element={<ProductPerformancePage />} />
@@ -90,6 +93,7 @@ export default function App() {
               <Route path="advertise/post-advert" element={<PostAdvertPage />} />
               <Route path="advertise/engagement-tasks" element={<EngagementTasks />} />
               <Route path="advertise/tasks-history" element={<TasksHistoryPage />} />
+              <Route path="advertise/task-performance/:id" element={<TaskPerformancePage />} />
               {/* Add Me Up */}
               <Route path="add-me-up" element={<AddMeUp />} />
               <Route path="add-me-up/profile" element={<Profile />} />
