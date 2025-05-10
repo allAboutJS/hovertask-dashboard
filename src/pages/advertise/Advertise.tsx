@@ -131,6 +131,7 @@ export default function AdvertisePage() {
           <div className="flex items-center gap-4 justify-between py-2 px-6 border border-zinc-400 rounded-full max-w-sm mx-auto">
             <span className="text-xl font-medium">₦1,000</span>
             <button
+              type="button"
               onClick={() => authUser.balance >= 1000 || modalProps.onOpen()}
               className="px-4 py-2 rounded-2xl text-sm text-white bg-primary active:scale-95 transition-transform"
             >
@@ -228,7 +229,7 @@ function FeatureCard({
 function AdvertCard({ platform, description, price, iconUrl, bgColor, borderColor }: any) {
   return (
     <div className={`flex items-center gap-4 p-4 max-sm:flex-col rounded-xl border ${borderColor} ${bgColor}`}>
-      <img src={iconUrl} />
+      <img src={iconUrl} alt="" />
       <div className="flex-1">
         <h3 className="font-semibold text-sm sm:text-base">Get Your Adverts on {platform}</h3>
         <p className="text-xs sm:text-sm text-gray-700 mt-1">{description}</p>

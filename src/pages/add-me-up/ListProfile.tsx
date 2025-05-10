@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react";
-import { Link, NavigateFunction, useNavigate } from "react-router";
+import { Link, type NavigateFunction, useNavigate } from "react-router";
 import cn from "../../utils/cn";
 import { useState } from "react";
 import EmptyMapErr from "../../components/EmptyMapErr";
@@ -26,24 +26,26 @@ export default function ListProfile() {
         <div>
           <div className="flex items-center justify-center overflow-auto max-w-full border-b border-b-primary pb-2">
             <button
+              type="button"
               onClick={() => setActiveTab("active")}
               className={cn("py-3 px-16 text-sm rounded-xl transition-all active:scale-95 bg-primary text-white", {
-                "bg-white text-primary": activeTab == "inactive"
+                "bg-white text-primary": activeTab === "inactive"
               })}
             >
               Active Listing Contact
             </button>
             <button
+              type="button"
               onClick={() => setActiveTab("inactive")}
               className={cn("py-3 px-16 text-sm rounded-xl transition-all active:scale-95 bg-primary text-white", {
-                "bg-white text-primary": activeTab == "active"
+                "bg-white text-primary": activeTab === "active"
               })}
             >
               Inactive Listing Contact
             </button>
           </div>
 
-          {activeTab == "active" ? (
+          {activeTab === "active" ? (
             <ActiveContactListing navigate={navigate} />
           ) : (
             <InactiveContactListing navigate={navigate} />

@@ -41,7 +41,10 @@ function PointsBoard() {
             </span>
           </p>
 
-          <button className="p-2 text-xs rounded-full transition-all hover:bg-primary/80 active:scale-95 bg-primary text-white flex items-center gap-1">
+          <button
+            type="button"
+            className="p-2 text-xs rounded-full transition-all hover:bg-primary/80 active:scale-95 bg-primary text-white flex items-center gap-1"
+          >
             <ShoppingCart size={12} /> Buy More Points
           </button>
         </div>

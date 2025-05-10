@@ -1,8 +1,8 @@
 import { ArrowLeft, Power, Trash, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
-import { AuthUserDAO } from "../../../types";
-import { FormEvent, useState } from "react";
+import type { AuthUserDAO } from "../../../types";
+import { type FormEvent, useState } from "react";
 import Loading from "../../components/Loading";
 import { toast } from "sonner";
 import Input from "../../components/Input";
@@ -49,6 +49,7 @@ export default function Profile() {
 
           {isEditMode || (
             <button
+              type="button"
               onClick={() => setIsEditMode(true)}
               className="py-3 px-8 text-xs rounded-full transition-all hover:bg-primary/80 active:scale-95 bg-primary text-white"
             >
@@ -61,12 +62,14 @@ export default function Profile() {
 
         <div className="space-y-4">
           <button
+            type="button"
             onClick={simulateLoading}
             className="py-2 px-8 text-sm rounded-md transition-all flex items-center gap-2 hover:bg-danger/80 active:scale-95 bg-danger text-white"
           >
             <Power size={16} /> Logout
           </button>
           <button
+            type="button"
             onClick={simulateLoading}
             className="py-2 px-8 text-sm rounded-md transition-all flex items-center gap-2 hover:bg-danger/20 active:scale-95 border border-danger text-danger"
           >
@@ -99,6 +102,7 @@ function ProfileEditForm(props: { setIsEditMode: React.Dispatch<React.SetStateAc
     <div className="p-4 rounded-3xl shadow">
       <div className="flex justify-end">
         <button
+          type="button"
           className="hover:bg-zinc-100 active:scale-95 transition-all p-4 rounded-full"
           onClick={() => setIsEditMode(false)}
         >
@@ -116,7 +120,10 @@ function ProfileEditForm(props: { setIsEditMode: React.Dispatch<React.SetStateAc
         <div className="max-w-lg">
           <Input label="Email" type="email" placeholder="Enter your name" />
         </div>
-        <button className="py-3 px-8 text-sm rounded-xl transition-all hover:bg-primary/80 active:scale-95 bg-primary text-white">
+        <button
+          type="button"
+          className="py-3 px-8 text-sm rounded-xl transition-all hover:bg-primary/80 active:scale-95 bg-primary text-white"
+        >
           Save Profile Details
         </button>
       </form>

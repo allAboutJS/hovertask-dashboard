@@ -47,9 +47,9 @@ export default function ListProfileForm() {
     const form = new FormData(e.target as HTMLFormElement);
 
     form.append("how_you_want_your_profile_listed", "public");
-    fetch(apiEndpointBaseURL + "/addmeup/listcontact", {
+    fetch(`${apiEndpointBaseURL}/addmeup/listcontact`, {
       method: "POST",
-      headers: { authorization: ("Bearer " + localStorage.getItem("auth_token")) as string },
+      headers: { authorization: `Bearer ${localStorage.getItem("auth_token") as string}` },
       body: form
     })
       .then((res) => {

@@ -2,7 +2,7 @@ import { ArrowLeft, Gift } from "lucide-react";
 import { Link } from "react-router";
 import CarouselAdBanner from "../../components/CarouselAdBanner";
 import { useSelector } from "react-redux";
-import { AuthUserDAO, ContactCardProps } from "../../../types";
+import type { AuthUserDAO, ContactCardProps } from "../../../types";
 import HorizontalLine from "../../components/HorizontalLine";
 import ContactsSection from "../../components/ContactSection";
 import AddMeUpAside from "../../components/AddMeUpAside";
