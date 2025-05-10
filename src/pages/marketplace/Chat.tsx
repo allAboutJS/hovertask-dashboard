@@ -1,7 +1,7 @@
 import { ArrowLeft, User } from "lucide-react";
 import { Link } from "react-router";
 
-const ChatMessage = ({ isUser, message, time }) => (
+const ChatMessage = ({ isUser, message, time }: any) => (
   <div className={`flex ${isUser ? "justify-end" : "justify-start"} mb-4`}>
     {!isUser && <User />}
     <div
